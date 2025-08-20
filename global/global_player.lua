@@ -286,7 +286,16 @@ function grant_veteran_aa(e)
 	end
 
     local age = e.self:GetAccountAge();
-    for aa, v in pairs(vet_aa) do
+
+	-- sort by AA id
+	local keys = {}
+	for k, _ in pairs(vet_aa) do
+		table.insert(keys, k)
+	end
+	table.sort(keys)
+	for i = 1, #keys do
+		local aa = keys[i]
+		local v = vet_aa[aa]
         if v[3] and (v[2] or age >= v[1]) then
             e.self:GrantAlternateAdvancementAbility(aa, 1)
         end
