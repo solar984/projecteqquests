@@ -112,7 +112,8 @@ sub EVENT_TIMER {
                         if($c) {
                                 $c->BuffFadeByEffect(58);
                                 $IllusionSpell = quest::ChooseRandom(586, 590, 591, 587, 1731, 3063, 595, 583, 594, 589, 582, 243, 593);
-                                $c->CastSpell($IllusionSpell, $ClientID, 10, 0);
+                                # this doesn't work, needs SpellOnTarget or something, not a normal cast from the player
+								#$c->CastSpell($IllusionSpell, $ClientID, 10, 0);
                         }
                 }
         }
