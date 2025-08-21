@@ -1,15 +1,15 @@
 sub EVENT_ENTERZONE {
-	if (quest::istaskcompleted(5745) == 0 && quest::istaskactive(5745) == 0) #Check if completed Task: New Beginnings
-	{
-		quest::assigntask(5745); #Force assign Task: New Beginnings
-	}
+	#if (quest::istaskcompleted(5745) == 0 && quest::istaskactive(5745) == 0) #Check if completed Task: New Beginnings
+	#{
+	#	quest::assigntask(5745); #Force assign Task: New Beginnings
+	#}
 
-	set_current_position();
-	quest::settimer("check_idle", 1200);
+	#set_current_position();
+	#quest::settimer("check_idle", 1200);
 }
 
 sub EVENT_CLICKDOOR {
-	my $popuptext = "If you do not respond within 5 seconds, you will automatically be sent to the overhauled version.";
+	#my $popuptext = "If you do not respond within 5 seconds, you will automatically be sent to the overhauled version.";
 
 	if ($doorid == 138) #guild lobby
 	{
@@ -148,20 +148,20 @@ sub EVENT_TIMER {
 		quest::movepc(383, -173, -188, -69, 192); # Zone: freeportwest
 	}
 
-	if ($timer eq "check_idle") {
-		my $last_x  = $client->GetEntityVariable("last_x");
-		my $last_y  = $client->GetEntityVariable("last_y");
-		my $is_idle = ($last_x eq $client->GetX() && $last_y eq $client->GetY());
-
-		if ($is_idle && $uguild_id > 0) {
-			$client->SendToGuildHall();
-		}
-
-		set_current_position();
-	}
+	#if ($timer eq "check_idle") {
+	#	my $last_x  = $client->GetEntityVariable("last_x");
+	#	my $last_y  = $client->GetEntityVariable("last_y");
+	#	my $is_idle = ($last_x eq $client->GetX() && $last_y eq $client->GetY());
+	#
+	#	if ($is_idle && $uguild_id > 0) {
+	#		$client->SendToGuildHall();
+	#	}
+	#
+	#	set_current_position();
+	#}
 }
 
-sub set_current_position() {
-	$client->SetEntityVariable("last_x", $client->GetX());
-	$client->SetEntityVariable("last_y", $client->GetY());
-}
+#sub set_current_position() {
+#	$client->SetEntityVariable("last_x", $client->GetX());
+#	$client->SetEntityVariable("last_y", $client->GetY());
+#}
