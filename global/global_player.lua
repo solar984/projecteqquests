@@ -399,9 +399,11 @@ function event_level_up(e)
     end
   end
 
-  if e.self:GetLevel() == 5 and eq.is_omens_of_war_enabled() then
+  if e.self:GetLevel() >= 5 and eq.is_omens_of_war_enabled() then
 	grant_origin_aa(e);
-    eq.popup("", "<c \"#F0F000\">Welcome to level 5.</c><br><br>You have just been granted a new ability called '<c \"#F0F000\">Origin</c>' which allows you to teleport back to your starting city.<br><br>Open the Alternate Advancement window by pressing the '<c \"#F0F000\">V</c>' key, look in the '<c \"#F0F000\">General' tab</c>, and find the '<c \"#F0F000\">Origin</c>' ability and select it.<br><br>Now press the '<c \"#F0F000\">Hotkey</c>' button to create a hotkey you can place on your hot bar.");
+	if e.self:GetLevel() == 5 then
+      eq.popup("", "<c \"#F0F000\">Welcome to level 5.</c><br><br>You have just been granted a new ability called '<c \"#F0F000\">Origin</c>' which allows you to teleport back to your starting city.<br><br>Open the Alternate Advancement window by pressing the '<c \"#F0F000\">V</c>' key, look in the '<c \"#F0F000\">General' tab</c>, and find the '<c \"#F0F000\">Origin</c>' ability and select it.<br><br>Now press the '<c \"#F0F000\">Hotkey</c>' button to create a hotkey you can place on your hot bar.");
+	end
   end
 
   if e.self:GetLevel() == 10 and eq.is_dragons_of_norrath_enabled() then
