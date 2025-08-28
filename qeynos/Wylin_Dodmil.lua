@@ -1,6 +1,6 @@
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say("Excuse me, but you should not be down in the pens.  There are very dangerous creatures kept here.  For the gladiator games, you know.");
+		e.self:Say("Excuse me, but you should not be down in the pens. There are very dangerous creatures kept here. For the gladiator games, you know.");
 	end
 end
 

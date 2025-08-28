@@ -1,6 +1,6 @@
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say(string.format("Greetings to you, %s. Try the Ogre Swills in this place. They get it to just the right consistency! You could stick a dagger in it and it would stand straight up!",e.other:GetName()));
+		e.self:Say("Greetings to you, " .. e.other:GetCleanName() .. ". Try the Ogre Swills in this place. They get it to just the right consistency! You could stick a dagger in it and it would stand straight up!");
 	end
 end
 

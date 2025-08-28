@@ -437,4 +437,97 @@ function items.get_handin_items_serialized(handin_table)
 	return table.concat(handin_table, ",")
 end
 	
+function items.count_handed_item(npc, trade, items, min_count, text, emote)
+
+	local itemid1 = items[1] or 0;
+	local itemid2 = items[2] or 0;
+	local itemid3 = items[3] or 0;
+	local itemid4 = items[4] or 0;
+	local itemid5 = items[5] or 0;
+	local itemid6 = items[6] or 0;
+	local itemid7 = items[7] or 0;
+	local itemid8 = items[8] or 0;
+	min_count = min_count or 1;
+
+	local mq_loot = {};
+
+	local count = npc:QuestLootCount(itemid1) + npc:QuestLootCount(itemid2) + npc:QuestLootCount(itemid3) + npc:QuestLootCount(itemid4) + 
+	npc:QuestLootCount(itemid5) + npc:QuestLootCount(itemid6) + npc:QuestLootCount(itemid7) + npc:QuestLootCount(itemid8);
+	local handed_count = 0;
+	for j = 1, 4 do
+		local inst = trade["item" .. j];
+		if(inst ~= nil and inst.valid) then
+			if(inst:GetID() > 0 and (itemid1 == inst:GetID() or itemid2 == inst:GetID() or itemid3 == inst:GetID() or itemid4 == inst:GetID() or 
+			itemid5 == inst:GetID() or itemid6 == inst:GetID() or itemid7 == inst:GetID() or itemid8 == inst:GetID())) then
+				count = count + 1;
+				handed_count = handed_count + 1;
+				if(min_count > 1) then
+					-- This item may be added to quest loot, add to mq array for further processing below.							
+					mq_loot["item" .. j] = trade["item" .. j];
+					if(count < min_count and (text ~= nil or emote ~= nil)) then
+						if(text ~= nil) then
+							npc:Say("" .. text .. "");
+						elseif(emote ~= nil) then
+							npc:Emote("" .. emote .. "");
+						end
+					end
+				end
+				trade["item" .. j] = nil;
+				eq.debug("Found item in slot (" .. j .. ") count is now " .. count .. "", 2);
+			end
+		end
+	end
+
+	if(handed_count == 0) then
+		eq.debug("Quest will not complete.",2);
+		return 0;
+	end
+
+	local clear_loot = true;
+	if(min_count > 1) then
+		-- Figure out if we need to add items to quest loot.
+		local remainder = count - min_count;
+		if(remainder <= 1 and remainder ~= 0) then
+			for i = 4, 1, -1 do
+				if(mq_loot["item" .. i] ~= nil) then
+					local mqitem = mq_loot["item" .. i];
+					if(mqitem ~= nil and mqitem.valid) then
+						npc:AddQuestLoot(mqitem:GetID());
+						clear_loot = false;
+						if(remainder == 1) then
+							break;
+						end
+					end
+				end
+			end
+		end
+
+		-- Figure out how many times the quest should complete if it isn't a 1:1 hand-in.
+		local count_float = count / min_count;
+		if(count_float%1==0) then
+			count = count_float;
+		else
+			if(count_float < 1) then
+				count = 0;
+			else
+				count = math.floor(count_float-0.5);
+			end
+		end
+	end
+
+	if(clear_loot) then
+		-- Clear out any quest items that got saved from a previous hand-in.
+		eq.debug("Clearing quest loot", 2);
+		npc:DeleteQuestLoot(itemid1,itemid2,itemid3,itemid4);
+		if(itemid5 > 0) then
+			npc:DeleteQuestLoot(itemid5,itemid6,itemid7,itemid8);
+		end
+
+	end
+
+	eq.debug("Quest will complete " .. count .. " times.", 2);
+	return count;
+
+end
+
 return items;
