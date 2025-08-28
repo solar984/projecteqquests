@@ -10,7 +10,7 @@ end
       
 function event_trade(e)
 	local item_lib = require("items");
-		if (item_lib.check_turn_in(e.trade, {item1 = 54064,item2 = 54064,item3 = 54064,item4 = 54064})) then -- Spectral Essence
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 54064,item2 = 54064,item3 = 54064,item4 = 54064})) then -- Spectral Essence
 			e.self:Say("Marvelous! This should do just fine. I can't thank you enough! Here is a copy of my book."); 
 			 e.other:QuestReward(e.self,0,0,0,0,54065,12000); --Mace of Focused Flame
     end

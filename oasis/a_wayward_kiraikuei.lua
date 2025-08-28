@@ -17,7 +17,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.self,e.other);
 
-	if(qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 9599 })) then
+	if(qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 9599 })) then
 		e.other:Message(MT.Red,"The sky crackles with electricity as ominous russet clouds gather overhead, forming a churning funnel above the tower. A feeling of pure hatred washes over you.")
 		local dz = e.other:CreateExpedition(rogue_dz)
 		if not dz.valid then

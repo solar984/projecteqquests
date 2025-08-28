@@ -25,7 +25,7 @@ end
 
 function event_trade(e)
 	local item_lib =require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 18720})) then -- Tattered Note
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18720})) then -- Tattered Note
 		e.self:Say(string.format("Greetings %s. Welcome to the Hall of Sorcery. You have much to learn. Wear this tunic and represent us well. See my apprentice, Unsar Koldhagon, he will get you started and help you with your studies. Once you are ready to begin your hunting training please see Juegile Sohgohm, he will assist you in some tasks for your early adventures. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.",e.other:GetName()));
 		e.other:SummonItem(13542); -- Faded Blue Robe*
 		e.other:Ding();

@@ -46,7 +46,7 @@ function event_trade(e)
   local item_lib = require("items")
 
   -- Items: First Fragment of Utandi`s Map, Second Fragment of Utandi`s Map, Third Fragment of Utandi`s Map, Fourth Fragment of Utandi`s Map
-  if item_lib.check_turn_in(e.trade, {item1 = 55617, item2 = 55618, item3 = 55619, item4 = 55620}) then
+  if item_lib.check_turn_in(e.self, e.trade, {item1 = 55617, item2 = 55618, item3 = 55619, item4 = 55620}) then
     local client_list = eq.get_entity_list():GetClientList()
     for client in client_list.entries do
       if client.valid then

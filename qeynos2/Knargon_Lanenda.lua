@@ -40,7 +40,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18722})) then -- Sealed Note For Knargon
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18722})) then -- Sealed Note For Knargon
 		e.self:Say("Hmm. Carson better deal with his little 'problem' soon, it's costing us a lot of money. Hanns is gonna skin us all when he hears this. Go tell Hanns that [Carson has a mole in the Highpass] guards, and see what he wants us to do.");
 		e.other:Ding();
 		e.other:Faction(223,5,0); -- Circle of Unseen Hands

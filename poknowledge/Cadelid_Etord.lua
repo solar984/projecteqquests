@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 28795, item2 = 28801})) then--Beginner Magic Manual, Heart of Vhaksiz
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 28795, item2 = 28801})) then--Beginner Magic Manual, Heart of Vhaksiz
 		e.self:Say("I say, " .. e.other:GetCleanName() .. ", you have certainly proven yourself, and I am quite proud of you. I believe your time has come, take this and when you are ready, speak to Zalil Nyvin. And remember, difficult tasks are put in our way not to stop us, but to call out our strength and resolve.");
 		-- Confirmed Live Experience
 		e.other:QuestReward(e.self,0,math.random(10),math.random(10),math.random(0,10),28796,500000);--Intermediate Magic Manual

@@ -47,7 +47,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 2173})) then -- Cracked Corrupt Guard Helm
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 2173})) then -- Cracked Corrupt Guard Helm
 		e.self:Say("Thank you for bringing this person to justice. Please read this manual very, VERY carefully. Commit it to memory. We do everything strictly by the book. We are a people of law and order and I simply won't tolerate a breach of protocol. Investigators are expected to accurately report findings, are authorized to issue warrants and to notarize official documents for all lands under the jurisdiction of Antonius Bayle and the council. I sincerely hope you can earn your Investigator's Badge.");
 		e.other:SummonItem(18289); -- Investigator's Briefing
 		e.other:Ding();
@@ -57,15 +57,15 @@ function event_trade(e)
 		e.other:Faction(273,-1,0); -- Kane Bayle
 		e.other:Faction(291,1,0); -- Merchants of Qeynos
 		e.other:AddEXP(2000);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 2386})) then -- Investigator's Badge
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 2386})) then -- Investigator's Badge
 		e.self:Say("Very well, here is the briefing document. Please read it very carefully. I wish you luck friend, this mission could prove to be dangerous.");
 		e.other:SummonItem(18292); -- Interrogator's Briefing
 		e.other:Ding();
 		e.other:AddEXP(2000);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 2583})) then -- Researcher's Badge
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 2583})) then -- Researcher's Badge
 		e.self:Say("Here is my personal seal. Go to the sewers and locate my investigator and show him this seal if he yet lives. Find out what happened to he and guard Helminth. Then if at all possible, complete this operation by finding Azibelle Spavin and execute her. Bring me her head and return me my seal and you shall be rewarded.");
 		e.other:QuestReward(e.self,0,0,0,0,2694,2000); -- Seal of Vegalys
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 2694,item2 = 2392})) then -- Seal of Vegalys and Head of Azibelle Spavin
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 2694,item2 = 2392})) then -- Seal of Vegalys and Head of Azibelle Spavin
 		e.self:Say("Good work " .. e.other:GetCleanName() .. "! So Guard Helminth was corrupt? So crafty are these black hearted souls that they can fool even the righteous Kane Bayle himself! I'm sure he will be saddened to hear of this. I too am saddenned by the loss of one of my best investigators. At least we've served justice this day by sending Azibelle Spavin to her dark master. May she rot with her god. Take this Badge of Honor and wear it with pride and distinction.");
 		e.other:Faction(219,5); -- Antonius Bayle
 		e.other:Faction(262,5); -- Guards of Qeynos

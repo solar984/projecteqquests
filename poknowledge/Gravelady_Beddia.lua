@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if (item_lib.check_turn_in(e.trade, {item1 = 62839,item2 =62840, item3 = 62841})) then --Fresh Awakenings vol. 1,2,3
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 62839,item2 =62840, item3 = 62841})) then --Fresh Awakenings vol. 1,2,3
 		e.other:SummonItem(62842); --Healing Plants
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

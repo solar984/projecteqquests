@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	if(e.other:HasItem(69953)) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 69982})) then --Keelee's Brooch
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 69982})) then --Keelee's Brooch
 			e.self:Say("Oh my, this brooch is from Keelee? You have saved her? That is great news! Thank you so much for your help, chivalrous knight, for without it Keelee would have not been safe. Take this as a token of my appreciation.");
 			e.other:SummonItem(69954); --Token of Chivalry
 		end

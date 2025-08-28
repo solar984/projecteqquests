@@ -16,7 +16,7 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(fac < 5) then -- Amiable or better
-		if(item_lib.check_turn_in(e.trade, {item1 = 13991})) then	-- Item: Testament of Vanear
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13991})) then	-- Item: Testament of Vanear
 			e.self:Say("I sent you after that book ages ago! What took you so long? I have already completed my studies. Luckily I found the original manuscript under my bedroll. I forgot I had kept it there. Take this as a token of my apology. Maybe it will aid you in your next book hunt. I know how cunning those books can be.");
 			e.other:SummonItem(eq.ChooseRandom(15302,6351,89036,16647)); -- Item(s): Spell: Languid Pace (15302), Fine Steel Morning Star (6351), Cracked Eye Stone (89036), Aged Platinum Bloodstone Earring (16647)
 			e.other:Ding();

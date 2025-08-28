@@ -39,31 +39,31 @@ end
 
 function event_trade(e)
   local item_lib = require("items");
-  if(item_lib.check_turn_in(e.trade, {item1 = 10603})) then
+  if(item_lib.check_turn_in(e.self, e.trade, {item1 = 10603})) then
     e.self:Say("I see that you have what I was waiting for. Stofo does do excellent work. It seems that you are to start on a long journey. Take this seal and it will guide you on your next step. Seek out the masters of enchantment. In time we will craft the Serpent for you. When you have collected the four parts of the staff, you must combine them in a bundle and return them to me.");
     e.other:SummonItem(10604); -- Item: Jeb's Seal
     e.self:Say("Take this seal. You will need to show my seal to the other masters so that they may grant you the tools to complete your next tasks. When you have collected the four parts of the staff, you must combine them in a bundle for me. The other masters can provide the means to bundle them. Good luck and safe travels.");
     e.other:AddEXP(5000);
-  elseif(item_lib.check_turn_in(e.trade, {item1 = 10639})) then
+  elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10639})) then
     e.self:Say("The path you trod was long and hard. Now you are worthy to bear the Serpent. Use it well.");
     e.other:Faction(404,30); -- Faction: Truespirit
     e.other:AddEXP(1500000);
     e.other:SummonItem(10650); -- Item: Staff of the Serpent
-  elseif(item_lib.check_turn_in(e.trade, {item1 = 54267})) then
+  elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 54267})) then
     e.self:Say("As I suspected, this is something extraordinary. You must go speak to Maelin at once. It has been many moons since I have entered the Plane of Knowledge. He may well have some new information for me. Go at once and tell him I sent you.");
     eq.set_global("ench_epic","2",5,"F");
-  elseif(item_lib.check_turn_in(e.trade, {item1 = 52959})) then
+  elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 52959})) then
     e.self:Say("Interesting indeed. I see that I was not wrong in my instinct to begin this as quickly as possible. I have created a list of the items that you will need to begin the construction of this tool. Mind you, it will not be a simple thing. When you have gathered them all return to me. Would you like a [" .. eq.say_link("chest") .. "] to carry them in?");
     e.other:SummonItem(54286); --Assembling the Staff
     eq.set_global("ench_epic","3",5,"F");
-  elseif(item_lib.check_turn_in(e.trade, {item1 = 52966})) then
+  elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 52966})) then
     e.self:Say("You have done well, my student. The staff is now complete. In order to stand up to the true fury of discord, it will need purifying, but even in this state it shall protect you well.");
     e.other:SummonItem(52952); --Oculus 1.5
     e.other:AddAAPoints(5);
     e.other:Ding();
     e.other:Message(MT.Yellow,'You have gained 5 ability points!');
     eq.set_global("ench_epic","7",5,"F");
-  elseif (item_lib.check_turn_in(e.trade, {item1 = 52947, item2 = 52945})) then
+  elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 52947, item2 = 52945})) then
     e.self:Say("How very interesting. This could prove to be invaluable to my work. I have long been researching a new and most powerful tool to help our kind. It is necessary in these most dangerous of times. Unfortunately, it appears as though time has taken its toll on this tome. It is incomplete. Seek the missing pages so that I may study it in depth. There should be ten, unless they have been destroyed by time and decay.");
     e.other:SummonItem(57918); -- Item: Tattered Illegible Tome
     eq.set_global("EnchPre","2",5,"F");

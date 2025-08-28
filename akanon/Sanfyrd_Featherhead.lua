@@ -19,7 +19,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 13198, item2 = 13198, item3 = 13198, item4 = 13198})) then -- Turn in 4 scrap metal
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13198, item2 = 13198, item3 = 13198, item4 = 13198})) then -- Turn in 4 scrap metal
 		e.self:Say("For your efforts I shall reward you"); -- Not official dialog, Dont actually know what he says.
 		e.other:SummonItem(eq.ChooseRandom(5013,5013,5013,5014,5014,5014,5015,5015,5015,5016,5016,5016,5019,5019,5019,5020,5020,5020,12340,12340,17033)); -- Various rusty weapons, Orb o flight and a contraption given when completed. All randomly.
 		e.other:Faction(255,3,0); -- Faction: Gem Choppers
@@ -30,19 +30,19 @@ function event_trade(e)
 		e.other:AddEXP(1000); -- Amount of Experience guessed, No actual Experience Info.
 		e.other:GiveCash(4,5,1,1); -- Amount of coin recieved is guessed, No actual coin Info.
 		e.other:Ding();
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 9426, item2 = 28618, item3 = 29906, item4 = 28165})) then -- Bundle of Super Conductive Wires, Gold Tipped Boar Horn, Shard of Pure Energy, Silicorrosive Grease
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 9426, item2 = 28618, item3 = 29906, item4 = 28165})) then -- Bundle of Super Conductive Wires, Gold Tipped Boar Horn, Shard of Pure Energy, Silicorrosive Grease
 		e.self:Say("I've been waiting for those.  Thank you, please take this!"); -- Text made up, I have no reference.
 		e.other:SummonItem(15980); -- Note for Fimli
 		e.other:Ding();
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12336})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12336})) then
 		e.self:Say("Huzzah!! You are my friend. Now you can take my old toupee and get it repaired. Just go to Freeport and ask Ping to [repair the toupee]. Hey!! You know what? He is the guy who sells the hair tonic!! I remember now. Well,.. Get my toupee repaired and I will give you the fairie wing.");
 		e.other:SummonItem(12337); -- Item: Tattered Toupee
 		e.other:Ding();
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12254})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12254})) then
 		e.self:Say("Double Huzzah!! You are a good friend " .. e.other:GetName() .. ". Now mayhaps I shall find myself a wife. Here pal, the fairy wing. I hope it can give you a great head of hair. You need it.");
 		e.other:SummonItem(12339); -- Item: Glimmering Fairie Wing
 		e.other:Ding();
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13216, item2 = 13217})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13216, item2 = 13217})) then
 		e.self:Say("Wow! You took care of those rogue models pretty easily. I bet Drekon told you I'd have a reward, huh? Well it's enough I don't have to worry about those models running around anymore. Here ya go!"); -- text not live-like. Need original
 		e.other:SummonItem(eq.ChooseRandom(17981, 17981, 6027)); -- Item(s): Bootstrutter's Framed Pack (17981)
 		e.other:Faction(255,3,0); -- Faction: Gem Choppers

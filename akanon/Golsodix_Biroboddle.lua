@@ -18,7 +18,7 @@ end
 
 function event_trade(e)
     local item_lib = require("items");
-    if item_lib.check_turn_in(e.trade, {item1 = 21984}) then -- Tinkered Contraption
+    if item_lib.check_turn_in(e.self, e.trade, {item1 = 21984}) then -- Tinkered Contraption
         e.self:Say("A contraption from Xoomix! I knew he was still alive. This also says that he needs his gearbox to make his compass so he can return home. I must have it here somewhere let me take a look . . . Ah, here it is. Please take this to Xoomix so he can return home and thank you for all your kind deeds to help a lost gnome. Brell certainly smiles down upon you!");
         e.other:SummonItem(21985); -- Xoomix's Gearbox
     end

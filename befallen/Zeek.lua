@@ -10,7 +10,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if item_lib.check_turn_in(e.trade, {item1 = 18651, item2 = 18652, item3 = 18653, item4 = 18654}) then
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 18651, item2 = 18652, item3 = 18653, item4 = 18654}) then
 		e.other:QuestReward(e.self,0,0,0,0,13984,100); -- Item: Crate of Potions
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

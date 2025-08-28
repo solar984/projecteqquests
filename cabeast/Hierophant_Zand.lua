@@ -16,19 +16,19 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 18272, item2 = 24770})) then --The Penance quest
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18272, item2 = 24770})) then --The Penance quest
 		e.self:Emote("takes the bag and tome from you and in return gives you the item that you have been thinking of all of this time. 'Lucky you. You have earned a second chance. Praise Cazic-Thule!'");
 		e.other:QuestReward(e.self,0,0,0,0,5140); 				--Iron Cudgel of the Petitioner
 	end
 	--Shaman Skull Quest No.3.1 turn in - Check for  A froglok hex doll
 	if(e.other:GetFaction(e.self) <= 4) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 12734})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12734})) then
 			e.self:Say("You have proven your prowess to me, now take this note to Crusader Quarg outside the city and he will test you further.");
 			e.other:Faction(445, 10); 				--Scaled Mystics
 			e.other:Faction(441, 10); 				--Legion of Cabilis
 			e.other:QuestReward(e.self,0,0,0,5,18054,80000); 	--A note to take to crusader Quarg.
 		--Shaman Skull Quest No.5 turn in - Iksar Skull Helm and Iksar Skull and Cudgel of the Prophet
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 12741, item2 = 5144, item3 = 12740})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12741, item2 = 5144, item3 = 12740})) then
 			e.self:Say("You have done well in proving yourself to this council, but we have yet more tests for you before you will be a true clairvoyant. Speak with Hierophant Dexl for your next test.");
 			e.other:Faction(445, 10); 				--Scaled Mystics
 			e.other:Faction(441, 10); 				--Legion of Cabilis

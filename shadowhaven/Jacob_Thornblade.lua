@@ -20,7 +20,7 @@ end
 
 function event_trade(e)
     local item_lib = require("items");
-    if item_lib.check_turn_in(e.trade, {item1 = 66615}) then -- Gold Ticket
+    if item_lib.check_turn_in(e.self, e.trade, {item1 = 66615}) then -- Gold Ticket
         local valid_prizes = { };
         for k, v in pairs(prizes) do
             if not e.other:HasItem(v, e.trade) and not (v == 2469 and e.other:GetBaseRace() == 6) then -- dark elf can't get mask

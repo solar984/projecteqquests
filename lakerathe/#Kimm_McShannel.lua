@@ -25,15 +25,15 @@ end
 function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 52926})) then --hand in Lustrous Seaweed (looted from Ancient Megalodon)
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 52926})) then --hand in Lustrous Seaweed (looted from Ancient Megalodon)
 		e.self:Say("Well done! And ye got it off that great creature? Aye, it really exists. Guess that mad feller ain't so mad, now, is he? Ha! Well, we have a better chance at saving the spirit. Take this seaweed back. I've wrapped it for you. Now, get moving!");
 		e.other:SummonItem(57600); --Twine-wrapped Lustrous Seaweed
 	end
-	if(item_lib.check_turn_in(e.trade, {item1 = 57088})) then --hand in Gemmed Bangle of Enlightenment (From Elder Spirit of Enlightenment after previous step)
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 57088})) then --hand in Gemmed Bangle of Enlightenment (From Elder Spirit of Enlightenment after previous step)
 		e.self:Say("Aye, so ye have returned. We have much to do here, me friend. The first thing we must do is [" .. eq.say_link("break down") .. "] this bangle into its gems and metal. This here bangle was very carefully made. First, the gems were blessed by the spirits, then the metal itself as it was forged. Aye, we need to carefully separate them. The two gems were blessed by the spirits of Wisdom and Patience, and the metal was strengthened by the Spirit of Might. We will use these to call them back to us.");
 		eq.set_global("shaman_epic","5",5,"F");
 	end
-	if(item_lib.check_turn_in(e.trade, {item1 = 57560})) then --hand in Shaman's Precious Diffusing Agent (made from combining various drops for this stage, recipe likely needs added to db)
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 57560})) then --hand in Shaman's Precious Diffusing Agent (made from combining various drops for this stage, recipe likely needs added to db)
 		e.self:Emote("nods at you and reaches into her pocket and takes out the gemmed bangle and puts it on the ground. She takes the vial and slowly lets a few drops fall on the platinum. It seems to coil and bend and pulls itself into a small globe and the gems lazily fall onto the ground.");
 		e.self:Say("Perfect! Now, you must return the gems and platinum to the Spirit of Enlightenment. I've put it in a purse to keep them safe. You truly are beginning to surpass all of our expectations, " .. e.other:GetName() .. ".");
 		e.other:SummonItem(57614); --Runed Purse of the McShannels

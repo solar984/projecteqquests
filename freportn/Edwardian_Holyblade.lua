@@ -38,11 +38,11 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 9927,item2 = 9928,item3 = 9929,item4 = 9930})) then  -- Fefslans Bracer, Gnoosals Bracer, Walorinags Bracer, Eridals Bracer
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9927,item2 = 9928,item3 = 9929,item4 = 9930})) then  -- Fefslans Bracer, Gnoosals Bracer, Walorinags Bracer, Eridals Bracer
 		e.self:Say("Excellent work!"); -- Not actual text
 		e.other:SummonItem(9936); -- Longsword of Marr
 		e.other:Ding();
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 18737})) then  -- A tattered note
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18737})) then  -- A tattered note
 		e.self:Say("Thanks."); -- Real text still needed
 		e.other:Ding();
 		e.other:SummonItem(13554); -- Faded Purple Tunic

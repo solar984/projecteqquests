@@ -14,7 +14,7 @@ function event_trade(e)
 	local yloc = e.self:GetY();
 	local zloc = e.self:GetZ();
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 15809})) then -- Note to Yuanda
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 15809})) then -- Note to Yuanda
 		e.self:Say("So you are working for Geboron? Yes I have seen the paladins and the staff they were guarding. They passed through here just one day ago. From what I have been told, they were attacked by a pack of werewolves. All of the paladins were killed and one of the werewolves took the staff. If you want the staff you will need to find these werewolves. Oh, no! Here they come now! I am getting out of here!");
 		e.other:Ding();
 		eq.spawn2(12183, 0, 0, xloc -18, yloc -35, zloc,   256); -- a snarling werewolf (normal)

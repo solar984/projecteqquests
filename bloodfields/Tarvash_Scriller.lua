@@ -14,9 +14,9 @@ end
 function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	local item_lib = require("items");
-	if(qglobals["berserk_epic"] == "9" and item_lib.check_turn_in(e.trade, {platinum = 50})) then
+	if(qglobals["berserk_epic"] == "9" and item_lib.check_turn_in(e.self, e.trade, {platinum = 50})) then
 		e.self:Say("Ah, thank ye lad! Nothing like a bit o' coin to keep me company! Seek ye out the beasts that reside deep within the causeway, some of the ancient beasts there often hoard gems. As surely as Gnomes have sumpth' wrong in their heads ye shall find what ye seek there.");
-	elseif(qglobals["berserk_epic"] == "9" and item_lib.check_turn_in(e.trade, {gold = 50})) then
+	elseif(qglobals["berserk_epic"] == "9" and item_lib.check_turn_in(e.self, e.trade, {gold = 50})) then
 		e.self:Say("I can see that axe ye carry already has some enchantments woven into the haft. By my eye tis not a half bad job but I bet there is room a'plenty in that axe for more wild magics yet. Ye won't find any gems right around here though, that will help ye in your search. I think that if ye managed to weave a Facetted Moonstone into the haft of yer axe, one could imbue it with another essence at a later time. Fer another 50 platinum pieces, I could be persuaded to tell ye where ye could find one.");
 	end
 

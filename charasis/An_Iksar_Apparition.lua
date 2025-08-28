@@ -3,7 +3,7 @@
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 30994})) then --Iksar Relics
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 30994})) then --Iksar Relics
 		eq.unique_spawn(105182,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(),e.self:GetHeading()); --Venril_Sathir
 		eq.unique_spawn(105186,0,0,-13,-658,8,100); --an Arisen Disciple
 		eq.unique_spawn(105183,0,0,13,-658,8,160); --an Arisen Priest

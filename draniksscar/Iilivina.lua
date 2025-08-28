@@ -19,15 +19,15 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(qglobals["mage_epic"] == "7" and item_lib.check_turn_in(e.trade, {item1 = 19092})) then --epic 1.5
+	if(qglobals["mage_epic"] == "7" and item_lib.check_turn_in(e.self, e.trade, {item1 = 19092})) then --epic 1.5
 		e.self:Say("My goodness, I did not realize you were the one [" .. eq.say_link("Bantil") .. "] sent to me! This is truly amazing! I was shocked when Magi'Kot's dream had been realized. I never thought it would be surpassed. My, so much focused elemental energy. This is truly amazing. You have accomplished quite a feat.");
 		eq.set_global("mage_epic","8",5,"F");
 		e.other:SummonItem(19092); --Give back epic 1.5
-	elseif(item_lib.check_turn_in(e.trade, {item1=19099,item2=19099,item3=19093,item4=19093})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1=19099,item2=19099,item3=19093,item4=19093})) then
 		e.self:Emote("grinds the small crystals into a fine powder, 'This is like nothing I have ever seen. It will take some time for me to analyze this, but thank you. I have more here than I will need. Take this pouch to Bantil, along with this note. If he doesn't know how this will help you, he may know someone who does.");
 		e.other:SummonItem(19149); --Pouch of Powdered Riftseeker Essence
 		e.other:SummonItem(19438); --Note from Iilivina
-	elseif(item_lib.check_turn_in(e.trade, {item1=19547,item2=19447,item3=19444,item4=19544})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1=19547,item2=19447,item3=19444,item4=19544})) then
 		eq.set_global("mage_epic","11",5,"F");
 		e.self:Say("You work so fast! Amazing work you have done.' She looks at the 4 essences for a moment, 'Yes, these can probably be used to bind to your staff, but we'll need some sort of binding. Something that can be used to keep large amounts of energy bound together. I have no idea where you'd find such a thing, but if you do bring it to Bantil with your staff, and he'll be able to finish your journey.");
 	end	

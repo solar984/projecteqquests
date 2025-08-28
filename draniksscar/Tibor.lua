@@ -42,7 +42,7 @@ function event_trade(e)
   local class = e.other:Class();
   local item_lib = require("items");
   if (e.other:GetFaction(e.self) <= 1 or e.other:GetGM() and (class == "Berserker" or class == "Rogue" or class == "Shaman" or class == "Ranger" or e.other:GetGM())) then -- require ally and chain
-    if(item_lib.check_turn_in(e.trade, {item1 = 51475,item2 = 51489,item3 = 51489})) then -- chain helm rewards 
+    if(item_lib.check_turn_in(e.self, e.trade, {item1 = 51475,item2 = 51489,item3 = 51489})) then -- chain helm rewards 
       e.self:Say("Well met, ".. e.other:GetCleanName() ..". You may have well disrupted the Muramite chain of command long enough to afford me a chance to go looking for my surviving brothers. The Muramites are on the watch for me, but now they will be scrambling for word from their master. To thank you for your efforts, here are the chain gloves I have promised you."); --need live parse
         if class == "Berserker" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70958,100000); -- (70958); # Item: Wrathbringer's Chain Helm of the Vindicator
@@ -56,7 +56,7 @@ function event_trade(e)
         if class == "Ranger" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70874,100000); -- (70874); # Item: Bladewhisper Chain Cap of Journeys
         end
-    elseif(item_lib.check_turn_in(e.trade, {item1 = 51479,item2 = 51493,item3 = 51493})) then -- chain sleeves rewards 
+    elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51479,item2 = 51493,item3 = 51493})) then -- chain sleeves rewards 
       e.self:Emote("reaches for the pouch and quickly opens it. He dumps the contents on the ground and quickly rummages through the pile, picking up a folded note and reading it. 'Yes, it turns out my suspicions were correct. This pouch contained two sets of orders, one for the girplan and discordlings, and another set for the dragorn Muramites. Now that I am aware of their plans, I can prepare my forces accordingly. I also thank you for removing some of the ikaav as this will make it easier for my soldiers to move about undetected.");
         if class == "Berserker" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70959,100000); -- (70959); # Item: Wrathbringer's Chain Sleeves of the Vindicator
@@ -70,7 +70,7 @@ function event_trade(e)
         if class == "Ranger" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70875,100000); -- (70875); # Item: Bladewhisper Chain Sleeves of Journeys
         end
-    elseif(item_lib.check_turn_in(e.trade, {item1 = 51480,item2 = 51494,item3 = 51494})) then -- chain bracers rewards 
+    elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51480,item2 = 51494,item3 = 51494})) then -- chain bracers rewards 
       e.self:Emote("opens his eyes wide as you hand him the heart that glows with arcane magic. 'Ah, the heart of our enemy', he says holding the heart up to the light. Within the center of the heart you notice what appears to be a small diseased shadow. Tibor violently throws the gem down to the ground and as he grinds it to dust, you hear a faraway scream that sends a shiver down your spine. 'Here is a chain bracer that I myself once wore in battle. May it bring you countless victories.");
         if class == "Berserker" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70960,100000); -- (70960); # Item: Wrathbringer's Chain Wristguard of the Vindicator
@@ -84,7 +84,7 @@ function event_trade(e)
         if class == "Ranger" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70876,100000); -- (70876); # Item: Bladewhisper Chain Wristband of Journeys
         end
-    elseif(item_lib.check_turn_in(e.trade, {item1 = 51481,item2 = 51495,item3 = 51495})) then -- chain glove rewards 
+    elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51481,item2 = 51495,item3 = 51495})) then -- chain glove rewards 
       e.self:Say("Well met, ".. e.other:GetCleanName() ..". Hopefully this book will contain some valuable information on the nature of Discord. To survive on my own, I must first understand the poison affecting the land. As promised, here is the helm as your reward for such a dangerous mission.");
         if class == "Berserker" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70961,100000); -- (70961); # Item: Wrathbringer's Chain Gloves of the Vindicator
@@ -98,7 +98,7 @@ function event_trade(e)
         if class == "Ranger" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70877,100000); -- (70877); # Item: Bladewhisper Chain Gloves of Journeys
         end
-    elseif(item_lib.check_turn_in(e.trade, {item1 = 51476,item2 = 51490,item3 = 51490,item4 = 51490})) then -- chain chest rewards
+    elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51476,item2 = 51490,item3 = 51490,item4 = 51490})) then -- chain chest rewards
       e.self:Say("This is the scepter of Noble Pravel the Diviner! I recognize the markings! I can tell by the way the light has faded that he no longer draws breath. Though this is terrible news, I'm grateful at least you have recovered it from the Muramites. I'll try to smuggle this back to those still loyal to Dranik. Thanks you,".. e.other:GetCleanName() ..". As promised, here is my chain vest. It has grown too cumbersome for me to carry in my wanderings.'");
         if class == "Berserker" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70963,100000); -- (70963); # Item: Wrathbringer's Chain Chestguard of the Vindicator
@@ -112,7 +112,7 @@ function event_trade(e)
         if class == "Ranger" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70879,100000); -- (70879); # Item: Bladewhisper Chain Vest of Journeys
         end
-    elseif(item_lib.check_turn_in(e.trade, {item1 = 51477,item2 = 51491,item3 = 51491,item4 = 51491})) then -- chain leg rewards 
+    elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51477,item2 = 51491,item3 = 51491,item4 = 51491})) then -- chain leg rewards 
       e.self:Say("Ah, the amulet. Yes, this surely belonged to a dragorn noble or perhaps an elder. I can still smell the stink of the Muramite that stole it though. I will see to it that it is returned to the owner or one of his brood. The demise of the architect and the girplan workers will buy our people some time to regroup. For your courageous acts, I will give you these chain leggings that are fit for even the most-skilled dragorn fighter.");
         if class == "Berserker" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70964,100000); -- (70964); # Item: Wrathbringer's Chain Leggings of the Vindicator
@@ -126,7 +126,7 @@ function event_trade(e)
         if class == "Ranger" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70880,100000); -- (70880); # Item: Bladewhisper Chain Legguards of Journeys
         end
-    elseif(item_lib.check_turn_in(e.trade, {item1 = 51478,item2 = 51492,item3 = 51492})) then -- chain boots rewards 
+    elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51478,item2 = 51492,item3 = 51492})) then -- chain boots rewards 
       e.self:Say("So, the embers do exist! Excellent work, ".. e.other:GetCleanName() ..". I plan to hold this ember in the forge when crafting in the future. This will ensure that the ember's heat is used to forge armor for the enemies of the Muramites. Poetic justice, don't you think? For your efforts, here are the boots as promised!");
         if class == "Berserker" or e.other:GetGM() then
           e.other:QuestReward(e.self,0,0,0,0,70962,100000); -- (70962); # Item: Wrathbringer's Chain Boots of the Vindicator

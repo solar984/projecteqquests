@@ -42,7 +42,7 @@ end
 function event_trade(e)
   local item_lib = require("items")
 
-  if item_lib.check_turn_in(e.trade, {item1 = 57208}) then -- Norrath's Keepers Token
+  if item_lib.check_turn_in(e.self, e.trade, {item1 = 57208}) then -- Norrath's Keepers Token
     local player = don.character_state.new(e.other, don.faction_id.good)
     if not player:has_min_faction(don.faction.Apprehensive) then
       e.other:Message(MT.NPCQuestSay, ("Tatsujiro the Serene says, 'I'm sorry, %s, but you are not in good standing with Norrath's Keepers so I cannot accept this token from you.'"):format(e.other:GetCleanName()))

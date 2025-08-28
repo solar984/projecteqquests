@@ -31,7 +31,7 @@ end
 function event_trade(e)
 	local moonstone = 0;
 	local item_lib =require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 13131})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13131})) then
 		e.self:Say("Good work, pal. Here's a little dough to spend, just don't spend it at any other bar.");
 		e.other:Ding();
 		e.other:Faction(345,1,0); -- Faction: Karana Residents
@@ -39,13 +39,13 @@ function event_trade(e)
 		e.other:Faction(341,1,0); -- Faction: Priests of Life
 		e.other:Faction(280,1,0); -- Faction: Knights of Thunder
 		e.other:GiveCash(0,0,3,9);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 10070,item2 = 10070,item3 = 10070,item4 = 10070})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10070,item2 = 10070,item3 = 10070,item4 = 10070})) then
 		moonstone = 4;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 10070,item2 = 10070,item3 = 10070})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10070,item2 = 10070,item3 = 10070})) then
 		moonstone = 3;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 10070,item2 = 10070})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10070,item2 = 10070})) then
 		moonstone = 2;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 10070})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10070})) then
 		moonstone = 1;
 	end
 	if(moonstone > 0) then

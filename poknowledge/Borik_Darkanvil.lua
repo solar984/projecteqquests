@@ -23,10 +23,10 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 		
-		if(item_lib.check_turn_in(e.trade, {item1 = 29230, item2 = 29229, item3 = 29228, platinum == 3000})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 29230, item2 = 29229, item3 = 29228, platinum == 3000})) then
 			e.self:Say("Ah ha! Here we go one box of souls!");
 			e.other:SummonItem(29281); -- Box of Souls for HoH alternate Access.
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 9954})) then  -- Turn in Aegis of Chaotic Worship for 1.5 Progress.
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 9954})) then  -- Turn in Aegis of Chaotic Worship for 1.5 Progress.
 			e.self:Say("This is truly amazing. I've never seen a metal like this: it is almost alive. It appears similar to some of the alloys that we have seen from the Legion, but this is like nothing I have ever seen. It suggest that the leader has been through the portal. I am afraid it will not be of any use to you in its current state, the metal is attuned to a single person. I believe the resonance can be changed, so you may use it. Speak to Navtil. He will tell you what you need to do. I believe he has traveled through the portal for some metallurgical research in Discord.");
 			e.other:SummonItem(9954); -- Returns Aegis of Chaotic Worship to player
 		end

@@ -68,24 +68,24 @@ function event_trade(e)
     eq.debug(e.other:GetName() .. " ranger_peic15_pre: " .. qglobals["ranger_epic15_pre"]);
   end
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 20483,item2 = 20484})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20483,item2 = 20484})) then
 		e.self:Emote("waves his hands over the gem of corruption and a wave of warm energy passes through the area. With care for such a huge creature, he melds the gem into the sword and seems to glow all over as he channels energy into the weapon. 'Thus is the link of hate broken between Innoruuk and the spirit of earth. Through your will has balance returned. Your deeds, your work for the good of all, will be remembered by anyone who walks beneath the canopy of a forest or roams the plains. Continue your vigil over nature's balance.'");
 		e.other:SummonItem(20488); -- earthcaller
 		e.other:Ding();
 		e.other:AddEXP(2500000);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 20699,item2 = 20697,item3 = 20698,item4 = 20440})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20699,item2 = 20697,item3 = 20698,item4 = 20440})) then
 		e.self:Emote("pushes the spirits into the air, making them dance around the scimitar. With a wave of his hand they melt into the blade and hilt of the weapon. 'With this the spirits of the lands are now free from the corruption of the dark gods.  Through your strength and dedication was this possible, "..e.other:GetName()..".  May the foul poison that once poured into the earth itself never do so again. Take this weapon that you may continue to watch over the balance of nature. Go now, with the gods' blessings.'");
 		e.other:SummonItem(20490); -- naturewalker's scimitar
 		e.other:Ding();
 		e.other:AddEXP(2500000);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13411})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13411})) then
 		e.self:Say("Heh heh! Excellent, small one!  My roots have been longing for some fresh jumjum juice!  Thank you!  Take this for your trouble.  Be sure to thank the Tagglefoots for me.");
 		e.other:SummonItem(eq.ChooseRandom(13977,84004,13083)); -- carrot, fishing pole, pine needles
 		e.other:Ding();
 		e.other:AddEXP(500);
 		e.other:GiveCash(0,1,0,0);
 
-  elseif ( qglobals["ranger_epic15_pre"] == "6" and item_lib.check_turn_in(e.trade, {item1 = 62603}) ) then
+  elseif ( qglobals["ranger_epic15_pre"] == "6" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62603}) ) then
     e.self:Say("Hmmm... this is an unusual stone. I sense an ancient love in this stone, a love for the earth as well as for the crafting of stone. But I also sense blood, pain and confusion. I want to destroy it and yet I want to set it among my roots to nourish me. You found this on another plane? I think you have the strength and will to purify this stone, if you have faith. Let me recite a poem to you, small one. It will guide you on this path.");
 
     e.other:SummonItem(62603); -- Polished Blasted Stone
@@ -110,7 +110,7 @@ function event_trade(e)
     e.other:SummonItem(62632); -- Poem of the Storms
 
     eq.set_global("ranger_epic15_pre","7",5,"F");
-  elseif ( qglobals["ranger_epic15_pre"] == "8" and item_lib.check_turn_in(e.trade, {item1 = 62604}) ) then
+  elseif ( qglobals["ranger_epic15_pre"] == "8" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62604}) ) then
     e.self:Say("It is free now. It is wonderful. It, hmmmm . . . makes the wind sound . . . windier. Much like that sword you rangers like so much. I bet someone could make a wind for that stone that would make it even more wonderful.");
 
     e.other:SummonItem(62604); -- Stone of Winde

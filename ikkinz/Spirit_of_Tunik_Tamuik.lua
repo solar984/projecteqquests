@@ -13,7 +13,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 60220})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 60220})) then
 		e.self:Say("Just as I expected you to do! Now I can finally rest and you will not be able to stop me!");
 		eq.unique_spawn(294577, 0, 0, e.self:GetX(), e.self:GetY(),  e.self:GetZ(),  e.self:GetHeading()); --#Spirit_of_Tunik_Tamuik
 		eq.depop();

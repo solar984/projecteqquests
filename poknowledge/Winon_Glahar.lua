@@ -23,7 +23,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(e.other:GetLevel() > 19 and item_lib.check_turn_in(e.trade, {item1 = 29168, item2 = 28745})) then--Planar Peridot Encrusted Stein, Planar Traveler's Manual
+	if(e.other:GetLevel() > 19 and item_lib.check_turn_in(e.self, e.trade, {item1 = 29168, item2 = 28745})) then--Planar Peridot Encrusted Stein, Planar Traveler's Manual
 		e.self:Say("Marvelous! You certainly have shown to be a skilled craftsman, and I thank you for such a lovely beverage conveyance. Take this book and use it to learn from. When you are ready, speak with Leramas Feston for your next lesson. Do not lose this manual or else he will not be able to train you.");
 		-- Confirmed Live Experience
 		e.other:QuestReward(e.self,0,math.random(10),math.random(10),0,28792,500000); --Beginner Stealth Manual

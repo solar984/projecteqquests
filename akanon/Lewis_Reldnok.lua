@@ -36,7 +36,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if item_lib.check_turn_in(e.trade, {item1 = 18433}) then -- Gnome Paladin Note
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 18433}) then -- Gnome Paladin Note
 		e.self:Say("Welcome to the Abbey of Deep Musing, " .. e.other:GetName() .. "! Here is a tunic that you may wear to announce the beginning of your training as a Paladin of Brell Serilis! Be warned that the only dangers do not lie without Ak'Anon. There is an evil society that lurks in the deepest recesses and shadows of our magnificent city. When you are ready to begin your training, let me know. I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13517); 	-- worn felt tunic
 		e.other:Ding();

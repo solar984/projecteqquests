@@ -22,7 +22,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 13966})) then 						-- Jar of Fungus turn in for random spell
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13966})) then 						-- Jar of Fungus turn in for random spell
 		e.other:SummonItem(eq.ChooseRandom(15203, 15270, 15271, 15275, 15036, 15075)); -- Item(s): Spell: Cure Poison (15203)
 		e.self:Say("Aye! Ye've filled the jar. I'll see to it that Holana locks this away. Tis difficult to obtain and we can only spare the talents of our young shamans. Allow me to give ye a reward. Thank ye kindly fer yer service.");
 		e.other:Faction(327, 10);													--faction with Shamen of Halas increased
@@ -33,15 +33,15 @@ function event_trade(e)
 		e.other:GiveCash(0,0,4,0);
 		e.other:AddEXP(50);
 		e.other:Ding();
-	elseif(item_lib.check_turn_in(e.trade, {gold = 10})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {gold = 10})) then
 		e.self:Say("The scales have been balanced and the Tribunal has spoken. Yer body shall be saved.");
 		e.other:Ding();
 		e.self:CastSpell(17,e.other:GetID()); -- Spell: Light Healing
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13445})) then					-- poison cure for steak totally bogus text
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13445})) then					-- poison cure for steak totally bogus text
 		e.self:CastSpell(203,e.other:GetID()); -- Spell: Cure Poison
 		e.other:Ding();
 		e.self:Say("Aye! I will draw the poison from your veins!");
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13967, item2 = 13967})) then 	-- disease cure for wooly fungus totally bogus text
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13967, item2 = 13967})) then 	-- disease cure for wooly fungus totally bogus text
 		e.self:CastSpell(213,e.other:GetID()); -- Spell: Cure Disease
 		e.other:Ding();
 		e.self:Say("Ah! Now I can cure yer malady.");

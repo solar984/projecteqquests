@@ -39,11 +39,11 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
 	
-	if(qglobals["paladin_epic"] == "9" and item_lib.check_turn_in(e.trade, {item1 = 69976})) then --Mana Battery - Class Six
+	if(qglobals["paladin_epic"] == "9" and item_lib.check_turn_in(e.self, e.trade, {item1 = 69976})) then --Mana Battery - Class Six
 		e.self:Say("Ah, I see now. . .this is the proof I needed. It appears that these Vampires are planning an attack on all four cities in Faydwer. These battle plans show that the Orcs are assisting the Vampires on the Kelethin front, while the Teir`Dal in Lesser Faydark are helping the Vampires with their attack on Felwithe. In Ak`anon and Kaladim, they are using a more deceptive approach by sneaking into the cities or cloaking themselves as dwarves. This attack may come any day now! We must stop this attack before it happens. " .. e.other:GetName() .. ", it appears that Valdoon Kel`Novar is leading this attack against the residents of Faydwer. The fate of the residents of Faydwer now rest on your shoulders. Gather a party of adventurers such as yourself and return to me. When you are [" .. eq.say_link("ready to fight Valdoon") .. "] I will open a passageway for you to enter the Mistmoore Catacombs. I will only be able to open this passageway once, so make sure to be ready. Good luck " .. e.other:GetName() .. ", and may Tunare bless thee.");
 		eq.set_global("paladin_epic_mmcc", "1", 5, "F");
 	end
-	if(item_lib.check_turn_in(e.trade, {item1 = 69981})) then --valdoon heart
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 69981})) then --valdoon heart
 		e.self:Say("Amazing, " .. e.other:GetName() .. ". You have cleansed all of the Mistmoore Catacombs of the impeding Vampire attack, as well as defeated their leader, Valdoon Kel`Novar. I shall take this to Lord Tynkale now and explain everything to him. You have saved us from a potential travesty. Take this, it may aide you in your journeys.");
 		e.other:SummonItem(69956); --Token of Cleansing
 	end	

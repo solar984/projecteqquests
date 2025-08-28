@@ -46,7 +46,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 9108,item2 = 9108, item3 = 9109, item4 = 9109})) then -- Minotaur Scalp x 2, Mountain Lion Jawbone x 2
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9108,item2 = 9108, item3 = 9109, item4 = 9109})) then -- Minotaur Scalp x 2, Mountain Lion Jawbone x 2
 		e.self:Say("Here is that dagger I promised you " .. e.other:GetName() .. "!");
 		e.other:SummonItem(9110); 	-- Gemmed Shadowwalkers Dagger
 	end

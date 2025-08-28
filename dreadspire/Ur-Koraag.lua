@@ -21,7 +21,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if (item_lib.check_turn_in(e.trade, {item1 = 52524})) then	-- Shrunken Head
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 52524})) then	-- Shrunken Head
 		e.self:Emote("traces a clawed finger along the curves of the Shrunken Head. 'This no longer remnant of a being.  To those living here, this badge.  Trophy.  Mortal life mean nothing to those who make Dreadspire their home.  Lives are used, like tools.  Thrown away when no further needed.  Why that so?  Could be blood drinkers [forget] what it like to be mortal.  Or maybe they hold no care toward life to shows [superiority] to others.  Or now that [mortals is food], it follows that they is also tools.  Maybe they just [angry].");
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

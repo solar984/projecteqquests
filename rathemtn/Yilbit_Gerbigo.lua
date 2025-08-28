@@ -28,7 +28,7 @@ function event_trade(e)
 	local fac = e.other:GetFaction(e.self);
 	
 	if(e.other:GetRaceName() ==  "Froglok" or fac < 5) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 55035})) then -- Sir Bronthas's Remains
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 55035})) then -- Sir Bronthas's Remains
 			e.self:Say("You actually found his remains?! You are remarkable. We must get Sir Bronthas a proper burial. As promised, here is your reward.");
 			e.other:Faction(1718,10,0); -- Guktan Elders
 			e.other:Faction(1709,10,0); -- Protectors of Gukta

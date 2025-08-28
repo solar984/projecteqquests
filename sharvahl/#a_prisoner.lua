@@ -16,7 +16,7 @@ function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	
 	if (e.other:Class() == "Rogue") then 
-		if (item_lib.check_turn_in(e.trade, {item1 = 52008})) then -- shackle key
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 52008})) then -- shackle key
 			eq.set_timer("depop",6000);
 			e.self:SetAppearance(0);
 			e.self:TempName("Nichols");

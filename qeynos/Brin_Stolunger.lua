@@ -22,7 +22,7 @@ function event_trade(e)
 	local fac = e.other:GetFaction(e.self);
 	
 	if(fac < 5) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 13399})) then -- Full Arena Sack
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13399})) then -- Full Arena Sack
 			e.self:Say("Jolly good!! You are clearly on your way to being a fine addition to the Steel Warriors. Now you must take this message to the person noted. All shall be explained.");
 			e.other:SummonItem(18893); -- A Sealed Letter - lore: Note to Axe Broadsmith
 			e.other:Ding();
@@ -32,7 +32,7 @@ function event_trade(e)
 			e.other:Faction(330,-5,0); -- Freeport Militia
 			e.other:Faction(281,5,0); -- Knights of Truth
 			e.other:AddEXP(6000);
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 18895})) then -- Letter of Recommendation - lore: Letter of Recommendation from Axe
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18895})) then -- Letter of Recommendation - lore: Letter of Recommendation from Axe
 			e.self:Say("So I see you have performed the test of undead. Good show. Now it is time you truly tested your mettle. Take this note to Grahan Rothkar. He can be found beneath the arena in the pens. May you live to join our brotherhood.");
 			e.other:SummonItem(18894); -- A Sealed Letter - lore: Letter to Grahan Rothkar
 			e.other:Ding();

@@ -22,7 +22,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 14105})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 14105})) then
 		e.self:Say("Wear this shield imbued with my very essence. Wear it in honor of your great services to our Lord Cazic-Thule!");
 		e.other:SummonItem(14107); -- Item: Dread Forged Shield
 		e.other:Ding();

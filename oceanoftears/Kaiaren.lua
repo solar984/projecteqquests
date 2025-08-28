@@ -64,11 +64,11 @@ function event_trade(e)
     local item_lib = require("items");
 
     if (qglobals["mnk_epic20"] ~= nil and qglobals["mnk_epic20"] >= "1") then
-        if (item_lib.check_turn_in(e.trade, {item1 = 48119, item2 = 48120})) then -- Sugar and Spice Nectar Pie and Aged Meat and Cheese Sandwich
+        if (item_lib.check_turn_in(e.self, e.trade, {item1 = 48119, item2 = 48120})) then -- Sugar and Spice Nectar Pie and Aged Meat and Cheese Sandwich
             e.self:Say("Ah, thank you. These will help me greatly but I am afraid I will still lack the strength needed to combat this evil. You will have to go in my place until at least I have had a little longer to rest and train. If you [" .. eq.say_link("choose to continue") .. "], there are two more Disciples that you must face in order to reach the point of transcendence.");
             e.other:QuestReward(e.self, 0, 0, 0, 0, 0, 1000); -- adjust EXP
             eq.set_global("mnk_epic20", "2", 5, "F"); -- flags to continue dialog
-        elseif (qglobals["mnk_epic20"] >= "3" and item_lib.check_turn_in(e.trade, {item1 = 48129, item2 = 48130, item3 = 48127})) then -- Polished Symbol of Focus, Polished Symbol of Tranquility, Initiate's Sash of the Celestial Order
+        elseif (qglobals["mnk_epic20"] >= "3" and item_lib.check_turn_in(e.self, e.trade, {item1 = 48129, item2 = 48130, item3 = 48127})) then -- Polished Symbol of Focus, Polished Symbol of Tranquility, Initiate's Sash of the Celestial Order
             e.self:Say("I see you are ready to assume the [" .. eq.say_link("final task") .. "] before facing the Dark Foe that will forever change our way of life here.");
             e.other:QuestReward(e.self, 0, 0, 0, 0, 0, 1000); -- adjust EXP
             eq.set_global("mnk_epic20", "4", 5, "F"); -- flags to continue dialog

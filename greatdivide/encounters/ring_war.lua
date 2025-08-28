@@ -170,7 +170,7 @@ end
 -- Get back: Shorn Head of Narandi (1741)
 function Churn_Trade(e)
   local item_lib = require("items");
-  if (item_lib.check_turn_in(e.trade, {item1 = 1741})) then 
+  if (item_lib.check_turn_in(e.self, e.trade, {item1 = 1741})) then 
     e.other:SummonItem(1741); -- Item: Shorn Head of Narandi
     e.other:SummonItem(1746); -- Item: Crown of Narandi
 
@@ -187,7 +187,7 @@ end
 -- Get back: Shorn Head of Narandi (1741)
 function Kargin_Trade(e)
   local item_lib = require("items");
-  if (item_lib.check_turn_in(e.trade, {item1 = 1741})) then 
+  if (item_lib.check_turn_in(e.self, e.trade, {item1 = 1741})) then 
     e.other:SummonItem(1741); -- Item: Shorn Head of Narandi
     e.other:SummonItem(1745); -- Item: Eye of Narandi
 
@@ -204,7 +204,7 @@ end
 -- Get back: Shorn Head of Narandi (1741)
 function Corbin_Trade(e)
   local item_lib = require("items");
-  if (item_lib.check_turn_in(e.trade, {item1 = 1741})) then 
+  if (item_lib.check_turn_in(e.self, e.trade, {item1 = 1741})) then 
     e.other:SummonItem(1741); -- Item: Shorn Head of Narandi
     e.other:SummonItem(1744); -- Item: Earring of the Frozen Skull
 
@@ -221,7 +221,7 @@ end
 -- Get back: Shorn Head of Narandi (1741)
 function Dobbin_Trade(e)
   local item_lib = require("items");
-  if (item_lib.check_turn_in(e.trade, {item1 = 1741})) then 
+  if (item_lib.check_turn_in(e.self, e.trade, {item1 = 1741})) then 
     e.other:SummonItem(1741); -- Item: Shorn Head of Narandi
     e.other:SummonItem(1743); -- Item: Faceguard of Bentos the Hero
 
@@ -238,7 +238,7 @@ end
 -- Get back: Shorn Head of Narandi (1741)
 function Garadain_Trade(e)
   local item_lib = require("items");
-  if (item_lib.check_turn_in(e.trade, {item1 = 1741})) then 
+  if (item_lib.check_turn_in(e.self, e.trade, {item1 = 1741})) then 
     e.other:SummonItem(1741); -- Item: Shorn Head of Narandi
     e.other:SummonItem(1742); -- Item: Choker of the Wretched
 
@@ -252,7 +252,7 @@ end
 
 function Zrelik_Trade(e)
   local item_lib = require("items");
-  if (item_lib.check_turn_in(e.trade, {item1 = 18511})) then
+  if (item_lib.check_turn_in(e.self, e.trade, {item1 = 18511})) then
     Start_Event();
   end
   item_lib.return_items(e.self, e.other, e.trade);

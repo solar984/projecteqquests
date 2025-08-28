@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13954})) then -- Prime Healer Potion (Good)
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13954})) then -- Prime Healer Potion (Good)
 		e.self:Say("Thank you!! I felt the madness nearing my brain, but now I feel much better. Please take this as thanks - it is all I have to donate to Astaed Wemor. Be sure he gets it. I shall thank Rodcet Nife every day for sending help.");
 		-- confirmed live factions
 		e.other:Faction(341,1,0); -- Faction: Priests of Life
@@ -22,7 +22,7 @@ function event_trade(e)
 		e.other:Faction(221,-1,0); -- Faction: Bloodsabers
 		e.other:Faction(219,1,0); -- Faction: Antonius Bayle
 		e.other:QuestReward(e.self,0,0,0,0,13970,50000);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13955})) then	-- Prime Healer Potion (Bad)
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13955})) then	-- Prime Healer Potion (Bad)
 		e.self:Say("Please let this help...  nnnnghhh!...  I fear it is too late...  Aaaarrrgh!...  I...   I will...   KILL YOU!");
 		eq.attack(e.other:GetName());
 		-- confirmed live factions

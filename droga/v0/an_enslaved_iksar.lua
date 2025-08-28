@@ -21,7 +21,7 @@ function event_trade(e)
 	-- need MultiQuest implementation.
 	-- local text1 = "Oh no!! The bargain was, you bring me the keys to the main gates and the pen key to cell one.";		
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 12708, item2 = 12712, item3 = 12713})) then  --,1,text1)) then --Test of the Lord (Greenmist Quest 7/8)
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12708, item2 = 12712, item3 = 12713})) then  --,1,text1)) then --Test of the Lord (Greenmist Quest 7/8)
 		e.self:Emote("escapes with a flash, but before he goes, he speaks, 'At last!! The keys which shall bring me freedom! I thank you and here is the contraption needle. Good luck.'");
 		e.other:QuestReward(e.self,{itemid = 12714, exp = 2000})
 		eq.depop_with_timer();

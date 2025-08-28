@@ -2,7 +2,7 @@
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13708})) then -- Note From Fabian
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13708})) then -- Note From Fabian
 		e.self:Say("Ah, well, Fabian said to give you this. It really is a good piece. Good luck!");
 		e.other:QuestReward(e.self,0,0,0,0,11010,5000); -- Placeholder Scroll, real reward Cloak of Hazy Memories was added after 2012
 		e.other:Ding();

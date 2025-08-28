@@ -13,12 +13,12 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if item_lib.check_turn_in(e.trade, {item1 = 55570, item2 = 55576}) then -- Items: Venomous Stonemite Poison Sac, Note to Rion
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 55570, item2 = 55576}) then -- Items: Venomous Stonemite Poison Sac, Note to Rion
 		e.self:Say("Yes, yes. Hmm, a note from Simmons. Hmm, yes. I do believe I can do it, but my assistant Pepe has wandered off somewhere with all my tools. If you can track [Pepe] down and get my tools back, I think I can help you. Oh and here is your venom sac. Hold on to it for now and if you find my tools, hand them to me along with the venom sac.");
 		e.other:SummonItem(55570); -- Item: Venomous Stonemite Poison Sac
 		e.other:QuestReward(e.self,3,0,0,3,0,eq.ExpHelper(51));
 		e.other:SetBucket("pepe_dialog", "1")
-	elseif item_lib.check_turn_in(e.trade, {item1 = 55570, item2 = 55573}) then -- Items: Venomous Stonemite Poison Sac, Scraping Tool
+	elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 55570, item2 = 55573}) then -- Items: Venomous Stonemite Poison Sac, Scraping Tool
 		e.self:Say("Very good. I will do my best. Rion begins to carefully remove the poison from the venom sac. 'Here you go. This should do.");
 		e.other:SummonItem(55573); -- Item: Scraping Tool
 		e.other:QuestReward(e.self,0,0,0,0,55574,eq.ExpHelper(51)); -- Item: Prepared Stonemite Sac

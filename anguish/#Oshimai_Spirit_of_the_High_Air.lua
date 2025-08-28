@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);			
-	if(qglobals["ranger_epic"] == "8" and item_lib.check_turn_in(e.trade, {item1 = 62647,item2 = 47100,item3 = 62627})) then  
+	if(qglobals["ranger_epic"] == "8" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62647,item2 = 47100,item3 = 62627})) then  
 		e.self:Shout("Everyone present shall know of your deeds. Each of you take notice of this ranger that has freed me! Oshimai of the High Air thanks you, friend and those that have aided you!' Oshimai raises the blade to the level of his eyes. A cold wind stirs in the area. It gathers around him and then flows from him into the sword in his hands. When he hands the weapon back, it has an animate life in it, a power that you can see and sense. 'I have given your ally some of my strength. He, through this blade, will be better able to aid you in your work. Thank you.");
 		eq.set_global("ranger_epic","9",5,"F");
 		e.other:QuestReward(e.self,{itemid=62649, exp=50000});

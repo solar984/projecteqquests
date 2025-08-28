@@ -12,7 +12,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13916,item2 = 13916})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13916,item2 = 13916})) then
 		e.self:Say("Very fine work " .. e.other:GetName() .. ". With your help, we shall soon rid the commonlands of the orcs. Then we can move on to a [bigger problem].");
 		e.other:Ding();
 		e.other:Faction(330,5,0); -- Freeport Militia

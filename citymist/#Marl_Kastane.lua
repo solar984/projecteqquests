@@ -15,7 +15,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) > 82 and item_lib.check_turn_in(e.trade, {item1 = 14384})) then
+	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) > 82 and item_lib.check_turn_in(e.self, e.trade, {item1 = 14384})) then
 			e.self:Say("Very good, I will go deliver this right away.");
 			e.other:Faction(404, -53) --True Spirit
 			e.other:QuestReward(e.self,{itemid = 14383})

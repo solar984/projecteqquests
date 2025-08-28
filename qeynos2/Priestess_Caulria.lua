@@ -21,7 +21,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	local fac = e.other:GetFaction(e.self);
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13949})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13949})) then
 		if(fac < 5) then
 			e.self:Say("I see you have rid our land of a beast tainted with the blood of Bertoxxulous. The Prime Healer shall look favorably upon your soul. Here is our thanks and just in case the beast may have bitten you...");
 			e.self:CastSpell(213,e.other:GetID()); -- Spell: Cure Disease
@@ -35,7 +35,7 @@ function event_trade(e)
 			e.self:Say("The Temple of Life smiles upon you, friend.. but such a delicate matter can only be entrusted to our most loyal members.");
 			e.other:SummonItem(13949); -- Item: Diseased Wolf Pelt
 		end
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13298})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13298})) then
 		if(fac < 5) then
 			e.self:Say("Oh dear. The disease has spread to the realm of the Treefolk. It must have been difficult to kill such a large and rabid beast. Here. Take one of my personal scrolls as thanks for such a brave act of devotion. I pray you can use it. If not, then perhaps one of your fellow adventurers can.");
 			e.self:CastSpell(213,e.other:GetID()); -- Spell: Cure Disease
@@ -50,7 +50,7 @@ function event_trade(e)
 			e.self:Say("The Temple of Life smiles upon you, friend.. but such a delicate matter can only be entrusted to our most loyal members.");
 			e.other:SummonItem(13298); -- Item: Putrid Bear Hide
 		end
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13950})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13950})) then
 		e.self:Say("This is odd. This could explain the increase in the number of beasts within the lands surrounding Qeynos. You must take this to Freeport. Here. You must speak with Lorme Tredore. Show him this pellet. You had best gear up for the trip. Freeport is very far away. Here is some gold. Outfit yourself at our expense.");
 		e.other:SummonItem(13951); -- Item: Fleshy Orb
 		e.other:Ding();

@@ -9,7 +9,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 60227})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 60227})) then
 		eq.zone_emote(MT.White,"Guardian of Glorification comes alive with the power of Kruxilitek!");
 		eq.unique_spawn(294582, 0, 0, e.self:GetX(), e.self:GetY(),  e.self:GetZ(),  e.self:GetHeading()); --##Guardian_of_Glorification
 		eq.depop();

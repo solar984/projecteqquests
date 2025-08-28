@@ -221,7 +221,7 @@ end
 function Kreshin_Trade(e)
 	local item_lib = require("items");
 	if (event_success  == 1) then
-		if (item_lib.check_turn_in(e.trade, {item1 = 67415})) then --Stone of Entry
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 67415})) then --Stone of Entry
 			e.self:Say("You have done well to get this far. Please, take this to Taminoa and tell him it is vital that he decipher it. I must stay here to investigate more. Let him know I am safe and thank you again.");
       		e.other:SummonItem(67415);--Stone of Entry
       		e.other:SummonItem(67401);--Writ of the Magi

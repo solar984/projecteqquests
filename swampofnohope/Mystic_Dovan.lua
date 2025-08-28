@@ -20,27 +20,27 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	--Full C.O.R.N. Chest turn in and Cudgel of the Mystic
-	if(item_lib.check_turn_in(e.trade, {item1 = 12736, item2 = 5143})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12736, item2 = 5143})) then
 		e.self:Say("I see that you have found your answers. Now I must ask you to to retrieve for the council the skulls of the Di Nozok.  The sarnak in Lake of Ill Omen hold one of the skulls, while [Galdon Vok Nir] holds the other. Once you have retrieved them, give them to Hierphant Zand.");
 		e.other:Faction(445, 10); --Scaled Mystics
 		e.other:Faction(441, 10); --Legion of Cabilis
 		e.other:QuestReward(e.self,0,0,0,0,5144,100000); --Give the player the Iron Cudgel of the Prophet
 	--Cure disease.
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12671})) then--giant blood sac
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12671})) then--giant blood sac
 		e.self:Emote("grabs from his beltpouch a fine dust and cakes the slimy blood sac with it. He then punctures the sac and smears the blood upon your chest. Your chest tingles. Your fill your lungs and exhale a bitter mist.");
 		-- Confirmed Live Faction
 		e.self:CastSpell(213,e.other:GetID()); -- Spell: Cure Disease
 		e.other:Faction(445, 1); --Scaled Mystics
 		e.other:Faction(441, 1); --Legion of Cabilis
 	--Heal (Light Healing)
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12739, item2 = 12739})) then--2x Brittle Iksar Skull
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12739, item2 = 12739})) then--2x Brittle Iksar Skull
 		e.self:Emote("takes the skulls and holds them before your wounds. They shatter into a fine glowing powder and you feel your wounds being cauterized with no visible flame upon them.");
 		-- Confirmed Live Faction
 		e.self:CastSpell(17,e.other:GetID()); -- Spell: Light Healing
 		e.other:Faction(445, 1); --Scaled Mystics
 		e.other:Faction(441, 1); --Legion of Cabilis
 	--Cure Poison
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12441})) then--Watcher Signal Torch
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12441})) then--Watcher Signal Torch
 		e.self:Emote("chants in an unknown tongue as he takes a dagger and slits your forearm. He then takes a tiny glowing vein worm from his beltpouch and forces it into the open wound. You feel the worm explode within. The pain is unbearable, but then, a coolness courses through your body.");
 		-- Confirmed Live Faction
 		e.self:CastSpell(203,e.other:GetID()); -- Spell: Cure Poison

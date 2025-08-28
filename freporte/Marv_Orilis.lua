@@ -36,10 +36,10 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 19935})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 19935})) then
 		e.other:Ding();
 		e.other:SummonItem(19924); -- Item: Rough Hewn Dismal Staff
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 19924,item2 = 19852,item3 = 19936})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 19924,item2 = 19852,item3 = 19936})) then
 		e.other:SummonItem(19941); -- Item: Staff of Dismal Rage
 		e.other:Ding();
 		e.other:Faction(271,3,0); -- Faction: Dismal Rage

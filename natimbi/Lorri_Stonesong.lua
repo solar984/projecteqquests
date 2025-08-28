@@ -14,7 +14,7 @@ end
       
 function event_trade(e)
 	local item_lib = require("items");
-		if (item_lib.check_turn_in(e.trade, {item1 = 54090,item2 = 54089,item3 = 54088})) then -- Siren Fin, Siren Heart, Siren Tongue
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 54090,item2 = 54089,item3 = 54088})) then -- Siren Fin, Siren Heart, Siren Tongue
 			e.self:Say("Thank you very much! Here is that shield I promised you."); 
 			 e.other:QuestReward(e.self,0,0,0,0,54091,10000); --Shield of Coastal Purity
     end

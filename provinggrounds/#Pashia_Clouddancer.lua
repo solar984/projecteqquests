@@ -37,7 +37,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	if(e.other:HasItem(69956)) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 69974})) then --Pashia's Sword
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 69974})) then --Pashia's Sword
 			e.self:Say("My sword, you have brought it back to me. Thank you " .. e.other:GetName() .. ", you truly are heroic. Now, let us get out of here. I will [" .. eq.say_link("follow") .. "] you when you are ready.");
 			event_starter=eq.get_entity_list():GetClientByID(e.other:GetID());
 		end

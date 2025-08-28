@@ -10,7 +10,7 @@ local elements = {
 }
 
 local function keeper_trade(e)
-  if not elements.deliver_blossom and item_lib.check_turn_in(e.trade, { item1 = 36211 }) then -- Perfect Cherry Blossom
+  if not elements.deliver_blossom and item_lib.check_turn_in(e.self, e.trade, { item1 = 36211 }) then -- Perfect Cherry Blossom
     eq.get_entity_list():MessageClose(e.self, true, 100, MT.SayEcho, "Stillmoon Forest Keeper says, 'Ah!  The perfect blossom... I can hardly believe my eyes!  For years have I searched in vain for those perfect petals only to find out that gardener was keeping it from me all this time.  I humbly thank you for your offer, kind adventurers and perhaps I can return the favor for I know who it is you seek.  With this in hand I can summon the hidden one for you.  Now go and greet him before he hides again!'")
     local wong_li = eq.unique_spawn(338406, 0, 0, 954.0, 512.0, 17.0, 264.0) -- #Wong_Li
     wong_li:CastToNPC():MoveTo(1005.25, 410.875, 17.0, 169.25, true) -- has a grid on live
@@ -28,11 +28,11 @@ local function wong_li_say(e)
 end
 
 local function wong_li_trade(e)
-  if not elements.deliver_ancient_note and item_lib.check_turn_in(e.trade, { item1 = 36212 }) then -- Ancient Note
+  if not elements.deliver_ancient_note and item_lib.check_turn_in(e.self, e.trade, { item1 = 36212 }) then -- Ancient Note
     eq.get_entity_list():MessageClose(e.self, true, 100, MT.SayEcho, "Wong Li says, 'Nethran had this on him, you say?  This is very dire news indeed.  This note speaks of an ancient and powerful curse that long ago descended upon this temple and its inhabitants.  I cannot translate all of the glyphs though but perhaps if you spoke with the temple librarian we might be able to uncover more about this plague.  I will send word ahead so he will be expecting you.'")
     eq.unique_spawn(338411, 0, 0, -230.0, 997.0, 43.0, 252.0) -- a_Stillmoon_librarian
     elements.deliver_ancient_note = true
-  elseif not elements.deliver_fabled_wings and item_lib.check_turn_in(e.trade, { item1 = 36213 }) then -- Fables of Winged Harmony
+  elseif not elements.deliver_fabled_wings and item_lib.check_turn_in(e.self, e.trade, { item1 = 36213 }) then -- Fables of Winged Harmony
     eq.get_entity_list():MessageClose(e.self, true, 100, MT.SayEcho, "Wong Li says, 'Very good, adventurer. Very good indeed!  You have played your part in my plan most brilliantly but now I am forced to slay you, outsider.  You see, I cannot risk you upsetting my plans.'")
     e.self:SetSpecialAbility(SpecialAbility.immune_aggro, 0)
     e.self:SetSpecialAbility(SpecialAbility.no_harm_from_client, 0)

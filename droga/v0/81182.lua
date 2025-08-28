@@ -15,7 +15,7 @@ function event_trade(e)
 	-- need MultiQuest Implementation.
 	-- local text = "I made a pact to reward the shackle of steel to one who could deliver the coppernickel key and the shackles of copper and bronze.";	
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 12839,item2 = 4195,item3 = 4194})) then --,1,text)) then -- A coppernickel Key, Shackle of Bronze, Shackle of Copper.
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12839,item2 = 4195,item3 = 4194})) then --,1,text)) then -- A coppernickel Key, Shackle of Bronze, Shackle of Copper.
 		e.self:Emote("hands you a shackle and removes the coppernickel shackle so he may flee. He places your shackles on his wrists and darts into the darkness.");
 		e.other:QuestReward(e.self,0,0,0,0,4196,10000); -- shackle of steel
 	end

@@ -26,7 +26,7 @@ function event_trade(e)
 
 	if (pfaction > 4) then
         e.self:Say("You no friend to Treskar!");
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12190})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12190})) then
 		e.self:Say("You do it! You am great knight. Me give you special froglok skin mask. Shaman make for Nightkeep. It am make you smarter like Treskar... Me tink so!'");
 		e.other:SummonItem(2308); -- Item: Froglok Skin Mask
 		e.other:Ding();
@@ -36,7 +36,7 @@ function event_trade(e)
 		e.other:Faction(308,20,0); 	-- Shadowknights of Night Keep (Troll SK)
 		e.other:Faction(222,-3,0); 	-- Green Blood Knights (Ogre SK)
 		e.other:AddEXP(10000); 		-- Appropriate for ~level 10?
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 12199,item2 = 12199,item3 = 12199, gold = 2})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 12199,item2 = 12199,item3 = 12199, gold = 2})) then
 		e.self:Say("Hmm... You do good job. You surprise Treskar. Maybe you good after all. Maybe Treskar give you [secret mission]. Maybe not.");
 		e.other:SummonItem(5020); -- Item: Rusty Battle Axe
 		e.other:Ding();

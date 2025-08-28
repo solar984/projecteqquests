@@ -40,7 +40,7 @@ end
 function event_trade(e)
   local item_lib = require("items");
 
-  if(item_lib.check_turn_in(e.trade, {item1 = 27421, item2 = 27421, item3 = 27421, item4 = 27422})) then
+  if(item_lib.check_turn_in(e.self, e.trade, {item1 = 27421, item2 = 27421, item3 = 27421, item4 = 27422})) then
     e.self:Say("I knew he would still have it, such an unintelligent one Beris is. As I promised I have crafted you a blade for your trouble. I hope you will promptly stain it with the blood of the gnolls. You have done well " .. e.other:GetName() .. ", good luck to you.");
     e.other:SummonItem(27492); -- Item: Warsword of the Battlemaster
     e.other:Ding();
@@ -51,7 +51,7 @@ function event_trade(e)
     e.other:Faction(230,-10,0); -- Corrupt Qeynos Guards
     e.other:Faction(330,-10,0); -- The Freeport Militia
     e.other:Faction(281,5,0); -- Knights of Truth
-  elseif(item_lib.check_turn_in(e.trade, {item1 = 18707})) then
+  elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18707})) then
     e.self:Say("Welcome to the brotherhood, " .. e.other:GetName() .. "! This should help you on your path to become a champion for the Steel Warriors."); -- Real text needed
     e.other:SummonItem(13504); -- Item: Dirty Training Tunic*
     e.other:Ding();

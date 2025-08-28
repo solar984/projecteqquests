@@ -27,25 +27,25 @@ end
 function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 22944})) then --hand in statless Innoruuk's Voice from prequest
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 22944})) then --hand in statless Innoruuk's Voice from prequest
 		if(qglobals["shadowknight_epic"] == nil) then
 			eq.set_global("shadowknight_epic","1",5,"F"); --Flagged to start epic
 		end
 	end
-	if(qglobals["shadowknight_epic"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 20520})) then --hand in The Silent Gods (received from Grand Librarian Maelin)
+	if(qglobals["shadowknight_epic"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 20520})) then --hand in The Silent Gods (received from Grand Librarian Maelin)
 		e.self:Say("You have done well in acquiring this tome.' Sienn opens the tome and begins to read. 'It says that a sheath must be created to protect the sword. Unfortunately the instructions for making this sheath are a bit unclear. The only clues given to the items needed are, to gather a dark hide of a creature unmatched in its bleakness, a holy lock of hair from a fair creature unmatched in happiness, and a gem possessing the very essence of fear itself, held by a creature more fearsome. If you find these three items, combine them in a sewing kit and then hand the sheath to me. I await your return.");
 		eq.set_global("shadowknight_epic","2",5,"F");
 	end
-	if(qglobals["shadowknight_epic"] == "2" and item_lib.check_turn_in(e.trade, {item1 = 20426})) then --hand in Sheath of Darktidings (result of a combine, probably needs added to db)
+	if(qglobals["shadowknight_epic"] == "2" and item_lib.check_turn_in(e.self, e.trade, {item1 = 20426})) then --hand in Sheath of Darktidings (result of a combine, probably needs added to db)
 		e.self:Say("I admit that I did not think you could accomplish this task. Perhaps you really are meant to be the sword's champion. Our work here is not done however. There are those that wish the sword to be destroyed. One of these beings is a froglok paladin named Fraga. He was last seen in the Plane of Valor. Kill him and bring me any clues as to what his plans may be.");
 		eq.set_global("shadowknight_epic","3",5,"F");
 	end
-	if(qglobals["shadowknight_epic"] == "3" and item_lib.check_turn_in(e.trade, {item1 = 23492})) then --hand in Fraga's Parchment (drops from Fraga in PoValor)
+	if(qglobals["shadowknight_epic"] == "3" and item_lib.check_turn_in(e.self, e.trade, {item1 = 23492})) then --hand in Fraga's Parchment (drops from Fraga in PoValor)
 		e.self:Emote("begins to read the parchment. A worried look plays across her face.");
 		e.self:Say("The weapon is not safe. The forces of good strongly wish to have it destroyed. To make matters worse, the sword is emanating hate that can be felt by powerful beings, both good and evil, across all planes of existence. As it stands right now, I wouldn't be surprised if the forces of good are converging to have the sword destroyed and the forces of evil are conniving to take the sword for themselves. It is only a matter of time before they locate the sword and come for it themselves. I have been studying the tome while you were gone. The tome describes a way to [" ..eq.say_link('mask the sword\'s presence', false, 'mask the sword\'s presence') .. "].");
 		eq.set_global("shadowknight_epic","4",5,"F");
 	end
-	if(qglobals["shadowknight_epic"] == "4" and item_lib.check_turn_in(e.trade, {item1 = 20497, item2 = 19025})) then --hand in Wailing Sister Blood and Wailing Rune (both drop from The Wailing Sister in the Plane of Nightmare)
+	if(qglobals["shadowknight_epic"] == "4" and item_lib.check_turn_in(e.self, e.trade, {item1 = 20497, item2 = 19025})) then --hand in Wailing Sister Blood and Wailing Rune (both drop from The Wailing Sister in the Plane of Nightmare)
 		e.self:Emote("pours the blood on the rune. The rune begins to glow a bright red color and a horrifying wail fills your ears.");
 		e.self:Say("The rune has been activated.");
 		e.self:Emote("holds the rune against the sheath you created earlier. The rune instantaneously melts into the sheath.");

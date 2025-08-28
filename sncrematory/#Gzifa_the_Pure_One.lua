@@ -43,7 +43,7 @@ function event_trade(e)
   local item_lib = require("items")
 
   -- Items: Ngozi's Remains, Mabiki's Remains, Talakoi's Remains, Yogundi's Remains
-  if item_lib.check_turn_in(e.trade, {item1 = 55608, item2 = 55609, item3 = 55610, item4 = 55611}) then
+  if item_lib.check_turn_in(e.self, e.trade, {item1 = 55608, item2 = 55609, item3 = 55610, item4 = 55611}) then
     eq.stop_timer("depop")
     eq.get_entity_list():MessageClose(e.self, true, 100, MT.SayEcho, "Gzifa the Pure One begins to chant in an unknown tongue.  The essences of the ghosts you destroyed merge with the crystal in the center of the room.  As they do so, a flash of magic erupts, briefly illuminating the crystal.  'It is complete.  Our time here is done.  We thank you for your good deed.  We bid you farewell.'")
 

@@ -64,7 +64,7 @@ end
 function Uisima_Trade(e)
 	local item_lib = require("items");
 	
-	if(hpcheck and item_lib.check_turn_in(e.trade, {item1 = 62623})) then
+	if(hpcheck and item_lib.check_turn_in(e.self, e.trade, {item1 = 62623})) then
 		e.self:Emote("holds the wood for a while, peering into the smooth grains. After a few moments he speaks. 'We are in agreement, the treant and I. You have been my savior and his creator. There seems only one way to repay your efforts on our behalf.' Uisima holds the heartwood at arm's length and breathes lightly to it. You feel as much as hear the treant sigh with pleasure at the feel of the breath. You too feel the breeze brush our face and in it you understand what is happening. Uisima is freeing the wood and the treant inside to take a shape of its choosing. The wood grows, changing shape to become something more than it was, Uisima hands the wood back to you. 'The Red Dogwood treant is a rare creature, gentle in spirit but strong in conviction. He says that he is honored to serve you in this fashion. Take this wood and form around it a blade made of the finest silver. We both thank you but I must go now or I might be captured once again.");
 		e.other:SummonItem(62626); --Wind-blessed Heartwood
 		local qglobals = eq.get_qglobals(e.other);

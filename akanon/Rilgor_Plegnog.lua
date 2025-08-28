@@ -35,7 +35,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 18703})) then  -- Old Folded Letter
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18703})) then  -- Old Folded Letter
 	   	e.self:Say("It's always good to see new blood eager to learn teh dark art of mind control. Please take this robe as a symbolization of loyalty to this house. Once you are ready to begin your training please make sure that you see Tilkzog Mournunder, he can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:Ding();
 		e.other:SummonItem(13524);	-- Dark Gold Felt Robe*
@@ -44,12 +44,12 @@ function event_trade(e)
 		e.other:Faction(255,-10,0); -- gem choppers
 		e.other:Faction(240,-10,0); 	-- Deepmuses
 		e.other:AddEXP(100);
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 1360})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 1360})) then
 		e.self:Say("Very nice!! It is perfect! Here take this pen. Have fun with it.");
 		e.other:Ding();
 		e.other:AddEXP(50000);
 		e.other:SummonItem(10600); -- Item: Mechanical Pen
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 54317})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 54317})) then
 		e.self:Say("'Very fine it is. So kind of you to fulfill a dream of mine. I believe this device should be able to handle just about anything you'd need. In fact, if I were you I would take it along to your master right away.' ");
 		e.other:SummonItem(52945); -- Item: Gnomish Translating Device
 	end

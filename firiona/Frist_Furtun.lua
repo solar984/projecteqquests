@@ -12,7 +12,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 19203}) or item_lib.check_turn_in(e.trade, {item1 = 19205}) or item_lib.check_turn_in(e.trade, {item1 = 19209}) or item_lib.check_turn_in(e.trade, {item1 = 19212}) or item_lib.check_turn_in(e.trade, {item1 = 19233})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 19203}) or item_lib.check_turn_in(e.self, e.trade, {item1 = 19205}) or item_lib.check_turn_in(e.self, e.trade, {item1 = 19209}) or item_lib.check_turn_in(e.self, e.trade, {item1 = 19212}) or item_lib.check_turn_in(e.self, e.trade, {item1 = 19233})) then
 		e.self:Say("Here is the scroll that I promised. We have both gained much knowledge today. I hope to do business with you again soon. Farewell!");
 		e.other:SummonItem(eq.ChooseRandom(19210,19224,19420,19206)); -- Item(s): Spell: Unswerving Hammer (19210), Spell: Heroic Bond (19224), Spell: Sunskin (19420), Spell: Word of Vigor (19206)
 		e.other:Ding();

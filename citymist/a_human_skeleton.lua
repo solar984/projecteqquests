@@ -9,7 +9,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 12963})) then -- Hand in Mardon's Bottle
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12963})) then -- Hand in Mardon's Bottle
 		e.other:QuestReward(e.self,{itemid = 12966}); -- Bottle of swirling smoke (Mardon's soul)
 		eq.depop_with_timer();
 	end

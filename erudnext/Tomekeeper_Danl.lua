@@ -29,11 +29,11 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 18195}) and e.other:GetLevel() >= 46 and e.other:Class() == "Monk") then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18195}) and e.other:GetLevel() >= 46 and e.other:Class() == "Monk") then
 		e.self:Emote("gasps at the sight of the rare book. 'This is a great find indeed! I can only imagine who you had to.. persuade to give you the book. Our library would be very interested in acquiring this and I am prepared to give you this referral that marks you as a friend of the library. If only [" .. eq.say_link("Lheao") .. "] could see this.'");
 		e.other:SummonItem(1682); -- Danl's Reference
 		e.other:Ding();
-	elseif(qglobals["monk_epic"] ~= nil and qglobals["monk_epic"] >= "2" and item_lib.check_turn_in(e.trade, {item1 = 48132})) then
+	elseif(qglobals["monk_epic"] ~= nil and qglobals["monk_epic"] >= "2" and item_lib.check_turn_in(e.self, e.trade, {item1 = 48132})) then
 		e.self:Say("What's this? How did you know I was missing these pages? I still do not know how you always find a way to help but you have again. Now what is it you came to ask me before? Ah yes, it was regarding the Immortals. It is no coincidence that the pages you just brought me came from the very book you are referring to. Tomekeeper Danl mumbles a few words you do not understand and the pages magically are inserted back into the book and become legible again.");
 		e.self:Say("Well I suppose I do owe you the information you had come here seeking. Unfortunately, I do not know much more than what is in this book already. The other references I have found do speak of another [" .. eq.say_link("disciple of Kaiaren") .. "].");	
 		eq.set_global("monk_epic","3",5,"F");		

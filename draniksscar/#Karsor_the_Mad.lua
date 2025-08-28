@@ -145,7 +145,7 @@ end
 function event_trade(e)
 local class = e.other:Class();
 local item_lib = require("items");
-if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite rune
+if(item_lib.check_turn_in(e.self, e.trade, {item1 = 59983})) then  -- minor muramite rune
 	if class == "Beastlord" then
 		if not e.other:HasSpellScribed(5526) then
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
@@ -406,7 +406,7 @@ if(item_lib.check_turn_in(e.trade, {item1 = 59983})) then  -- minor muramite run
 			e.other:SummonItem(59983); -- minor muramite rune
 		end
 	end
-elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramite rune
+elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 59984})) then  -- lesser muramite rune
 	if class == "Beastlord" then
 		if not e.other:HasSpellScribed(5528) then --muada's mending
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
@@ -661,7 +661,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59984})) then  -- lesser muramit
 			e.other:SummonItem(59984); -- lesser muramite rune
 		end
 	end
-elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
+elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 59985})) then  -- muramite rune
 	if class == "Beastlord" then --Growl of the Beast, Spirit of Alladnu, Spirit of Irionu
 		if not e.other:HasSpellScribed(5533) then --growl of the beast
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
@@ -931,7 +931,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59985})) then  -- muramite rune
 			e.other:SummonItem(59985); -- muramite rune
 		end
 	end
-elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater muramite rune
+elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 59986})) then  -- greater muramite rune
 	if class == "Beastlord" then --Spiritual Ascendance, Feral Vigor, Glacier Spear, Feral Guard
 		if not e.other:HasSpellScribed(5537) then --Spiritual Ascendance
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
@@ -1196,7 +1196,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59986})) then  -- greater murami
 			e.other:SummonItem(59986); -- greater muramite rune
 		end
 	end
-elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing muramite rune
+elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 59987})) then  -- glowing muramite rune
 	if class == "Beastlord" then --Sha's Legacy, Spirit of Rashara, Ferocity of Irionu, Festering Malady
 		if not e.other:HasSpellScribed(6828) then --Sha's Legacy
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");
@@ -1452,7 +1452,7 @@ elseif(item_lib.check_turn_in(e.trade, {item1 = 59987})) then  -- glowing murami
 			e.other:SummonItem(59987); -- glowing muramite rune
 		end
 	end
-elseif(item_lib.check_turn_in(e.trade, {item1 = 59988})) then  -- ancient muramite rune
+elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 59988})) then  -- ancient muramite rune
 	if class == "Beastlord" then --Savage Ice
 		if not e.other:HasSpellScribed(5543) then
 			e.self:Say("Quite a find, for a filthy ".. e.other:GetRaceName() .. "! Yes, indeed! Quite a find! Give me a moment while I decipher this rune. Do not disturb me. Do not!' The dragorn furiously scribbles on a piece of parchment. He looks back and forth from the rune to the parchment, wiping sweat from the scales on his brow, muttering to himself. When he's finished, he hands you a parchment. The arcane text is written in a circle that spirals toward the center of the scroll. 'Sorry,' he shrugs. 'That's the only way it could possibly make sense.'");

@@ -28,7 +28,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18779})) then -- Enrollment Letter
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18779})) then -- Enrollment Letter
 		e.self:Say("Welcome to the wizards' guild of the Keepers of the Art. My name's Tarker, and I run this guild. You've got a lot of training ahead of you, so let's get started. Here, take this - it's our guild tunic. Wear it with honor, friend. Once you are ready to begin your training please make sure that you see Yuin Starchaser, he can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13594); -- Singed Training Robe*
 		e.other:Ding();
@@ -37,7 +37,7 @@ function event_trade(e)
 		e.other:Faction(246,15,0); -- Faydark's Champions
 		e.other:Faction(239,-25,0); -- The Dead
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13758})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13758})) then
 		e.self:Say("Ah yes.  This is exactly what I need.  Thank you very much.");
 		e.other:SummonItem(eq.ChooseRandom(7007,13009,58094,59964,6012)); -- Item(s): Rusty Dagger (7007), Bandages (13009), Simple Copper Ring (58094), Spell: Numbing Cold (59964), Worn Great Staff (6012)
 		e.other:Ding();

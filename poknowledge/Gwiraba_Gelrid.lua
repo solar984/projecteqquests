@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(e.other:GetLevel() > 19 and item_lib.check_turn_in(e.trade, {item1 = 22503, item2 = 26697, item3 = 9421, item4 = 28790})) then--Blue Diamond, Rage Filled Gem, Sandstorm Gem, Intermediate Combat Manual
+	if(e.other:GetLevel() > 19 and item_lib.check_turn_in(e.self, e.trade, {item1 = 22503, item2 = 26697, item3 = 9421, item4 = 28790})) then--Blue Diamond, Rage Filled Gem, Sandstorm Gem, Intermediate Combat Manual
 		e.self:Say("I must say, this is a surprise. I was beginning to wonder if you would ever return with these. I'm glad you see you have though. Take this new book and use it well in your future journeys. You may also be interested to know that Tenada Jeried also has a few lesson plans for very advanced students. If you should see him, be sure to tell him you are interested in learning from him. Good luck to you, " .. e.other:GetCleanName() .. "!");
 		e.other:QuestReward(e.self,0,math.random(10),math.random(10),math.random(0,5),28791,500000); --Advanced Combat Manual
 	end

@@ -12,7 +12,7 @@ end
 function event_trade(e)
   --any faction check on turn in?
 local item_lib = require("items");
-    if(item_lib.check_turn_in(e.trade, {item1 = 55835})) then
+    if(item_lib.check_turn_in(e.self, e.trade, {item1 = 55835})) then
       eq.local_emote({e.self:GetX(), e.self:GetY(), e.self:GetZ()}, MT.White, 75,"The dragorn takes the blood from you. 'Thank you, ".. e.other:GetCleanName() ..". This should keep the murkgliders at bay for a while. Let me know if you recover any more.");
       -- any exp?
 		e.other:Faction(410,1) --Dranik Loyalists +5

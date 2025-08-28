@@ -35,7 +35,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	if (e.other:GetFaction(e.self) <= 2 or e.other:GetGM() and (class == "Magician" or class == "Enchanter" or class == "Wizard" or class == "Necromancer" or e.other:GetGM())) then -- require warmly and int casters
 		
-		if(item_lib.check_turn_in(e.trade, {item1 = 51446,item2 = 51474,item3 = 51474})) then -- int hands rewards
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 51446,item2 = 51474,item3 = 51474})) then -- int hands rewards
 			e.self:Emote("bows before you. 'Thank you, ".. e.other:GetCleanName() ..". You have helped prevent the Muramites from using my former home as part of their information network. You've also brought me the fingers of two discordlings, the very beasts that are responsible for the tower's construction. As promised, I offer my cloth gloves as your reward.");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70835,100000); -- (70835); # Item: Charmweaver's Mittens
@@ -51,7 +51,7 @@ function event_trade(e)
 				end
 
 
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51445,item2 = 51473,item3 = 51473})) then -- int wrist rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51445,item2 = 51473,item3 = 51473})) then -- int wrist rewards
 			e.self:Say("You've recovered the banner! And to think I thought it lost for good! I'll be sure this flies over the graves of my fallen kin. May its glory rekindle the spirits of the dragorn still under the Muramite whip! As promised, my cloth wrist band shall be your reward!");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70834,100000); -- (70834); # Item: Charmweaver's Bracer
@@ -65,7 +65,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70813,100000); -- (70813); # Item: Deathcaller's Wristguard
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51444,item2 = 51472,item3 = 51472})) then -- int arms rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51444,item2 = 51472,item3 = 51472})) then -- int arms rewards
 			e.self:Say("You've recovered a map of Old Kuua! With this I may yet find the burial grounds of my ancestors. Hopefully before the Muramites get there to pillage what remains of my kins' riches! Thank you, $name. As promised, here are my former arm wraps. I have no more need of them, but I'm sure they will serve you well.");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70833,100000); -- (70833); # Item: Charmweaver's Armguards
@@ -79,7 +79,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70812,100000); -- (70812); # Item: Deathcaller's Armbands
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51440,item2 = 51468,item3 = 51468})) then -- int head rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51440,item2 = 51468,item3 = 51468})) then -- int head rewards
 			e.self:Say("You've recovered The Duskfall Chronicles! Perhaps with time the dragorn will learn to resist the poison of Discord to once again stand against a common enemy. May so many of my kin never die in vain again. Thank you, $name. As promised, here is my cloth battle hood as your reward.");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70832,100000); -- (70832); # Item: Charmweaver's Cap
@@ -93,7 +93,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70811,100000); -- (70811); # Item: Deathcaller's Skullcap
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51441,item2 = 51469,item3 = 51469,item4 = 51469})) then -- int chest rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51441,item2 = 51469,item3 = 51469,item4 = 51469})) then -- int chest rewards
 			e.self:Say("Yes, this is it the scepter of Yumall! I recognize the markings! Alas, the glow has left the scepter which means Yumall no longer draws breath. At least now I know to prepare a burial ritual in his honor. As promised, here is my former battle tunic. In the days when I still fought for Dranik, this tunic turned many blades that otherwise would have found my heart.");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70837,100000); -- (70837); # Item: Charmweaver's Robe
@@ -107,7 +107,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70816,100000); -- (70816); # Item: Deathcaller's Robe
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51442,item2 = 51470,item3 = 51470,item4 = 51470})) then -- int leg rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51442,item2 = 51470,item3 = 51470,item4 = 51470})) then -- int leg rewards
 			e.self:Say("You've recovered a Dragorn City Ember! With this I may yet find the burial grounds of my ancestors. Hopefully before the Muramites get there to pillage what remains of my kins' riches! Thank you, ".. e.other:GetCleanName() ..". As promised, here are my former leggings. I have no more need of them, but I'm sure they will serve you well."); --text made up
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70838,100000); -- (70838); # Item: Charmweaver's Leggings
@@ -121,7 +121,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70817,100000); -- (70817); # Item: Deathcaller's Pants
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51443,item2 = 51471,item3 = 51471})) then -- int feet rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51443,item2 = 51471,item3 = 51471})) then -- int feet rewards
 			e.self:Say("Excellent work, ".. e.other:GetCleanName() ..". I shudder to think what names could be etched on this stone, but I thank you for your efforts nonetheless. As promised, here are my slippers as your reward. May they keep you fleet of foot and out of harm's way.");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70836,100000); -- (70836); # Item: Charmweaver's Slippers

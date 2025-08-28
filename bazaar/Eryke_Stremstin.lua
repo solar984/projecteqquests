@@ -14,10 +14,10 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 48128})) then		
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 48128})) then		
 		e.self:Say("What's this? A note from Vortix. . .I have not made anything in a long while. I am afraid I cannot be of much use to you except to sell you the required materials. I suppose I could also 'guide' you by telling you what you need to make the garment yourself. . .but that's if the [" .. eq.say_link("price") .. "] is right.");	
 		eq.set_global("monk_epic","6",5,"F");
-	elseif(qglobals["monk_epic"] ~= nil and qglobals["monk_epic"] >= "6" and item_lib.check_turn_in(e.trade, {platinum = 1000})) then
+	elseif(qglobals["monk_epic"] ~= nil and qglobals["monk_epic"] >= "6" and item_lib.check_turn_in(e.self, e.trade, {platinum = 1000})) then
 		e.self:Say("Ah, very good then. What you will need to make your sash is the Celestial Thread I have handed you, as well as a Belt Pattern, and your three [" .. eq.say_link("polished") .. "] symbols in a sewing kit.");
 		e.other:SummonItem(48123); -- Dirk of the Slickfinger
 	end

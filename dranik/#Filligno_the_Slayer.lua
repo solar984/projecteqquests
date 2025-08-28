@@ -19,11 +19,11 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(qglobals["shadowknight_epic"] == "10" and item_lib.check_turn_in(e.trade, {item1 = 24584, item2 = 47100})) then --hand in Lhranc's Earthly Anchor (received from previous step), and Globe of Discordant Energy (from Citadel of Anquish)
+	if(qglobals["shadowknight_epic"] == "10" and item_lib.check_turn_in(e.self, e.trade, {item1 = 24584, item2 = 47100})) then --hand in Lhranc's Earthly Anchor (received from previous step), and Globe of Discordant Energy (from Citadel of Anquish)
 		e.self:Say("Yes, yes, Gilina said you would be coming. I can help you in your battle against Lhranc! I have a personal vendetta against Lhranc. He killed my twin brother, Gilligno. This is going to be a tough battle. Lhranc has been reincarnated as a powerful general of the Mata Muram army. Are you [" ..eq.say_link('ready', false, 'ready') .. "] for me to attempt the summoning of Lhranc?");
 		eq.set_global("shadowknight_epic","11",5,"F");
 	end
-	if(qglobals["shadowknight_epic"] == "11" and item_lib.check_turn_in(e.trade, {item1 = 55903, item2 = 50003})) then --hand in Essence of the Shadowknight (dropped by Lhranc), and Innoruuk's Voice (Epic 1.5)
+	if(qglobals["shadowknight_epic"] == "11" and item_lib.check_turn_in(e.self, e.trade, {item1 = 55903, item2 = 50003})) then --hand in Essence of the Shadowknight (dropped by Lhranc), and Innoruuk's Voice (Epic 1.5)
 		e.self:Emote("takes the essence and begins to study it most carefully. After what seems like an eternity, Filligno throws the globe onto the floor. It cracks open, letting loose a stream of ghastly spirits. Filligno dives for cover. As the cackling spirits dissipate, a powerful looking sword floats in mid-air before you.");
 		e.self:Say("Take it! The blade is yours! A gift from Innoruuk, for the most powerful of shadowknights!");
 		e.other:QuestReward(e.self,{itemid=48136, exp=50000}); --Innoruuk's Dark Blessing (Epic 2.0)

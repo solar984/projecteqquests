@@ -27,7 +27,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if item_lib.check_turn_in(e.trade, {item1 = 13990, gold = 66}) then
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 13990, gold = 66}) then
 		e.other:Faction(344,10,0); -- Faction: Beta Neutral
 		e.other:QuestReward(e.self,{itemid = 14320, exp = 300}); -- Item: Sack of Cursed Hay
 	end

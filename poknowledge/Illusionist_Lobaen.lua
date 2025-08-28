@@ -8,7 +8,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 52950})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 52950})) then
 		e.self:Say("It is not often that I receive a request from Maelin himself. Please, take these and be most careful.");
 		e.other:SummonItem(52959); --Sealed Documents
 	end

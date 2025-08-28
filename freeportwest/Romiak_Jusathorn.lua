@@ -30,7 +30,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18741})) then -- A tattered note
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18741})) then -- A tattered note
 		e.self:Say("Greetings, I am Romiak Jusathorn, Master Enchanter of the Academy. Take this.. it's our guild robe; it will help protect you in this harsh environment. Once you are ready to begin your training please make sure that you see Shana Liskia, he can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13560); -- Old Violet Robe
 		e.other:Ding();

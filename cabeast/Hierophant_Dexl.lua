@@ -18,7 +18,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	--Turn in the skulls of the sisters of scale and your cudgel of the channeler
-	if(e.other:GetFaction(e.self) <= 4 and item_lib.check_turn_in(e.trade, {item1 = 5145, item2 = 12748, item3 = 12750, item4 = 12749})) then
+	if(e.other:GetFaction(e.self) <= 4 and item_lib.check_turn_in(e.self, e.trade, {item1 = 5145, item2 = 12748, item3 = 12750, item4 = 12749})) then
 		e.self:Say("You have returned the skulls of the Sisters of Scale. For this you shall be rewarded. Take this hierophant's weapon. May you use it to smite the foes of our people.' Dexl comes out of the trance. 'What?!! Whew. Hey!! Where is my cudgel?");
 		e.other:Faction(445, 10); 					--Scaled Mystics
 		e.other:Faction(441, 10); 					--Legion of Cabilis

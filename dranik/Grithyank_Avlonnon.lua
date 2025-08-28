@@ -19,7 +19,7 @@ end
 function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	local item_lib = require("items");
-	if(qglobals["berserk_epic"] == "9" and item_lib.check_turn_in(e.trade, {item1 = 20072, item2 = 47100})) then
+	if(qglobals["berserk_epic"] == "9" and item_lib.check_turn_in(e.self, e.trade, {item1 = 20072, item2 = 47100})) then
 		e.self:Say("Ah, very good outlander, you managed to find some Discordant Matter. Very well, I will see what I can accomplish. Though the ore in this axe is originally from my world, the smithing technique and some of the magic are from yours. Therefore I can make no promises.' After some time and much effort the Dragorn hands the axe back. You immediately notice that edge has a brilliance to it that is nearly blinding. There outlander. I think you will be pleased with the results. The smithing technique used to forge that axe is quite unique. . .I doubt another of its kind exists. Be wary though for as I was applying the Discordant matter to the edge, I felt a disturbing presence emanating from the axe. There is someone or something that endures within it. . .something that seeks to control those who wield it. You must be ever cautious lest the axe is able to compel its influence onto you. I fear that though the axe will bring you many victories, those victories may come at a cost. Travel safe and fair, my friend!");
 		e.other:QuestReward(e.self,{itemid=18609, exp=50000}); --(Epic 2.0)
 		e.other:AddAAPoints(10);

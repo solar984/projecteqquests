@@ -296,7 +296,7 @@ end
 
 local function silverclaw_trade(e)
   local item_lib = require("items")
-  if item_lib.check_turn_in(e.trade, { item1 = 81903 }) then -- Ancient Tooth of Archanalia
+  if item_lib.check_turn_in(e.self, e.trade, { item1 = 81903 }) then -- Ancient Tooth of Archanalia
     -- live updates task on turn in but players in zone do not get rewards or completion emote
     -- players out of zone do still get the reward and emote if it completes the task
     -- turning in tooth from a previous mission spawns chest and ends mission but does not give lockout

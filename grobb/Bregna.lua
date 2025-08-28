@@ -14,7 +14,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if (item_lib.check_turn_in(e.trade, {item1 = 13916})) then -- More help for Innoruuk
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 13916})) then -- More help for Innoruuk
 		e.self:Say("Good job. Dat help lerns um. Takes dis ta help ya lerns how ta do more hateful tings. Ya gots a good starts fer Him ta be prouds a ya.");
 		e.other:SummonItem(15272); -- Item: Spell: Spirit Pouch
 		e.other:Faction(251,-1,0); -- -Frogloks of Guk
@@ -22,7 +22,7 @@ function event_trade(e)
 		e.other:Faction(308,1,0);  -- +Shadowknights of Night Keep
 		e.other:Ding();
 		e.other:AddEXP(100);
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 26632, item2 = 26640, item3 = 29921, item4 = 26662})) then -- Aid Garuuk
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 26632, item2 = 26640, item3 = 29921, item4 = 26662})) then -- Aid Garuuk
 		e.self:Say("Dis am gud. I see you've been talkin' to Garuuk. Methanks you fer da help. Take dis note back ta Garuuk so he knows you helped me. Tanks again!");
 		e.other:SummonItem(28740); -- Item: Troll Receipt
 		e.other:Ding();

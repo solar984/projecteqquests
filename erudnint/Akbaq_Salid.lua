@@ -24,7 +24,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	
 	if (e.other:GetFaction(e.self) <= 5) then -- Require indifferent or greater faction 
-		if(item_lib.check_turn_in(e.trade, {item1 = 6960,item2 = 6946})) then -- astral cloak of the titans 
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 6960,item2 = 6946})) then -- astral cloak of the titans 
 			e.self:Say("These are the pelts of the most powerful of the known Titan spirits. You have done well, $name, and you will be rewarded for your services."); 
 			e.other:Ding();
 			e.other:Faction(233,10,0); -- Crimson hands 
@@ -33,7 +33,7 @@ function event_trade(e)
 			e.other:Faction(267,10,0); -- High Guards of Erudin 
 			e.other:AddEXP(500); 
 			e.other:SummonItem(2573); -- Item: Astral Cloak of the Titans
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 6958,item2 = 6964})) then -- astral leggings of the titans 
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 6958,item2 = 6964})) then -- astral leggings of the titans 
 			e.self:Say("Excellent! These pelts are in fine condition. I was unsure what would happen to the physical forms of the titans when slain in this realm.");      
 			e.other:Ding();
 			e.other:Faction(233,10,0); -- Crimson hands 
@@ -42,7 +42,7 @@ function event_trade(e)
 			e.other:Faction(267,10,0); -- High Guards of Erudin 
 			e.other:AddEXP(500); 
 			e.other:SummonItem(2575); -- Item: Astral Leggings of the Titans
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 6947,item2 = 12097})) then -- scaled robe of the elder serpent 
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 6947,item2 = 12097})) then -- scaled robe of the elder serpent 
 			e.self:Say("Ah! I have been anxiously awaiting the oppurtunity to craft some powerful robes from these mystical scales."); 
 			e.other:Ding();
 			e.other:Faction(233,10,0); -- Crimson hands 

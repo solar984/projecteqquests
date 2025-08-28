@@ -14,7 +14,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if item_lib.check_turn_in(e.trade, {item1 = 54018, item2 = 54018, item3 = 54018, item4 = 54018}) then -- Items: Luggald Parts x4
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 54018, item2 = 54018, item3 = 54018, item4 = 54018}) then -- Items: Luggald Parts x4
 		e.self:Say("Not bad at all, my friend. I believe these will prove most useful in our studies, and four less abominations to contend with.' He scrawls out some symbols that make no sense at all onto a slip of parchment. 'Take this to Tylfon in Kelethin and I believe he may show some gratitude to our cause.");
 		e.other:QuestReward(e.self,0,0,0,0,54019,10000); -- Item: Encrypted Scout Note
 	end

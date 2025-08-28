@@ -20,23 +20,23 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(item_lib.check_turn_in(e.trade, {item1 = 62800})) then -- Turn in Redwood Seed
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62800})) then -- Turn in Redwood Seed
 		e.self:Say("This is a wonderful specimen, unblemished and healthy.  You know, if I had a seed like this I might just try one of those Unkempt [" .. eq.say_link("seed rituals") .. "], that is if they hadn't been lost along with the Unkempt so many years ago.  It's unlikely that any record of them exists these days.  Why, there was one ritual that they say could evolve a redwood seed into something new and powerful.");
 		e.other:SummonItem(62800); -- Gives back seed
 		if qglobals["DruPQ"] == nil then
 			eq.set_global("DruPQ","1",5,"F");
 		end
-	elseif qglobals["DruPQ"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 62801}) then -- Turn in Unkempt Seed Ritual
+	elseif qglobals["DruPQ"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62801}) then -- Turn in Unkempt Seed Ritual
 		e.self:Say("Well you actually found it. It has a new cover, but most of the original pages seem to be here. I can't read all of this very well. Nobody reads this language anymore, but I think I understand the basics. You will need some high quality loam and some magic earth. Marshes are a good place to find loam. Magical soil might be a problem, but certainly you can find some that will work. These two items are used to create the cleansing loam. It's the third item that I don't like.");
 		e.self:Say("I know the Unkempt were different than we are, but I find this hard to believe. The ritual seems to say that you must take the seed and insert it into the heart of a noble creature to give it strength, then rest that in the loam and earth. I don't like the idea of killing anything noble for such a ritual. I'm not sure what I think of this whole thing now. I'll leave that up to you. Here is a pot that you can use for the ritual. If you still want to do this and you find a heart that might work, bring it to me and I'll see if I can help.");
 		e.other:SummonItem(62802); -- Give 4 slot container Pot 
 		eq.set_global("DruPQ","2",5,"F");
-	elseif qglobals["DruPQ"] == "2" and item_lib.check_turn_in(e.trade, {item1 = 62805}) then -- Turn in Giant Heart
+	elseif qglobals["DruPQ"] == "2" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62805}) then -- Turn in Giant Heart
 		e.self:Say("I suppose you had no option if he was corrupt.  I might even be able to help you purify it for use.  I'm not sure how well it will work with the seed ritual, I'm certain that the original intent was to rip the heart from an honorable foe.  Here, take this bowl.  You'll need to go back to the Plane of Storms and find some pure rain water to cleanse the heart.  Pouring the water over the heart while in the bowl should purify it, though it might also destroy the bowl.  Never mind that, though.  If it works you should be able to use the heart for the ritual.  Please bring me the seed when you are done, I'd like to see it.");
 		e.other:SummonItem(62805); -- Give Corrupted Heart Back
 		e.other:SummonItem(62807); -- Give Cleansing Bowl
 		eq.set_global("DruPQ","3",5,"F");
-	elseif qglobals["DruPQ"] == "3" and item_lib.check_turn_in(e.trade, {item1 = 62809}) then -- Turn in Seed of Wrath
+	elseif qglobals["DruPQ"] == "3" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62809}) then -- Turn in Seed of Wrath
 		e.self:Say("Wonderful!  This is an amazing seed.  It has a resonance of the power of life that seems familiar.  It reminds me very much of the feeling I get when one of the Storm Wardens come through here with their Nature Walkers Scimitars.  It's a thrill to be able to examine it, thank you.");
 		e.other:SummonItem(62809); -- Give seed of wrath back - reward exp - finish 1.5 prequest.
 	end	

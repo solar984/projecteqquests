@@ -32,7 +32,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18707})) then -- Recruitment Flyer
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18707})) then -- Recruitment Flyer
 		e.self:Say("Welcome to the Hall of Steel, our swords are strong, and our warriors stronger. Here is our guild tunic. Brin Stolunger is in charge of our new recruits. Go see him, and he'll teach the basics. You look like you'll make a fine addition to our guild. Once you are ready to pave your path to glory return to me for some initial armor quests. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13572); -- Dirty Training Tunic*
 		e.other:Ding();
@@ -42,7 +42,7 @@ function event_trade(e)
 		e.other:Faction(330,-15,0); -- The Freeport Militia
 		e.other:Faction(281,20,0); -- Knight of Truth
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13423})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13423})) then
 		e.self:Say("The map!! It is all blurred. The ink has run. I shall never be able to decipher it now. Still, I owe you for completion of your mission. May these be of assistance. It is always good for a warrior to be well supplied.");
 		e.other:SummonItem(5082); -- Item: Cast-Iron Long Sword
 		e.other:Ding();
@@ -53,7 +53,7 @@ function event_trade(e)
 		e.other:Faction(330,-5,0); -- Faction: The Freeport Militia
 		e.other:AddEXP(500);
 		e.other:GiveCash(0,3,0,0);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13424, item2 =13424, item3 = 13424,item4 = 13424})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13424, item2 =13424, item3 = 13424,item4 = 13424})) then
 		e.self:Say("Incredible!! Such grand tones. It shall make a fine rug. You have shown me that you cannot always judge a book by its cover. You are quite skilled. Would you like to perform a [dangerous task] for me?");
 		e.other:SummonItem(eq.ChooseRandom(2101,2102,2103,2104,2105,2106,2107,2108,2109,2110,2111,2112)); -- Item(s): Tattered Skullcap (2101), Tattered Mask (2102), Tattered Gorget (2103), Patchwork Tunic (2104), Tattered Shoulderpads (2105), Patchwork Cloak (2106), Tattered Belt (2107), Patchwork Sleeves (2108), Tattered Wristbands (2109), Tattered Gloves (2110), Patchwork Pants (2111), Patchwork Boots (2112)
 		e.other:Ding();

@@ -32,47 +32,47 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(item_lib.check_turn_in(e.trade, {item1 = 20476})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20476})) then
 		e.self:Say("This, this is my mother's amulet. I cannot believe it. Please, take this powder you say you need. Perhaps it does have powers, I don't know, I don't care. Thank you, my eternal thanks for this.");
 		e.other:SummonItem(20456); -- Item: Platinum Speckled Powder
 		e.other:Ding();
 	end
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 62811})) then --Tuft of Sickly Maiden's Hair
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62811})) then --Tuft of Sickly Maiden's Hair
 		e.self:Say("Well, this is certainly new to me. It's hard to tell if this is a real concern though. Diseases of all sorts exist in the world and we can't make every one of them a priority. But then perhaps I spend too much time thinking about it. Some great druids and scholars have told me that diseases can start out as helpful things, like parasite fish that clean other fish. But sometimes they change and become harmful because they are trying to clean the wrong kind of things off the fish. They've told me that this is just the way that life tries out new things to see if they work. That might be true, but I don't believe it. Tunare isn't that cruel. And I know at least one god that is.");
 		e.self:Say("See if you can find other infected plants or any other evidence of this infection. If you can find enough of them, you may be able to see a pattern. It should spread out from one point. Knowing the first location might help me a lot in trying to discover what this gunk started out as, which parasite fish it is, so-to-speak. Here, take this bag. Put the diseased plants and other evidence you find in here. Make sure to remember where you found them. Keep the bag with you at all times on your search, you never know when you will come across evidence of value. When you think you have enough to see a pattern, seal up the bag and bring it back to me and let me know what you've found.");
 		e.other:SummonItem(62812); --Waterproof Collection Bag
 	end	
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 62814})) then --Hunk of Alligator Scales
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62814})) then --Hunk of Alligator Scales
 		e.self:Say("You say that this Bouncer told you that he'd thrown someone in the river with grass in his pants? How very strange. You should search the river, see if you can find anything, though I don't know how you could expect to find anything in that mess. Hmm... these scales give me an [" .. eq.say_link("idea") .. "].");
 		e.other:SummonItem(62817); --Cleaned Alligator Scales
 	end
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 62813})) then --Sealed Collection Bag
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62813})) then --Sealed Collection Bag
 		e.self:Emote("examines the contents of the bag. She also asks you about where you found each item. Your answers bring a puzzled look to her face. 'There does not appear to be any rhyme or reason to the locations where you found these. The stories you tell me indicate that these plants were introduced artificially to the environment. I will pass the samples on to others, they will be very useful, thank you for your help. I am, however, more interested in finding out who did this. Take this and wrap up that disgusting head that you said you found with one of the specimens then give it to me. I want to look at it.");
 		e.other:SummonItem(62847); --Wash Cloth
 	end
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 62848})) then --Wrapped Mangled Head
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62848})) then --Wrapped Mangled Head
 		e.self:Emote("examines the head. You say that this might belong to one of those that is involved in all of this? Even if we had seen this person before we'd never be able to recognize it. I don't know how you'll be able to get any information from that, but it's our only clue. See if you can find a way to learn the identity of that head, but first I need you to learn as much as you can about diseases of the skin. Others have come up with some useful information about diseases of the mind and we need your research to put this puzzle together.");
 		e.other:SummonItem(62827); --Mangled Head
 		eq.set_global("druid_epic", "2", 5, "F");
 	end	
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 62842})) then --Healing Plants
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62842})) then --Healing Plants
 		e.self:Say("That's great! Niera scribbles some notes as she flips through the text. She then hands the notes to you, keeping the book herself. There is some useful information in there. Hold onto these notes until later, you may need them. Give them back to me when you've discovered the identity of that skull.");
 		e.other:SummonItem(62849); --Niera's Healing Notes
 		eq.set_global("druid_epic", "3", 5, "F");
 	end		
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 62838, item2 = 62849})) then --Runed Skull
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62838, item2 = 62849})) then --Runed Skull
 		e.self:Say("That's an amazing story. So there is a coven of Mordavin's followers out there. This is indeed bad news.' She gathers all of the information she has gained so far. She examines the rune on the skull and the text on healing plants. She then pulls out a worn bag and shows you several blood and skin samples from various creatures. All look sickly to you. Niera looks at you and sighs. 'We have a lot of information now, thanks to you and one of our Rangers. We know the nature of the disease and we know the identity of those that created it. Now we need to find the cure. A council of the learned has reviewed all of the information brought to us so far, and this text confirms our suspicions. We need the help of the Unkempt to find a cure. That is your task now. Find the Unkempt and ask them for help. Take these notes, they will explain the details, if you can find someone to give them to.");
 		e.other:SummonItem(62843); --Niera's Research Notes
 		eq.set_global("druid_epic", "4", 5, "F");
 	end
 	
-	if(qglobals["druid_epic"] == "4" and item_lib.check_turn_in(e.trade, {item1 = 62844, item2 = 62845})) then --Red Dogwood Seed, Living Brambles Seed
+	if(qglobals["druid_epic"] == "4" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62844, item2 = 62845})) then --Red Dogwood Seed, Living Brambles Seed
 		e.self:Say("Wonderful! These are amazing seeds! I've never seen any just like them before. And you got them from one of the Unkempt. Amazing.' Niera examines the seeds closely while referring to a book called Unkempt Seed Rituals. She wraps both seeds in a soft, moist cloth and hands one of them to you. 'I think I know what the Unkempt meant. This one is for you. Keep it safe. I believe that I know where the other is needed. I have learned much while you were gone and I need to tell you about it.");
 		e.other:SummonItem(62850); --Living Brambles Seed (protected)
 		e.other:SummonItem(62846); --Mind Crystal		

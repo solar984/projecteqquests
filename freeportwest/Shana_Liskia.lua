@@ -45,21 +45,21 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(e.other:Class() == "Enchanter" or e.other:Class() == "Magician" or e.other:Class() == "Wizard") then
-		if(item_lib.check_turn_in(e.trade, {item1 = 9917,item2 = 9917,item3 = 9933})) then -- Lion Tooth x 2, Shana's Necklace
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9917,item2 = 9917,item3 = 9933})) then -- Lion Tooth x 2, Shana's Necklace
 			e.self:Say("Thank you for bringing back one of my most valued possesion. You have proven yourself to be worthy to wield the Dagger of the Academy.");
 			e.other:SummonItem(9938); -- Dagger of the Academy
 			e.other:Ding();
 			e.other:AddEXP(100);
 		end
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 62617})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 62617})) then
 		e.self:Say("Well, this certainly is an interesting puzzle. I see here that these creatures were infected in their spinal columns. I'll tell you that a part of my research involves the use of the fluids of the brain and spine. I suspect that further details might be unpleasant. I might be able to help you, but I'll need materials to work with. Gather fluids from the brain of the creature with the greatest mental power that you can find. I'll test it and see if it's strong enough and has the right properties. If I can duplicate what you saw in these infected creatures, perhaps I can help. Aslo, bring back those notes that Corun made, I'll need them as well.");
 		e.self:Emote("makes a few hasty scribbles in the margins of Corun's Notes and hands them back to you.");
 		e.other:SummonItem(62654); -- Item: Corun's Notes - annotated
 		eq.set_global("ranger_epic","2",5,"F");
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 40420,item2 = 62654})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 40420,item2 = 62654})) then
 		e.self:Say("Perfect! Yes, this will work nicely. Shana looks through Corun's notes while gathering items from her stores. This should work. What I'm going to do is grow a crystal around this fluid and some of the key ingredients of the disease. The crystal will focus the power of the fluid and the elements of the disease will guide it. If this goes well, I should be able to create a crystal that will guide you to the disease. Shana places the gathered items into a violet-tinted container and casts a spell over them. A moment later she retrieves a crystal from the container. The crystal is clear except for a dark, murky coloration at the center. Take that crystal and see if you can locate any creatures with the disease. If you have any success, please return and let me know.");
 		e.other:SummonItem(62846); -- Item: Mind Crystal
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 62618,item2 = 62619})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 62618,item2 = 62619})) then
 		e.self:Say("Ah, well, it seems as though the crystal was attuned to these other crystals. They must have come in contact with a rather large element of the disease, otherwise I just can't see how the Mind Crystal would have noticed them. These crystals were created by someone with more experience than I have in this area. I will examine them further and attempt to learn something from them. I can tell now, though, that they were probably created in a fashion similar to the one I used to create the Mind Crystal. Shana pulls out a piece of parchment and writes a note. She gives you the note and says, Take this note to Corun along with the Mind Crystal. He can use the crystal and my notes to seek out the plague in whatever fashion he thinks is best. I need to get to work investigating these new crystals.");
 		e.other:SummonItem(62655); -- Item: Letter to Corun
 	end

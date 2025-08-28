@@ -51,11 +51,11 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 9105,item2 = 9105,item3 = 9105,item4 = 9106})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9105,item2 = 9105,item3 = 9105,item4 = 9106})) then
 		e.self:Say("Thank you! Here, take this staff and good luck on your journey."); -- Text made up
 		e.other:SummonItem(9107); 	-- Walking Staff of the Shortnoble
 		e.other:Ding();
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 18775})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18775})) then
 		e.self:Say("Welcome to the Abbey of Deep Musing.  Here you can train and raise your abilities to the peak of perfection. Take this tunic and wear it with pride. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various trades you will have available to you. In addition, if you'd like to make your own set of equipment, please talk to Maldeny Gredlong. You can find her by the shops down by the water.");
 		e.other:SummonItem(13517);  -- worn felt tunic
 		e.other:Ding();

@@ -81,7 +81,7 @@ function event_trade(e)
   local has_kevren_flag = (tonumber(qglobals.ikky) and tonumber(qglobals.ikky) >= 1)
   local finished_first_trial = (tonumber(qglobals.ikky) and tonumber(qglobals.ikky) >= 2)
   local item_lib = require("items");
-  if(item_lib.check_turn_in(e.trade, {item1 = 60152})) then
+  if(item_lib.check_turn_in(e.self, e.trade, {item1 = 60152})) then
     if has_kevren_flag then
       e.other:Message(MT.NPCQuestSay, ("Gazak Klelkek says, 'Though you were pitted against a most heinous aggressor, you have proven that you are a capable adventurer thus far. Nicely done, %s. I urge you to continue honing your skills. Now that you are ready to move onto the next trial, you should return to Kevren for more information. Good luck!'"):format(e.other:GetCleanName()))
       if not finished_first_trial then

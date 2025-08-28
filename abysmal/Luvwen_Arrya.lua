@@ -29,19 +29,19 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	if e.other:GetClass() == Class.BARD then -- Bard
-		if item_lib.check_turn_in(e.trade, {item1 = 68222}) then -- Muramite Bracer Armor
+		if item_lib.check_turn_in(e.self, e.trade, {item1 = 68222}) then -- Muramite Bracer Armor
 			e.other:QuestReward(e.self,0,0,0,0,54163,0); -- Reworked Muramite Bracer
-		elseif item_lib.check_turn_in(e.trade, {item1 = 68220}) then -- Muramite Helm Armor
+		elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 68220}) then -- Muramite Helm Armor
 			e.other:QuestReward(e.self,0,0,0,0,54161,0); -- Reworked Muramite Helm
-		elseif item_lib.check_turn_in(e.trade, {item1 = 68223}) then -- Muramite Glove Armor
+		elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 68223}) then -- Muramite Glove Armor
 			e.other:QuestReward(e.self,0,0,0,0,54164,0); -- Reworked Muramite Glove
-		elseif item_lib.check_turn_in(e.trade, {item1 = 68225}) then -- Muramite Greaves Armor
+		elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 68225}) then -- Muramite Greaves Armor
 			e.other:QuestReward(e.self,0,0,0,0,54166,0); -- Reworked Muramite Greaves
-		elseif item_lib.check_turn_in(e.trade, {item1 = 68226}) then -- Muramite Chest Armor
+		elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 68226}) then -- Muramite Chest Armor
 			e.other:QuestReward(e.self,0,0,0,0,54167,0); -- Reworked Muramite Chest
-		elseif item_lib.check_turn_in(e.trade, {item1 = 68224}) then -- Muramite Boot Armor
+		elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 68224}) then -- Muramite Boot Armor
 			e.other:QuestReward(e.self,0,0,0,0,54165,0); -- Reworked Muramite Boot
-		elseif item_lib.check_turn_in(e.trade, {item1 = 68221}) then -- Muramite Sleeve Armor
+		elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 68221}) then -- Muramite Sleeve Armor
 			e.other:QuestReward(e.self,0,0,0,0,54162,0); -- Reworked Muramite Sleeve
 		end
 	end

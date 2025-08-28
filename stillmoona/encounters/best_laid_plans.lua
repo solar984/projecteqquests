@@ -14,7 +14,7 @@ end
 
 local function contact_trade(e)
   local item_lib = require("items")
-  if not delivered_plans and item_lib.check_turn_in(e.trade, { item1 = 36214 }) then -- Temple Plans
+  if not delivered_plans and item_lib.check_turn_in(e.self, e.trade, { item1 = 36214 }) then -- Temple Plans
     local contact
     if is_dark_reign then
       contact = eq.unique_spawn(338420, 0, 0, -250.0, 435.0, -8.0, 88.0) -- Norrath`s_Keeper_contact

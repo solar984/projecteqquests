@@ -11,7 +11,7 @@ end
 function event_trade(e)
     local item_lib = require("items");
 
-    if item_lib.check_turn_in(e.trade, {item1 = 13106}) then -- Item: Fishing Grubs
+    if item_lib.check_turn_in(e.self, e.trade, {item1 = 13106}) then -- Item: Fishing Grubs
 		e.other:QuestReward(e.self,0,0,0,0,17054,100);  -- Item: Deck of Spontaneous Generation
 		e.self:Emote("takes a bite out of the fishing grub that was handed to him. Clukker then says, 'Ha ha HA! Thanks for the tasty treat! Now here is your deck! Hee hee haw!'");
     end

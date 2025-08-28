@@ -2,7 +2,7 @@
 
 function event_trade(e)
 	local item_lib = require("items");
-		if (item_lib.check_turn_in(e.trade, {item1 = 64015})) then -- Head of Ra'Tuk Hrux Vexkit V2
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 64015})) then -- Head of Ra'Tuk Hrux Vexkit V2
 			e.self:Say("Kayin has escaped? That's wonderful news! I feared he had already been killed in the games. Please, take this ring as a token of my thanks. It was given to me by my father and Proteri Amari tells me there is some magic within the stone.");
 			e.other:QuestReward(e.self,0,0,0,0,64016,25000); --Item:Crude Stone Ring
       e.other:Faction(1761, 5); -- Faction: Nihil

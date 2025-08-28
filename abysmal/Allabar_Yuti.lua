@@ -8,7 +8,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if item_lib.check_turn_in(e.trade, {item1 = 22801, item2 = 22801, item3 = 22801, item4 = 22801}) then -- storm giant meat x4
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 22801, item2 = 22801, item3 = 22801, item4 = 22801}) then -- storm giant meat x4
 		e.self:Say("Thank you very much. This will make me feel much better.");
 		e.other:QuestReward(e.self,5,5,3,0,0,100);
 	end

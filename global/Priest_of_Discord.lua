@@ -64,11 +64,11 @@ end
 function event_trade(e)
    local item_lib = require("items");
    
-   if (item_lib.check_turn_in(e.trade, {item1 = 18700})) then --Tome of Order and Discord
+   if (item_lib.check_turn_in(e.self, e.trade, {item1 = 18700})) then --Tome of Order and Discord
       e.self:Say("I see you wish to join us in Discord! Welcome! By turning your back on the protection of Order you are now open to many more opportunities for glory and power. Remember that you can now be harmed by those who have also heard the call of Discord.");
       e.other:SetPVP(true);
       e.other:Ding();
-   elseif((e.other:Class() == "Wizard" or e.other:Class() == "Druid") and item_lib.check_turn_in(e.trade, {item1 = 77765, item2 = 77765, item3 = 77765, item4 = 77766})) then --Discordant Crystal Shards x 3, Rolled Discordant Parchment
+   elseif((e.other:Class() == "Wizard" or e.other:Class() == "Druid") and item_lib.check_turn_in(e.self, e.trade, {item1 = 77765, item2 = 77765, item3 = 77765, item4 = 77766})) then --Discordant Crystal Shards x 3, Rolled Discordant Parchment
       e.self:Emote("wraps the crystals in the parchment and closes his eyes, chanting in a language you've never heard. In moments, a burning parchment appears.");
       e.self:Say("You will now be able to teleport into the realm of discord, true power is at your fingertips!");
 

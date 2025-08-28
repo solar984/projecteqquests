@@ -16,10 +16,10 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(qglobals["beast_epic"] == "18" and item_lib.check_turn_in(e.trade, {item1 = 57012})) then
+	if(qglobals["beast_epic"] == "18" and item_lib.check_turn_in(e.self, e.trade, {item1 = 57012})) then
 		eq.set_global("beast_epic","19",5,"F");
 		e.self:Say("Dat must be it! Da creature had da wand dat infected creatures. It must have tried to make an army. We done solved it! Me will wrap it and [" .. eq.say_link("keep") .. "] it until me see Muada soon. Me stay a bit to be sure dat dis not happen again.");
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 57051})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 57051})) then
 		e.self:Say("Yes, yes, welcome back. Me so worried. Me gave dat wand to scout, an ogre friend, and now it gone! And so is da scout. Someone told me dey found a tattered tunic dat looked liked da scout may have worn it quite far from here! It covered in strange black hairs and a sharp claw was stuck in it. Me don't want to tink about dat too much. It make me sad. Please go find da scout. And hurry!");
 		eq.set_global("beast_epic","20",5,"F");
 	end

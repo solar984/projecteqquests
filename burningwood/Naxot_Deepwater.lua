@@ -7,7 +7,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 28056})) then	-- Ornate Sea Shell
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 28056})) then	-- Ornate Sea Shell
 		e.self:Say("Praise the Triumvirate! Natasha sent you just in time! Those twisted sarnak summoners are summoning Ixiblat Fer as we speak! We must stop Ixiblat Fer while he is still weak or all of Norrath may be set aflame! Please do me one more favor, should I perish to this beast of fire. Give this note to Natasha when you next see her, and if you should perish and I survive, I will make sure the waters never forget your reflections of your deeds this day.");
 		e.other:SummonItem(28052); 								-- 28052  Message to Natasha
 		e.other:Ding();

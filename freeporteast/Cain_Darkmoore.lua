@@ -34,7 +34,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13916,item2 = 13916})) then -- Deathfist Slashed Belt x 2
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13916,item2 = 13916})) then -- Deathfist Slashed Belt x 2
 		e.self:Say("Very fine work " .. e.other:GetName() .. ". With your help, we shall soon rid the commonlands of the orcs. Then we can move on to a [bigger problem].");
 		e.other:Ding();
 		e.other:Faction(330,-1,0); -- Freeport Militia
@@ -42,7 +42,7 @@ function event_trade(e)
 		e.other:Faction(281,1,0); -- Knights of Truth
 		e.other:AddEXP(100);
 		e.other:GiveCash(0,0,8,0);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 18748})) then -- A Tattered Note
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18748})) then -- A Tattered Note
 		e.self:Say("Welcome to the Steel Warriors, young warrior. It is time to prove your mettle. Look to the outskirts of Freeport and join the fray. Show Clan Deathfist what a warrior of the bunker can do. Once you are ready to begin your training please make sure that you see Arinna Trueblade, she can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13572); -- Dirty Training Tunic
 		e.other:Ding();

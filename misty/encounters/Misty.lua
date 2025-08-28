@@ -725,9 +725,9 @@ end
 
 function Crysta_Trade(e)
 	local item_lib = require("items");
-	if (item_lib.check_turn_in(e.trade, {item1 = 84090})) then
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 84090})) then
 		e.self:Say("Oh thanks for the candy!! Yum! Wait what am I saying, No! Get back out there and search for something else!");
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 26648})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 26648})) then
 		--eq.debug("Crysta_Signal turnin");	
 		e.self:Say("Oh this outta do the trick!");
 		e.self:Emote("pulls out the dagger and pokes the General in the back, stunning him!");

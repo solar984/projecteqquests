@@ -22,7 +22,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.self,e.other);
 
-	if (qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 10243})) then
+	if (qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 10243})) then
 		e.self:Say("Well done, " .. e.other:GetName() .. ". Galdorin had it coming, so don't feel too guilty about your part in this.");
 		eq.set_global("Fatestealer_gal", "1", 5, "F");
 		local qglobals = eq.get_qglobals(e.self, e.other);
@@ -32,7 +32,7 @@ function event_trade(e)
 		else
 			e.other:SummonItem(9590); -- Item: Notice to Cease and Desist
 		end
-	elseif (qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 10239,item2 = 52416})) then
+	elseif (qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 10239,item2 = 52416})) then
 		e.self:Say("Those Marsingers won't be speaking ill about us again anytime soon.");
 		eq.set_global("Fatestealer_mar", "1", 5, "F");
 		local qglobals = eq.get_qglobals(e.self, e.other);
@@ -42,7 +42,7 @@ function event_trade(e)
 		else
 			e.other:SummonItem(9590); -- Item: Notice to Cease and Desist
 		end
-	elseif (qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 10246})) then
+	elseif (qglobals["Fatestealer"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 10246})) then
 		e.self:Say("Excellent, Lythe has been silenced.");
 		eq.set_global("Fatestealer_lyt", "1", 5, "F");
 		local qglobals = eq.get_qglobals(e.self, e.other);

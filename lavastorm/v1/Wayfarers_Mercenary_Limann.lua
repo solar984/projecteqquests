@@ -11,7 +11,7 @@ end
 
 function event_trade(e)
   local item_lib = require("items")
-  if item_lib.check_turn_in(e.trade, {item1 = 57209}) then -- Dark Reign Token
+  if item_lib.check_turn_in(e.self, e.trade, {item1 = 57209}) then -- Dark Reign Token
     -- note: on live this is Say channel (256) but only sent to client (similar to NPCQuestSay)
     e.other:Message(MT.Say, "Wayfarers Mercenary Limann says, 'You can be sure the Dark Reign will hear how you have run through an enemy and I might even spice it up and suggest you bested a Keeper.  Oh, how they will like that!'")
     e.other:QuestReward(e.self, { faction = { don.faction_id.evil, 20 } })

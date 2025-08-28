@@ -14,7 +14,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 62891})) then		
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62891})) then		
 		e.other:Message(MT.Default,"The worn Taelosian looks up at you defiantly. She studies you a moment and nods. Whatever judgment she was making about you, you seem to have passed. She reaches into her ragged clothing and pulls out a small hunk of rock and hands it to you. She then quickly returns to work.");
 		e.other:SummonItem(62867); -- Item: Rune Fragment
 	end

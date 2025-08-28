@@ -24,7 +24,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18739})) then -- A tattered not
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18739})) then -- A tattered not
 		e.self:Say("Welcome to the Academy of Arcane Sciences. Here's one of our guild robes for you to wear. Once you are ready to begin your training please make sure that you see Shana Liskia, he can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13558); -- Patched Violet Robe
 		e.other:Ding();

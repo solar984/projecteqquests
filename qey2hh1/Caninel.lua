@@ -12,7 +12,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 10019,item2 = 10070,item3 = 10021})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 10019,item2 = 10070,item3 = 10021})) then
 		e.self:Say("When the humans from Everfrost first met the Blackburrow Gnolls, the Shaman Opolla greeted them warmly but things went wrong and she had her hand cut off by Gynok Moltor. She placed a curse upon the Moltor descendants, the last of which can be found under Qeynos. Ask him about the paw and also about the rings on the paw.");
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
