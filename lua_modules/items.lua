@@ -205,7 +205,6 @@ function items.return_items(npc, client, trade, text)
 	local returned = false;
 
 	-- Handin table for source
-	local return_data = {};
 	for i = 1, 4 do
 		local inst = trade["item" .. i];
 		if(inst ~= nil and inst.valid) then
@@ -216,34 +215,15 @@ function items.return_items(npc, client, trade, text)
 
 			-- remove delivered task items from return for this slot
 			local return_count = inst:RemoveTaskDeliveredItems()
-
-			if(eq.is_disc_tome(inst:GetID()) and npc:GetClass() >= 19 and npc:GetClass() < 36) then
-				if(client:GetClass() == npc:GetClass() - 19) then
-					client:TrainDisc(inst:GetID());
-				else
-					return_data[#return_data+1] = string.format("%d|%d|%d", inst:GetID(), inst:GetCharges(), is_attuned);
-					npc:Say(string.format("You are not a member of my guild. I will not train you!"));
-					if return_count > 0 then
-						client:PushItemOnCursor(inst);
-						returned = true;
-					end
-				end
-			
 			local itemid = inst:GetID();
-			elseif(not npc:GetQuestLoot(itemid)) then
-			
+			if(not npc:GetQuestLoot(itemid)) then
 				if (npc:Charmed()) then
 					if (itemid > 1000 and not npc:GetPetLoot(itemid)) then
 						eq.debug("Item " .. itemid .. " added to PET loot.", 2);
 						npc:AddPetLoot(itemid);
 					end
 				else
-					return_data[#return_data+1] = string.format("%d|%d|%d", inst:GetID(), inst:GetCharges(), is_attuned);
-					if return_count > 0 then
-						client:PushItemOnCursor(inst);
-						returned = true;
-					end
-					
+					client:PushItemOnCursor(inst);
 					if (npc:CanTalk()) then
 						if (not text) then
 							npc:Say("I have no need for this item " .. client:GetCleanName() .. ", you can have it back.");
@@ -254,15 +234,13 @@ function items.return_items(npc, client, trade, text)
 					eq.debug("Handing back an item it doesn't need (" .. itemid .. ").", 2);
 					returned = true;
 				end
-			elseif return_count > 0 then
-				return_data[#return_data+1] = string.format("%d|%d|%d", inst:GetID(), inst:GetCharges(), is_attuned);
-				client:PushItemOnCursor(inst);
-				if (npc:CanTalk()) then
-					if (not text) then
-						npc:Say("I have no need for this item " .. client:GetCleanName() .. ", you can have it back.");
-					elseif (text ~= "") then
-						npc:Say(text);
-					end
+			elseif(eq.is_disc_tome(itemid) and npc:GetClass() >= 19 and npc:GetClass() < 36) then
+				if(client:GetClass() == npc:GetClass() - 19) then
+					client:TrainDisc(itemid);
+				else
+					npc:Say("You are not a member of my guild. I will not train you!");
+					client:PushItemOnCursor(inst);
+					returned = true;
 				end
 			end
 		end
@@ -272,8 +250,6 @@ function items.return_items(npc, client, trade, text)
 		eq.debug("NPC is a charmed pet, it does not return items.", 2);
 		return returned;
 	end
-
-	client:SetEntityVariable("RETURN_ITEMS", items.get_handin_items_serialized(return_data))
 	
 	local money = false;
 	if(trade.platinum ~= 0) then
@@ -297,12 +273,9 @@ function items.return_items(npc, client, trade, text)
 	end
 	
 	if money then
-		client:SetEntityVariable("RETURN_MONEY", string.format("%d|%d|%d|%d", trade.copper, trade.silver, trade.gold, trade.platinum));
 		client:AddMoneyToPP(trade.copper, trade.silver, trade.gold, trade.platinum, true);
 	end
 
-	eq.send_player_handin_event();
-	
 	return returned;
 end
 
