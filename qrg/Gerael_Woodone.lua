@@ -19,7 +19,7 @@ function event_trade(e)
 	local random_gold = math.random(10);
 	local random_planinum = math.random(10);
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18911})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18911})) then
 		e.self:Say("Oh my!! Our Qeynos Ambassador, Gash, is in danger. Please take the note over to Captain Tillin of the Qeynos Guard then find Gash and inform him [they are trying to kill him]. Go!!");
 		e.other:Ding();
 		e.other:Faction(302,10,0); -- Faction: Protectors of Pine
@@ -29,7 +29,7 @@ function event_trade(e)
 		e.other:Faction(262,10,0); -- Faction: Guards of Qeynos
 		e.other:AddEXP(200);
 		e.other:GiveCash(random_copper,random_silver,random_gold,random_planinum);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12141})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12141})) then
 		e.self:Say("So the Unkempt Druids are alive and well.  We shall keep a watchful eye out as should you.  Take this for your bravery and defense of the Jaggedpine.");
 		e.other:Ding();
 		e.other:Faction(302,10,0); -- Faction: Protectors of Pine

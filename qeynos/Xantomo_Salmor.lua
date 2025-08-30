@@ -1,6 +1,6 @@
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say(string.format("Hail and well met %s. Are you inquiring as to the legendary happenings I might have heard of in passing? I will tell you the tale if you are [interested] in hearing it.",e.other:GetName()));
+		e.self:Say("Hail and well met " .. e.other:GetCleanName() .. ". Are you inquiring as to the legendary happenings I might have heard of in passing? I will tell you the tale if you are [interested] in hearing it.");
 	elseif(e.message:findi("interested")) then
 		e.self:Say("So be it. Sit back and enjoy the tale of twelve adventurous folk who traveled far to meet their fellows. The fellows that will soon be mentioned had faith in themselves individually, but soon learned that their faith in the sum of their individual parts would be key to their victory. Shall I [go on]?");
 	elseif(e.message:findi("go on")) then

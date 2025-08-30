@@ -16,7 +16,7 @@ function event_trade(e)
   local qglobals = eq.get_qglobals(e.other);
   local item_lib = require('items');
 
-  if ( qglobals["ranger_epic15_pre"] == "9" and item_lib.check_turn_in(e.trade, {platinum = 30})) then
+  if ( qglobals["ranger_epic15_pre"] == "9" and item_lib.check_turn_in(e.self, e.trade, {platinum = 30})) then
     e.other:SummonItem(62637); -- Item: Sound Capture Jar
     e.self:Say("Here ya go. Good luck finding Mera.");
   end

@@ -84,28 +84,28 @@ function event_trade(e)
     if (e.other:GetGlobal("greatadventuresturnins") ~= "Undefined") then
         turnins = tonumber(e.other:GetGlobal("greatadventuresturnins"))
     end
-    if (item_lib.check_turn_in(e.trade, {item1 = 67607})) then -- Zajeer's Writings
+    if (item_lib.check_turn_in(e.self, e.trade, {item1 = 67607})) then -- Zajeer's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 1)), 5, "F")
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 67608})) then -- Valtron's Writings
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 67608})) then -- Valtron's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 2)), 5, "F")
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 67609})) then -- Frizznik's Writings
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 67609})) then -- Frizznik's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 4)), 5, "F")
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 67610})) then -- Wijdan's Writings
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 67610})) then -- Wijdan's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 8)), 5, "F")
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 67611})) then -- Rytan's Writings
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 67611})) then -- Rytan's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 16)), 5, "F")
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 67612})) then -- Vahlara's Writings
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 67612})) then -- Vahlara's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 32)), 5, "F")
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 67613})) then -- Kaikachi's Writings
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 67613})) then -- Kaikachi's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 64)), 5, "F")
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 67614})) then -- Xenaida's Writings
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 67614})) then -- Xenaida's Writings
         e.self:Say("This tome will serve as a remnant of a great warrior who died protecting our realm from the menace of the Muramites. I thank you, " .. e.other:GetName() ..", and ask that you bring more if you find them.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 128)), 5, "F")
     end

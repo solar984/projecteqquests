@@ -13,7 +13,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(e.other:GetLevel() > 19 and item_lib.check_turn_in(e.trade, {item1 = 22503, item2 = 9423, item3 = 26709, item4 = 28793})) then--Blue Diamond, Blizzard Gem, Symbol of the Diaku, Intermediate Stealth Manual
+	if(e.other:GetLevel() > 19 and item_lib.check_turn_in(e.self, e.trade, {item1 = 22503, item2 = 9423, item3 = 26709, item4 = 28793})) then--Blue Diamond, Blizzard Gem, Symbol of the Diaku, Intermediate Stealth Manual
 		e.self:Say("Astounding! This certainly proves you are worth far more than you appear. Take this book, it can teach you many new things. Also know this, Tenada Jeried is available for further study, and only for advanced students such as yourself. Be sure to visit him and tell him you are interested in learning from him. Take care, " .. e.other:GetCleanName() .. ".");
 		-- Confirmed Live Experience
 		e.other:QuestReward(e.self,0,math.random(5),math.random(5),0,28794,500000); --Advanced Stealth Manual

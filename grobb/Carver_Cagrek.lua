@@ -15,21 +15,21 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if (item_lib.check_turn_in(e.trade, {item1 = 13368, item2 = 13368, item3 = 13368, item4 = 18940})) then
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 13368, item2 = 13368, item3 = 13368, item4 = 18940})) then
 		e.self:Say("Finally!! What takes yous so long? Now carver Cagrek try and makes meat and feeds to trolls. Yous getting to be deputy carver. Mes give you Grobb cleaver!! Make strong and smarts on you it will. Just like carver Cagrek.");
 		e.other:SummonItem(5413); -- Item: Grobb Cleaver
 		e.other:Ding();
 		e.other:AddEXP(100);
 		e.other:Faction(235,30,0); -- Faction: DaBashers
 		e.other:Faction(222,-4,0); -- Faction: Broken Skull Clan
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 12191, item2 = 12191, item3 = 12191, item4 = 12191})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 12191, item2 = 12191, item3 = 12191, item4 = 12191})) then
 		e.self:Say("Gud werk! Me already made, err, founds dung part of meal. Here we go. One fungus dung pie! Enjoys.");
 		e.other:SummonItem(12210); -- Item: Fungus Spore Pie
 		e.other:Ding();
 		e.other:AddEXP(145); -- seen at level 1
 		e.other:Faction(235,5,0); -- Faction: DaBashers
 		e.other:Faction(222,-1,0); -- Faction: Broken Skull Clan
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 13409, item2 = 13409, item3 = 13409, gold = 10})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 13409, item2 = 13409, item3 = 13409, gold = 10})) then
 		e.other:SummonItem(12211); -- Item: Grobb Oven Mittens
 		e.other:Ding();
 		e.other:AddEXP(145); -- seen at level 1

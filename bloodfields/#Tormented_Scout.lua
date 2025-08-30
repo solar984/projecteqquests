@@ -12,7 +12,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(item_lib.check_turn_in(e.trade, {item1 = 57014})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 57014})) then
 		e.other:SummonItem(57052);--Wrapped Gemmed Wand
 		e.self:Emote("looks at you with sad eyes. 'Me so sorry, but me could not stop it. Wand is terrible power. Me wrap it again like Jillaa. You take it to Muada, quickly. Me tinks we did it! It has no power without dis wand!");
 	end

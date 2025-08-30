@@ -25,7 +25,7 @@ function event_trade(e)
     if (e.other:GetGlobal("greatadventuresturnins") ~= "Undefined") then
         turnins = tonumber(e.other:GetGlobal("greatadventuresturnins"))
     end
-    if (item_lib.check_turn_in(e.trade, {item1 = 67620})) then -- Absor's Writings
+    if (item_lib.check_turn_in(e.self, e.trade, {item1 = 67620})) then -- Absor's Writings
         e.self:Emote("takes the dusty tome from " .. e.other:GetName() .. "'s hands.")
         e.self:Emote("stops to look at the tome refusing to believe it is what it seems. As she leafs through each page she starts to get choked up. Slamming the book closed defying her want to shed tears she looks up at you and kneels. I thank thee mighty adventurer for helping place the spirit of Absor to rest.  If you have already helped everyone please tell De'van that your task is complete and he will reward you.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 8192)), 5, "F")

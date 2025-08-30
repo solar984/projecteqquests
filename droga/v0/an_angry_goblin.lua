@@ -14,7 +14,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 6474})) then -- we handed Report to Skargus
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 6474})) then -- we handed Report to Skargus
 		eq.start(134);
 		e.self:Emote("howls in triumph! 'This is just what I needed! Skargus is mine now, wait until he finds out, just wait! His death is close at hand. Follow me and I'll take you to Skargus's chamber, you can wait there while I take this report to the chief!'");
 		-- Confirmed Live Experience

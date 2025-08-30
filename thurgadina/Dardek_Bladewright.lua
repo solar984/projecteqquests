@@ -15,7 +15,7 @@ function event_trade(e)
   local qglobals = eq.get_qglobals(e.other);
   local item_lib = require("items");
 
-  if (qglobals["warrior_pre"] == "4" and item_lib.check_turn_in(e.trade, {item1 = 60289})) then -- Coldain Coffee Blend
+  if (qglobals["warrior_pre"] == "4" and item_lib.check_turn_in(e.self, e.trade, {item1 = 60289})) then -- Coldain Coffee Blend
     e.self:Say("Mmm, nothing like a nice hot cup of Thurgadin’s best. Alright then, let’s head over t’ my shop and we can get down t’ business!");
     -- Start pathing on Grid 31 to the forge.
     e.self:AssignWaypoints(31);
@@ -31,7 +31,7 @@ function event_trade(e)
   -- This turn in should only be able to be done when Dardek Bladewright is at the forge.
   -- X > -142 and Y < -402
   if (e.self:GetX() > -142 and e.self:GetY() < -402) then 
-    if (qglobals["warrior_pre"] == "4" and item_lib.check_turn_in(e.trade, {item1 = 60285, item2 = 60286, item3 = 60288})) then 
+    if (qglobals["warrior_pre"] == "4" and item_lib.check_turn_in(e.self, e.trade, {item1 = 60285, item2 = 60286, item3 = 60288})) then 
       eq.set_global("warrior_pre","5",5,"F");
       e.self:Say("Take this back to Korbuk Brimblade");
       e.other:SummonItem(60292); -- Item: Dardek's Forged Blade

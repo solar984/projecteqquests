@@ -16,7 +16,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 62821})) then --Carved Prexus Totem
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62821})) then --Carved Prexus Totem
 		e.self:Say("Wonderful! You are indeed a creature of your word. Not only have you defeated an enemy of the Othmir, but you have returned to us this most precious statue. I thank you. It is unfortunate that the only thing I have to give you in return is some information and a small fish.");
 		e.other:SummonItem(62820); --Small Trigger Fish
 		e.other:Ding();

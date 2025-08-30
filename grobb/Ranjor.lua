@@ -29,7 +29,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	local pfaction = e.other:GetFaction(e.self);
 
-	if (item_lib.check_turn_in(e.trade, {item1 = 18790})) then -- Tattered Note
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 18790})) then -- Tattered Note
 		e.self:Say("Arhh.. Ranjor mighty warrior.. Ranjor teach you warrior.. you fight for Ranjor now.");
 		e.other:Ding();
 		e.other:SummonItem(13528);  -- Mud Covered Tunic
@@ -38,7 +38,7 @@ function event_trade(e)
 		e.other:AddEXP(100);
 	elseif (pfaction > 4) then
 		e.self:Say("You not friend.  Yuz take back.");
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 13409, item2 = 13187, item3 = 13187})) then 
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 13409, item2 = 13187, item3 = 13187})) then 
 		e.self:Say("You is berry slow. Me too hungry. Me shood eats you for being slow. Gib me dat stuff. Here, take dis and git more stuff fer us. You much kllin, come backs sees me. I teeches ya hows ta kill bedder. Now git and kill stuff. We be Da Bashers fer a reesun.");
 		e.other:Faction(235,5,0);  	-- Da Basher
 		e.other:Faction(222,-1,0);  -- Broken Skull Clan

@@ -23,7 +23,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 18762})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18762})) then
 		e.self:Say("Ah.. ye wish to be a member o' the White Rose, then. eh? Well, let's train ye fer a bit. and see if ye've got what it takes. Once you are ready to begin adventuring make sure you see Lysbith first, she might have a few tasks for you.  Return to me for guidance anytime, I have much to teach you, from the secrets of the profession, to the various [trades] you may wish to dabble in.");
 		e.other:Ding();
 		e.other:SummonItem(13513);	-- torn white tunic

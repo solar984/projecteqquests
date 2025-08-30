@@ -37,37 +37,37 @@ end
 function event_trade(e)
    local item_lib = require("items");
    local qglobals = eq.get_qglobals(e.other);
-   if(item_lib.check_turn_in(e.trade, {item1 = 15639})) then -- Journal of Magus Tvish
+   if(item_lib.check_turn_in(e.self, e.trade, {item1 = 15639})) then -- Journal of Magus Tvish
       e.self:Emote("focuses for a minute, his hands glow with power. He then blows softly and the shadows melt from the Tome. As he opens it a small note falls to the floor. What is this? it appears to be some sort of correspondence. Hmm, interesting, it seems the next tome was given to a gnome, he set sail somewhere, but has not been heard from in quite some time. You will have to find him, he was supposed to wait for [" .. eq.say_link("Danvi") .. "] so he could take the tome");
       eq.set_global("mage_epic","2",5,"F");
-   elseif(item_lib.check_turn_in(e.trade, {item1 = 15769})) then -- Tome of Primal Fires
+   elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 15769})) then -- Tome of Primal Fires
       e.self:Emote("quickly thumbs through the book. You can see the excitement growing on his face. 'This is incredible. I can see why Magi'Kot was able to learn so much from these tomes. There are just three more that we need to find, and we will be able to [" .. eq.say_link("ascend beyond") .. "] Magi'Kot's greatest dreams.");
       eq.set_global("mage_epic","3",5,"F");
-   elseif(qglobals["mage_epic"] == "3" and item_lib.check_turn_in(e.trade, {item1 = 15772}) ) then -- Book of Bindings and Incantations
+   elseif(qglobals["mage_epic"] == "3" and item_lib.check_turn_in(e.self, e.trade, {item1 = 15772}) ) then -- Book of Bindings and Incantations
       e.self:Say("Ahh great, thank you. There are some interesting notes in these books. I suspect soon we should be able to find who is responsible for the disappearance in the first place.");
       eq.set_global("mage_epic","4",5,"F");
-   elseif(qglobals["mage_epic"] == "4" and item_lib.check_turn_in(e.trade, {item1 = 15775}) ) then -- Codex of Ice and Ether
+   elseif(qglobals["mage_epic"] == "4" and item_lib.check_turn_in(e.self, e.trade, {item1 = 15775}) ) then -- Codex of Ice and Ether
       e.self:Say("Oh my. Oh this is most disturbing news. It appears that one of Magi'Kot's apprentices was responsible for the theft of these books. This may not be the end of the story. Magi'Kot had four apprentices. Jahson Aksot, Akksstaff, Walnan and myself. There are notes in some of these letters that no one but one of his apprentices could have known. Speak to the others please, but be discreet, I sense something much larger at work here, return to me with anything you find.");
       eq.set_global("mage_epic","5",5,"F");
-   elseif(qglobals["mage_epic"] == "5" and item_lib.check_turn_in(e.trade, {item1 = 15778}) ) then -- Sentience of Elements
+   elseif(qglobals["mage_epic"] == "5" and item_lib.check_turn_in(e.self, e.trade, {item1 = 15778}) ) then -- Sentience of Elements
       e.self:Say("Akksstaff was responsible for our teacher's death? That is truly sad news. I knew he was devious, but I never suspected this type of betrayal.' Bantil takes a deep breath as he regains his composure, and he starts to browse through the book. 'This is truly amazing. I don't think Magi'Kot ever had access to this... No, of course he didn't. He never would have believed the Orb of Mastery was the pinnacle of [" .. eq.say_link("power") .. "] if that was the case.");
       eq.set_global("mage_epic","6",5,"F");
-   elseif(qglobals["mage_epic"] == "6" and item_lib.check_turn_in(e.trade, {item1=19086,item2=16807,item3=16773,item4=19087}) ) then -- Elemental Essence of Water,Fire,Air,Earth
+   elseif(qglobals["mage_epic"] == "6" and item_lib.check_turn_in(e.self, e.trade, {item1=19086,item2=16807,item3=16773,item4=19087}) ) then -- Elemental Essence of Water,Fire,Air,Earth
       e.self:Say("Very well done! You have accomplished more than Magi'Kot could have ever imagined.' He then reads a passage from one of the books. The elemental essences begin to glow and take shape. You are blinded for a moment with a flash of light, when your eyes clear he presents you with an ornate staff. 'You should be honored. You have done what few have even dreamed of. In creating this staff, it has become apparent to me that there is still [" .. eq.say_link("further") .. "] to go.");
       e.other:QuestReward(e.self,{itemid=19092, exp=25000}); -- Staff of Elemental Essence (Epic 1.5)
       e.other:AddAAPoints(5);
       e.other:Message(MT.Yellow,'You have gained 5 ability points!');
       eq.set_global("mage_epic","7",5,"F");
-   elseif(item_lib.check_turn_in(e.trade, {item1 = 19438,item2=19149})) then --Note from Iilivina,Pouch of Powdered Riftseeker Essence
+   elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 19438,item2=19149})) then --Note from Iilivina,Pouch of Powdered Riftseeker Essence
       e.self:Emote(" unrolls the note and reads it to himself, 'Interesting. Well, I'm not sure I can do anything with this, but if you take this to Transon in Twilight sea, he may be able to understand it a little better.");
       e.other:SummonItem(19441); -- Small Pouch of Riftseeker Essence
       eq.set_global("mage_epic","9",5,"F");
-   elseif(qglobals["mage_epic"] == "11" and item_lib.check_turn_in(e.trade, {item1=47100,item2=19092}) ) then --globe and 1.5
+   elseif(qglobals["mage_epic"] == "11" and item_lib.check_turn_in(e.self, e.trade, {item1=47100,item2=19092}) ) then --globe and 1.5
       e.self:Emote("pulls the four essences from his pocket.  He then wraps them around your staff with the binding.  He opens a book and reads a few words in a language that you do not recognize, the staff then begins to radiate with power.  When he hands it back to you it looks very much the same, but appears to be transformed. 'You have done the impossible, we will both be remembered in the history books.  In fact, I have already started writing of our journey together, and all the assitance that you provided me.  I will make sure you get a copy when I am finished.  That you again friend!'");
       e.other:QuestReward(e.self,{itemid=19839, exp=50000}); --epic 2.0
       e.other:AddAAPoints(10);
       e.other:Message(MT.Yellow,'You have gained 10 ability points!');
-   elseif(item_lib.check_turn_in(e.trade, {item1=14960,item2=11998,item3=14941,item4=14966}) ) then --Mage PreReq Final Turnin, Captured 4 Elementals
+   elseif(item_lib.check_turn_in(e.self, e.trade, {item1=14960,item2=11998,item3=14941,item4=14966}) ) then --Mage PreReq Final Turnin, Captured 4 Elementals
       e.self:Say("Well done, while nowhere near the accomplishments of Magi'Kot, defeating these rogue elementals has proven you are at least worthy to follow his [" .. eq.say_link("Footsteps") .. "]");
       eq.set_global("mage_epic","1",5,"F");   
    end

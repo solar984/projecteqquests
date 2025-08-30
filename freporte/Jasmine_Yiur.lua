@@ -13,7 +13,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 55002})) then -- Bundle of Mail
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 55002})) then -- Bundle of Mail
 		e.self:Say("'I am so happy to see that you have returned, and with the mail! You are truly a hero. I will make certain that the other members of the League hear about you. You didn't find the missing ship you say? Guard Bribbely will not be pleased, but you did all that you could. Please take this for payment of your brave deeds. May we meet again.");
 		e.other:SummonItem(55027); -- Seawind Necklace
 		e.other:Ding();

@@ -15,7 +15,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 63005})) then -- Completed Cartography Binder
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 63005})) then -- Completed Cartography Binder
 		e.self:Say("Incredible! With a little work, I will be able to create a finished map of the Gulf of Gunthak. No longer will the pirates be able to keep their lair a secret. Thank you! Please take this as a reward for your efforts.");
 		e.other:SummonItem(63048); -- Skyfall Seeker
 		e.other:Ding();

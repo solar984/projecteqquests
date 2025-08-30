@@ -8,7 +8,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if item_lib.check_turn_in(e.trade, {item1 = 63838, item2 = 63838, item3 = 62481, item4 = 17912}) then -- Items: Shimmering Steel Thread x 2, Turepta Shell, Jeweler's Kit
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 63838, item2 = 63838, item3 = 62481, item4 = 17912}) then -- Items: Shimmering Steel Thread x 2, Turepta Shell, Jeweler's Kit
 		e.self:Say("Good work! Here is your new kit.");
 		e.other:QuestReward(e.self,0,0,0,0,62480,1000); -- Reinforced Jeweler's Kit
 	end

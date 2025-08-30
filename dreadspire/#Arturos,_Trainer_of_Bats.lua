@@ -25,7 +25,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if (item_lib.check_turn_in(e.trade, {item1 = 52522})) then	-- Congealed Blood of Redfang
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 52522})) then	-- Congealed Blood of Redfang
 		e.self:Emote("uncorks the vial of Redfang's blood, inhales deeply, and winces.  'This is hardly the animal I once knew.  He had crossed over; ascended.  Redfang became something greater, yet more feral and dangerous.  I wonder if he would have recognized his trainer.  Ah, yet another casualty of the Demi-Plane of Blood.  The most well-bred individuals find their way there and are twisted by that place.  Is it a [mere accident] that they stumble into the Demi-Plane?  Do you think the Master is obsessed with their [beauty]?  Perhaps he simply wishes to compare their [strength] to his own.  It is also possible that he wishes to [control or destroy] anything that could present a potential threat to him.");
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

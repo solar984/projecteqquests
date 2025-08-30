@@ -4,7 +4,7 @@
 function event_trade(e)
 	local item_lib = require("items");
 	local fac = e.other:GetFaction(e.self);
-	if (item_lib.check_turn_in(e.trade, {item1 = 13844})) then	-- Item: Shiny Card
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 13844})) then	-- Item: Shiny Card
 		if(fac <= 5) then	-- Indifferent or better
 			e.self:Say("Tick.. Pop.. Access granted.");
 			e.other:Ding();

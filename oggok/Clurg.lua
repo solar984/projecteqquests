@@ -48,7 +48,7 @@ end
 function event_trade(e)
     local item_lib = require("items");
 	local fac = e.other:GetFaction(e.self);
-    if (item_lib.check_turn_in(e.trade, {item1 = 13378})) then -- Ogre Head "Identifies as Pungla's Head"
+    if (item_lib.check_turn_in(e.self, e.trade, {item1 = 13378})) then -- Ogre Head "Identifies as Pungla's Head"
 		if(fac <= 5) then --indifferent or higher is required here
 			local prize = math.random(1, #verified_loot);
 			e.self:Say("Haha! He shall mix no more Flaming Pungla's! I shall drink from his rotting skull tonight. As for you, take this and call it yours. Consider yourself a friend of Clurg.");
@@ -62,7 +62,7 @@ function event_trade(e)
 			e.self:Say("Find ways to help all in Oggok. Then we will trade.");
 			e.other:SummonItem(13378);	-- Ogre Head returned. Not enough faction
 		end
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 13379})) then -- Barkeep Compendium
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 13379})) then -- Barkeep Compendium
 		if(fac <= 4) then -- Amiable turn in IS required. Indifferent handed book back.
 			e.self:Say("Ahhh! My Barkeep Compendium has been returned! I am in your debt. I do not like to be in any man's debt. Let me offer you this as a payment for your great service. Obtaining my book could not have been a simple task.");
 			e.other:Faction(228,50,0); --Clurg

@@ -50,7 +50,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if (item_lib.check_turn_in(e.trade, {item1 = 9100,item2 =  9101,item3 =  9102,item4 =  9103})) then
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 9100,item2 =  9101,item3 =  9102,item4 =  9103})) then
 		e.self:Say("Here " .. e.other:GetName() .. " , I have crafted this for you! May it always strike true!");
 		e.other:SummonItem(9104); -- Item: Deep Muses Defender
 		e.other:Ding();

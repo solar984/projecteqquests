@@ -15,11 +15,11 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if item_lib.check_turn_in(e.trade, {item1 = 62331, item2 = 62333, item3 = 62332, item4 = 62334}) then -- Item: A White Bishop, Knight, Castle, Queen
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 62331, item2 = 62333, item3 = 62332, item4 = 62334}) then -- Item: A White Bishop, Knight, Castle, Queen
 		e.other:QuestReward(e.self,{exp = 1000}); -- Exp Only
 		e.self:Say("Oh wow you have done better than I ever expected. I almost have her in checkmate if you could take care of these pieces I'll have him for sure!");
 		-- Start Event - WIP
-	elseif item_lib.check_turn_in(e.trade, {item1 = 62330, item2 = 62330, item3 = 62330, item4 = 62330}) then -- Item: A White Pawn x4
+	elseif item_lib.check_turn_in(e.self, e.trade, {item1 = 62330, item2 = 62330, item3 = 62330, item4 = 62330}) then -- Item: A White Pawn x4
 		e.other:QuestReward(e.self,{exp = 1000}); -- Exp Only
 		e.self:Say("Excellent with these four gone I can make my move now! Here take this as your reward.");
 	end

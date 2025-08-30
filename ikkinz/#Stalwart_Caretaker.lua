@@ -5,7 +5,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 60234})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 60234})) then
 		e.self:Emote("motions towards the door behind it. You have passed the first test.");
 		eq.zone_emote(MT.White,"Only research can solve the mystery of the runed glyphs");
 		eq.ZoneMarquee(10,510,1,1,6000,"Only research can solve the mystery of the runed glyphs");

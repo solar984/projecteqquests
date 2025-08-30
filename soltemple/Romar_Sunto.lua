@@ -19,24 +19,24 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 10000})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 10000})) then
 		e.self:Say("A stone for a staff - very well.");
 		e.other:SummonItem(6048); -- Darkwood Staff
 		e.other:Ding();
 		e.other:Faction(415,15,0); -- Faction: Temple of Solusek Ro
 		e.other:Faction(416,-15,0); -- Faction: Shadowed Men
 		e.other:AddEXP(1000);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 10793})) then -- Radiant Coin of Tash
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10793})) then -- Radiant Coin of Tash
 		e.self:Say("The Coin of Tash - fully enchanted! I am in your debt. Here is the scroll of Tashania that was promised to you.");
 		e.other:SummonItem(15678); -- Item: Spell: Tashania
 		e.other:Ding();
 		e.other:Faction(5029,15,0); -- Faction: Temple Of Sol Ro
 		e.other:Faction(416,-15,0); -- Faction: Shadowed Men
 		e.other:AddEXP(1000);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 10790})) then -- Coin of Tash
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10790})) then -- Coin of Tash
 		e.self:Say("The Coin of Tash. It is of no use to me like this. You must take the coin to Tarn Visilin in High Keep to get it enchanted.");
 		e.other:SummonItem(10790); -- Coin of Tash
-	elseif(item_lib.check_turn_in(e.trade, {gold = 50})) then -- 50 gold
+	elseif(item_lib.check_turn_in(e.self, e.trade, {gold = 50})) then -- 50 gold
 		e.other:SummonItem(18032); -- Tome of Tesh
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

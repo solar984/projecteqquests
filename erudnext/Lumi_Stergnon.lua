@@ -27,14 +27,14 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13882})) then -- A Box of Bones
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13882})) then -- A Box of Bones
 		e.self:QuestSay(e.other, "This is fabulous work, my friend! You have served your people well. Take this as a gift. I hope it can be of use to you. We need proof of these skeletons' origins. Continue the eradication of the undead and find out who creates them. Once you know, bring their head to me.");
 		local item = eq.ChooseRandom(17005, 17002, 10018, 2144, 2145, 2146, 6011, 6016, 15203, 15207, 15201, 15208, 15209, 15014, 15205, 15210, 6012);
 		e.other:QuestReward(e.self, {itemid = item, exp = 500, silver = 12, gold = 3}); -- cash reward per alla
 		e.other:Faction(298, 10, 0);  -- Peace Keepers (Quellious temple)
 		e.other:Faction(266, 2, 0);  -- High Council of Erudin
 		e.other:Faction(265, -2, 0);  -- Heretics
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13816})) then -- The completed Peacekeeper Staff
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13816})) then -- The completed Peacekeeper Staff
 		e.self:QuestSay(e.other, "You have done well, neophyte.Let me add the touch of harmony to finish the job.. Here, then. Take these supplies. I am sure you'll need them. Soon you may be able to assist us in [" .. eq.say_link("important missions") .. "].");
 		local item = eq.ChooseRandom(17005, 17002, 10018, 2144, 2145, 2146, 6011, 6016, 6012);
 		e.other:QuestReward(e.self, {itemid = item, exp = 600, copper = 12, silver = 11});

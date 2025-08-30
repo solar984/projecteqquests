@@ -95,7 +95,7 @@ function event_trade(e)
 
   local item_lib = require("items")
 
-  if item_lib.check_turn_in(e.trade, {item1 = 60153}) then -- Item: Stained Stone Chalice
+  if item_lib.check_turn_in(e.self, e.trade, {item1 = 60153}) then -- Item: Stained Stone Chalice
     if not has_kevren_flag then
       e.other:Message(MT.NPCQuestSay, "Maroley Nazuey says, 'I understand your willingness to better yourself, but I'm afraid I must insist that you speak with Kevren Nalavat to start the trials. Once I have heard from him and know that you are indeed capable, and once you have completed the first trial, I will have no problem taking that artifact from you and rewarding you appropriately.'")
       e.other:SummonItem(60153); -- Item: Stained Stone Chalice

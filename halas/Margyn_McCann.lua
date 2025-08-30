@@ -29,7 +29,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 13729})) then 								--Barbarian Head
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13729})) then 								--Barbarian Head
 		e.self:Say("We can now rest assured that justice has been served. Ye'll be a valuable asset to our court.");
 		e.other:AddEXP(1600);
 		e.other:Ding();
@@ -68,7 +68,7 @@ function event_trade(e)
 			e.self:Say("Take and remember this spell, " .. dialog0 .. ", I hope ye've attained the necessary skills to scribe it.  If not, I'm sure ye soon will. Go now, and serve justice.");
 			e.other:SummonItem(spellreward);
 		end
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 18761})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18761})) then
 		e.self:Say("Welcome t' the Church o' the Tribunal. Here, we practice the will o' the Six Hammers. This is our guild tunic - wear it with pride and represent us well. Once you are ready to begin adventuring please see Jinkus Felligan, he can help you with tasks geared towards your development as a great Shaman. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:Ding();
 		e.other:Faction(327, 100);  -- Shamen of Justice

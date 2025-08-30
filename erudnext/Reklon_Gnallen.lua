@@ -40,19 +40,19 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(qglobals["paladin_epic"] == "9" and item_lib.check_turn_in(e.trade, {item1 = 13005,item2 = 13008})) then
+	if(qglobals["paladin_epic"] == "9" and item_lib.check_turn_in(e.self, e.trade, {item1 = 13005,item2 = 13008})) then
 		e.self:Say("That was excellent " .. e.other:GetName() .. ". Take this gem and bring peace to Kemik. I don't want to hold you up any longer as you have further to travel on your journey. You should head to the city that sits before giant windmills.");
 		e.other:SummonItem(69965); --erudin prayer bead
 	end
-	if(item_lib.check_turn_in(e.trade, {item1 = 29001,item2 = 29006})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 29001,item2 = 29006})) then
 		e.self:Emote("presses the gem of purity against the breastplate. Its dark gleam softens and then glows bright once again. 'Compassion is strong in you. Few so called heroes would sacrifice their time for such a menial task as you performed. Continue your work. Hold this ancient breastplate until you have completed your task.");
 		e.other:Ding();
 		e.other:SummonItem(29004); -- Item: Gleaming Crested Breastplate
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 29000,item2 = 29009})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 29000,item2 = 29009})) then
 		e.self:Emote("washes the sword's blade in the water of purity. Its dark surface begins to shine, as true as the day it was forged. 'Such a sacrifice is rare among the poor. Truly, the woman must have loved her brother. Remember the lesson you have learned from her. Keep the sword until your work is done.'");
 		e.other:Ding();
 		e.other:SummonItem(29003); -- Item: Gleaming Crested Sword
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 29003,item2 = 29004,item3 = 29005})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 29003,item2 = 29004,item3 = 29005})) then
 		e.self:Say("I never thought our order would see these artifacts again. With the return of these relics we can now put at ease a scar upon the history of our order. This cleansing will atone for his failure. Your soul must be pure to have given so freely of yourself. Go now, take this crested token of our order. If you wish to free his soul you must undertake another sacrifice.");
 		e.other:Ding();
 		e.other:SummonItem(29010); -- Item: Mark of Atonement

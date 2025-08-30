@@ -8,7 +8,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18158}) or item_lib.check_turn_in(e.trade, {item1 = 18157})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18158}) or item_lib.check_turn_in(e.self, e.trade, {item1 = 18157})) then
 		e.self:Say("Incoming mail - very good!  Please take this gold for your troubles.");
 		e.other:Ding();
 		e.other:Faction(284,10,0); -- league of antonican bards
@@ -18,7 +18,7 @@ function event_trade(e)
 		e.other:Faction(285,-30,0); -- mayong mistmoore
 		e.other:AddEXP(80);
 		e.other:GiveCash(0,0,eq.ChooseRandom(6,7,8,9),0);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 18159})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18159})) then
 		e.self:Say("Incoming mail - very good!  Please take this gold for your troubles.");
 		e.other:Ding();
 		e.other:Faction(284,10,0); -- league of antonican bards
@@ -28,7 +28,7 @@ function event_trade(e)
 		e.other:Faction(285,-30,0); -- mayong mistmoore
 		e.other:AddEXP(100);
 		e.other:GiveCash(0,0,eq.ChooseRandom(8,9,10,11,12),0);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 18155})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18155})) then
 		e.self:Say("Incoming mail - very good!  Please take this gold for your troubles.");
 		e.other:Ding();
 		e.other:Faction(284,10,0); -- league of antonican bards

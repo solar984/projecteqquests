@@ -10,7 +10,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(item_lib.check_turn_in(e.trade, {item1 = 17062,item2 = 2057,item3 = 2059})) then -- Kejekan Tool Kit, Mandala Sketch, Chronium Plate
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 17062,item2 = 2057,item3 = 2059})) then -- Kejekan Tool Kit, Mandala Sketch, Chronium Plate
 		e.self:Emote("takes the tools, plate, and sketch wearily and begins carving the tsuba. It takes him many hours to finish it but the wait is worth it. The tsuba is beautifully crafted, matching the complicated sketch perfectly. Koajin says, 'There you go, " .. e.other:GetCleanName() .. ". It's a wonderful piece. I have no idea what the diagram is for, but it was a pleasure to craft it. Now if I can get myself out of here.");
 		e.other:QuestReward(e.self,0,0,0,0,2055,5000); -- Finished Tsuba
 	end

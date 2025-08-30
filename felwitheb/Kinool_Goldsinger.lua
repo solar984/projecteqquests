@@ -38,7 +38,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18778})) then -- Enrollment Letter
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18778})) then -- Enrollment Letter
 		e.self:Say("Greetings and welcome aboard!  My name's Kinool. Master Enchanter of the Keepers of the Art.  Here is your guild tunic. Make us proud, young pupil! Once you are ready to begin your training please make sure that you see Yuin Starchaser, he can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13593); -- Torn Training Robe*
 		e.other:Ding();
@@ -47,7 +47,7 @@ function event_trade(e)
 		e.other:Faction(246,15,0); -- Faydark's Champions
 		e.other:Faction(239,-25,0); -- The Dead
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12333,item2 = 12334,item3 = 8401, gold = 3000})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12333,item2 = 12334,item3 = 8401, gold = 3000})) then
   		e.self:Say("Fine work!! I now reward you with The Rain Caller.");
 		e.other:Ding();
   		e.other:AddEXP(5000);

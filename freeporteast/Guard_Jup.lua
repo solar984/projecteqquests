@@ -17,7 +17,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 54010})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 54010})) then
 		e.self:Say(string.format("Excellent work, %s!  This will teach the pirates of Broken Skull a lesson and help our cause in repelling them.  Here is your reward.",e.other:GetName()));
 		e.other:SummonItem(54024); -- Item: Twisted Silver Torque
 		e.other:Ding();

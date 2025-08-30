@@ -10,7 +10,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18818})) then -- Tattered Flier
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18818})) then -- Tattered Flier
 		e.self:Say("It is about time you returned! Innoruuk would be proud of the red you have spread upon the land.");
 		e.other:SummonItem(15343); -- Item: Spell: Siphon Strength
 		e.other:Ding();

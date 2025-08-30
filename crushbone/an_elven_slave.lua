@@ -13,9 +13,9 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(e.self:GetRace() == 5 and e.self:GetGender() == 0) then -- male high elf slave
-		if(item_lib.check_turn_in(e.trade, {copper = 1})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {copper = 1})) then
 			e.self:Say("Not that!! I need key number 20!!");
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 20020})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20020})) then
 			e.self:Say("Good work!! I shall be on my way. Farewell my friend!!");
 			e.other:Ding();
 			e.other:Faction(275,2,0); -- Faction: Keepers of the Art
@@ -25,7 +25,7 @@ function event_trade(e)
 			e.other:AddEXP(800);
 			e.other:GiveCash(0,7,3,0);
 			eq.depop_with_timer();
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 10351})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10351})) then
 			e.self:Say("You killed the taskmaster?!  Absolutely amazing! The orcs will be fighting among themselves for power now and I can disappear in the commotion. Thanks, friend! Take this for your deeds!");
 			e.other:Ding();
 			e.other:SummonItem(18901); -- Item: Ragged Cloth Note
@@ -33,9 +33,9 @@ function event_trade(e)
 			eq.depop_with_timer();		
 		end
 	elseif(e.self:GetRace() == 5 and e.self:GetGender() == 1) then -- female high elf slave
-		if(item_lib.check_turn_in(e.trade, {copper = 1})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {copper = 1})) then
 			e.self:Say("Please!! I need a key with a number 21!!");
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 20021})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20021})) then
 			e.self:Say("Good work!! I shall be on my way. Farewell my friend!!");
 			e.other:Ding();
 			e.other:Faction(275,2,0); -- Faction: Keepers of the Art
@@ -45,7 +45,7 @@ function event_trade(e)
 			e.other:AddEXP(800);
 			e.other:GiveCash(0,7,3,0);
 			eq.depop_with_timer();
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 10351})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10351})) then
 			e.self:Say("You killed the taskmaster?!  Absolutely amazing! The orcs will be fighting among themselves for power now and I can disappear in the commotion. Thanks, friend! Take this for your deeds!");
 			e.other:Ding();
 			e.other:SummonItem(18902); -- Item: Torn Drawing
@@ -53,9 +53,9 @@ function event_trade(e)
 			eq.depop_with_timer();		
 		end
 	elseif(e.self:GetRace() == 4 and e.self:GetGender() == 0) then -- male wood elf slave
-		if(item_lib.check_turn_in(e.trade, {copper = 1})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {copper = 1})) then
 			e.self:Say("Not that!! I need key number 18!!");
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 20018})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20018})) then
 			e.self:Say("Good work!! I shall be on my way. Farewell my friend!!");
 			e.other:Ding();
 			e.other:Faction(326,2,0); -- Faction: Emerald Warriors
@@ -65,7 +65,7 @@ function event_trade(e)
 			e.other:AddEXP(800);
 			e.other:GiveCash(0,7,3,0);
 			eq.depop_with_timer();
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 10351})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10351})) then
 			e.self:Say("You killed the taskmaster?!  Absolutely amazing! The orcs will be fighting among themselves for power now and I can disappear in the commotion. Thanks, friend! Take this for your deeds!");
 			e.other:Ding();
 			e.other:SummonItem(18903); -- Item: Tattered Cloth Note
@@ -73,9 +73,9 @@ function event_trade(e)
 			eq.depop_with_timer();		
 		end
 	elseif(e.self:GetRace() == 4 and e.self:GetGender() == 1) then -- female wood elf slave
-		if(item_lib.check_turn_in(e.trade, {copper = 1})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {copper = 1})) then
 			e.self:Say("Please!! I need a key with a number 19!!");
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 20019})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20019})) then
 			e.self:Say("Good work!! I shall be on my way. Farewell my friend!!");
 			e.other:Ding();
 			e.other:Faction(326,2,0); -- Faction: Emerald Warriors
@@ -85,7 +85,7 @@ function event_trade(e)
 			e.other:AddEXP(800);
 			e.other:GiveCash(0,7,3,0);
 			eq.depop_with_timer();
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 10351})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10351})) then
 			e.self:Say("You killed the taskmaster?!  Absolutely amazing! The orcs will be fighting among themselves for power now and I can disappear in the commotion. Thanks, friend! Take this for your deeds!");
 			e.other:Ding();
 			e.other:SummonItem(18904); -- Item: Faded Wedding Cloth

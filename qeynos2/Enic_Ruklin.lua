@@ -32,7 +32,7 @@ function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 
 	if(e.other:GetFaction(e.self) < 5) then -- requires amiably
-		if(item_lib.check_turn_in(e.trade, {item1 = 13383})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13383})) then
 			e.other:Ding();
 			e.self:Say("Thank you my friend! Every Koalindl must be accounted for, even the dead. Rodcet Nife shall be pleased and I shall reward you. Nothing much. Just a token of gratitude.");
 			e.other:Faction(341,100); -- Priest of Life
@@ -47,7 +47,7 @@ function event_trade(e)
 	end	
 
 	if(qglobals["paladin_epic"] >= "3") then
-		if item_lib.check_turn_in(e.trade, {item1 = 69929, item2 = 69930, item3 = 69931, item4 = 69932}) then
+		if item_lib.check_turn_in(e.self, e.trade, {item1 = 69929, item2 = 69930, item3 = 69931, item4 = 69932}) then
 			e.self:Say("So this is what happened to the Koalindl? This is sad indeed. I have heard that you have stopped a greater tragedy from occuring by treating the pestilence that was being brought to the seas. You have done a very good job, " .. e.other:GetName() ..". I present you with a seal of nobility that was given to me long ago. This seal has granted me audiences with many of the different races of Norrath, including the Ring of Scale. Perhaps it will aide you in your journeys. Thank you again, sir.");
 			eq.set_global("paladin_epic","4",5,"F");
 			e.other:SummonItem(69933); -- Item: Seal of Enic

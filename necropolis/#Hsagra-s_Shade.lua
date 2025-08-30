@@ -24,7 +24,7 @@ function event_trade(e)
     local qglobals = eq.get_qglobals(e.other)
     if qglobals["bard15"] == "2" then
         -- if you don't turn in everything it says "You must turn in all quest items at once in order to complete this quest."
-        if item_lib.check_turn_in(e.trade, {item1 = 77608, item2 = 77609, item3 = 77610, item4 = 77611}) then
+        if item_lib.check_turn_in(e.self, e.trade, {item1 = 77608, item2 = 77609, item3 = 77610, item4 = 77611}) then
             e.other:QuestReward(e.self, 0, 0, 0, 0, 0, 1)
             eq.zone_emote(MT.Yellow, "As you hold out the relics towards the spirit of Hsagra they begin to rise from your hands and glow softly.  They drift slowly through the air towards Hsagra and are soon enveloped in the shadow of her spirit.  The outline of Hsagra begins to glow softly along with the relics as she drifts towards the fiery pit of the necropolis.")
             eq.zone_emote(MT.Yellow, "Just as her spirit drifts to the edge of the pit, you feel a dark presence behind you.  Suddenly the draconic spirit before you quivers as if the spirit were drifting between realities.  The bones inside the spirit begin to grow dark and a black ethereal ooze begins to envelope them.  As the last of the calcified bone is covered in dark ether the bones are torn from the spirit causing a spasm of pain to jerk across her visage.  The screech of a thousand draconic voices echoes through the caverns of the necropolis in complete agony.")

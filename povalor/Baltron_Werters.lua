@@ -43,7 +43,7 @@ function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	local item_lib = require("items");
 	
-	if qglobals["pre_pal"] == "4" and item_lib.check_turn_in(e.trade, {item1 = 69912}) then -- blade from Gifal
+	if qglobals["pre_pal"] == "4" and item_lib.check_turn_in(e.self, e.trade, {item1 = 69912}) then -- blade from Gifal
 		e.self:Say("Ah, I see you have returned to me with the blade Helmetthane. It is indeed fractured...perhaps Sir Rathalzor can guide us.");
 		e.self:Emote("begins to chant in a foreign, yet beautiful language.");
 		eq.set_timer("spawn",2000);

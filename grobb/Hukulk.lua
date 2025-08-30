@@ -37,7 +37,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	local pfaction = e.other:GetFaction(e.self);
 
-	if (item_lib.check_turn_in(e.trade, {item1 = 18792})) then -- Tattered Note
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 18792})) then -- Tattered Note
 		e.self:Say("Haaah!! Bow to Hukulk!! Hukulk make you feared.. make you powered! Dark power flow through you! Hate and Fear in your blood!");
 		e.other:SummonItem(13530);	-- Black and Green Tunic*
 		e.other:Ding();
@@ -48,7 +48,7 @@ function event_trade(e)
 		e.other:AddEXP(30);
 	elseif (pfaction > 4) then
 		e.self:Say("You no friend to Hukulk");	
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 13073, item2 = 13073, item3 = 13073, item4 = 13073})) then -- Bone Chips
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 13073, item2 = 13073, item3 = 13073, item4 = 13073})) then -- Bone Chips
 		e.self:Say("You good. Take dis. Make much pain and hurt. Make tings bleeds. Kill, hurt all. Innoruuk and me say do, now go. You do much, come bak. Teach you how more hurt and pain make. Go.");
 		e.other:SummonItem(5023);	-- Rusty Two Handed Sword
 		e.other:Ding();
@@ -57,7 +57,7 @@ function event_trade(e)
 		e.other:Faction(222,-1,0);	-- Broken Skull Clan
 		e.other:Faction(235,-1,0);	-- Da Bashers
 		e.other:AddEXP(250);
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 12201, item2 = 12202})) then -- Happy Love Bracers and Troll Head(Lumpin)
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 12201, item2 = 12202})) then -- Happy Love Bracers and Troll Head(Lumpin)
 		e.self:Say("Ha!! Ha!! Who have last laugh now!! You do good werk.  Now me give you extra helm of Hukulk. Now go away!!");
 		e.other:SummonItem(3316);	-- Helm of Hukulk
 		e.other:Ding();

@@ -17,7 +17,7 @@ end
 function event_trade(e)
     local item_lib = require("items");
     if e.other:IsTaskActivityActive(4,9) then -- Frostfell A Gift for Tinam (#4) Activity ID 9 active
-        if item_lib.check_turn_in(e.trade, {item1 = 87541}) then -- Horgram's Gem
+        if item_lib.check_turn_in(e.self, e.trade, {item1 = 87541}) then -- Horgram's Gem
 			e.self:Say("You're back? I thought you would never come back. I have never seen anyone act so kindly before. Here take the dolly.")
 			e.other:UpdateTaskActivity(4,9,1); -- Frostfell A Gift for Tinam (#4) Activity ID 9 complete
             e.other:SummonItem(87545); -- Clockwork Dolly

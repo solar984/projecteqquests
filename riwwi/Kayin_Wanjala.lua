@@ -4,7 +4,7 @@
 function event_trade(e)
 	local item_lib = require("items");
 	if (e.other:GetFaction(e.self) <= 3) then --only turn in if warmly or higher
-		if (item_lib.check_turn_in(e.trade, {item1 = 64014})) then --Head of Ra'Tuk Hrux Vexkit V1
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 64014})) then --Head of Ra'Tuk Hrux Vexkit V1
 			e.self:Say("Hah! What an ugly mug on this one! Thank you, friend. I can slip out of here now and know that my friend is still relatively safe. Here, you keep the head. Maybe you can show it to my friend Njanu Dinari back in Barindu and tell him the story. I'm sure he's worried about me and it might ease his mind a bit.");
 			e.other:QuestReward(e.self,0,0,0,0,64015,300000); --Item: Head of Ra'Tuk Hrux Vexkit V2
 			e.other:Faction(1770, 10); -- Faction: Yunjo Slave Resistance

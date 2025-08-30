@@ -15,7 +15,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 13849, item2 = 13849, gold = 4})) then -- helm
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13849, item2 = 13849, gold = 4})) then -- helm
 		e.self:Say("Excellent. Here is your helm. Wear it with pride! And be sure to occasionally wipe out the insulating mucus that tends to build up on its underside. It will make your hair fall out. One more thing, would you be interested in [scarab boots] to match your helm?");
 		e.other:Faction(312,5,0); -- Storm Guard
 		e.other:Faction(274,1,0); -- Kazon Stormhammer
@@ -24,7 +24,7 @@ function event_trade(e)
 		e.other:Faction(232,-1,0);	-- Craknek Warrior
 		e.other:QuestReward(e.self,0,0,0,0,2175,5000);
 	end
-	if(item_lib.check_turn_in(e.trade, {item1 = 13133, gold = 22})) then -- breastplate
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13133, gold = 22})) then -- breastplate
 		e.self:Say("If I do say so myself, this is one of the finest breastplates in all of Norrath. I am truly a master at my craft. You might want to wipe out some of the excess scarab goo before wearing it, though.");
 		e.other:Faction(312,5,0); -- Storm Guard
 		e.other:Faction(274,1,0); -- Kazon Stormhammer
@@ -33,7 +33,7 @@ function event_trade(e)
 		e.other:Faction(232,-1,0);	-- Craknek Warrior
 		e.other:QuestReward(e.self,0,0,0,0,2176,5000);
 	end
-	if(item_lib.check_turn_in(e.trade, {item1 = 13132, item2 = 13848, item3 = 13848, gold = 16})) then -- boots
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13132, item2 = 13848, item3 = 13848, gold = 16})) then -- boots
 		e.self:Say("Very good! Let me see here. Thread the legs around like this and... There you go. Wear them with pride!");
 		e.other:Faction(312,5,0); -- Storm Guard
 		e.other:Faction(274,1,0); -- Kazon Stormhammer

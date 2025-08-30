@@ -16,7 +16,7 @@ function event_trade(e)
   local qglobals = eq.get_qglobals(e.other);
   local item_lib = require('items');
 
-  if ( (qglobals["ranger_epic15_pre"] == "9" or qglobals["ranger_epic15_pre"] == "10") and item_lib.check_turn_in(e.trade, {item1=62637})) then
+  if ( (qglobals["ranger_epic15_pre"] == "9" or qglobals["ranger_epic15_pre"] == "10") and item_lib.check_turn_in(e.self, e.trade, {item1=62637})) then
     e.self:Say("Thank you!");
     e.self:Emote("breathes into the jar. You hear nothing, but she seals the jar.");
     e.self:Say("Now all you must do is free my spirit! Do so and you may know the perfect sound of the wind and I will be free!");

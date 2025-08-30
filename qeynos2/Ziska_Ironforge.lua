@@ -10,7 +10,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
-	if(qglobals["paladin_epic"] == "9" and item_lib.check_turn_in(e.trade, {platinum = 500})) then
+	if(qglobals["paladin_epic"] == "9" and item_lib.check_turn_in(e.self, e.trade, {platinum = 500})) then
 		e.self:Say("Camlend gave me an old set of prayer beads ages ago. He said that they would be needed at some point. Over the years I crafted sockets in them thinking that one day I would add a few gems to them. Take the beads. I'm glad to hear they could be of some use to help someone. Thank you for your donation. It should be enough to cover the cost of creating the sockets.");
 		e.other:SummonItem(69960); --qeynos prayer bead
 	end

@@ -44,7 +44,7 @@ end
 function event_trade(e)
   local item_lib = require("items")
 
-  if item_lib.check_turn_in(e.trade, {item1 = 57209}) then -- Dark Reign Token
+  if item_lib.check_turn_in(e.self, e.trade, {item1 = 57209}) then -- Dark Reign Token
     local player = don.character_state.new(e.other, don.faction_id.evil)
     if not player:has_min_faction(don.faction.Apprehensive) then
       e.other:Message(MT.NPCQuestSay, "Xeib Darkskies says, 'You don't actually think that I'm going to reward you for this, do you?  Begone, dog, before I call the guards!'")

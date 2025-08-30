@@ -35,7 +35,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	if (e.other:GetFaction(e.self) <= 1 or e.other:GetGM() and (class == "Magician" or class == "Enchanter" or class == "Wizard" or class == "Necromancer" or e.other:GetGM())) then -- require ally and int casters
 		
-		if(item_lib.check_turn_in(e.trade, {item1 = 51475,item2 = 51503,item3 = 51503})) then -- int helm rewards
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 51475,item2 = 51503,item3 = 51503})) then -- int helm rewards
 			e.self:Emote("reaches out for the stick. 'Yes, this is indeed his favorite walking stick! Why here at the top is the jewel I spoke of. Even now, I can hear the spirit in the gem calling out for my master, searching for him. And the soap will allow me to clean and preserve the wood as I used to before The Darkening came upon us. Here is the cap I spoke about. It, like much of my master's clothes, was tailored by a famous dragorn that has long since disappeared since the start of the war.'");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70944,100000); -- Item: Mindreaver's Skullcap of Coercion
@@ -51,7 +51,7 @@ function event_trade(e)
 				end
 
 
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51479,item2 = 51507,item3 = 51507})) then -- int arms rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51479,item2 = 51507,item3 = 51507})) then -- int arms rewards
 			e.self:Say("Yes, I believe this is the pouch.' He opens it up and begins to rummage through the contents. 'Ah, this is the locket I spoke of. Truly, I am closer to giving my master the peace his spirit searches for. With the thread I will be able to perform the minor tailoring work required to fit these sleeves to you.' He hands you the sleeves after a few minutes.");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70945,100000); -- Item: Mindreaver's Armguards of Coercion
@@ -65,7 +65,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70924,100000); -- Item: Blightbringer's Armband of the Grave
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51480,item2 = 51508,item3 = 51508})) then -- int wrists rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51480,item2 = 51508,item3 = 51508})) then -- int wrists rewards
 			e.self:Emote("opens his eyes wide as you hand him the heart and trinkets. 'If I did not see it for myself, I would have never imagined that an enemy so powerful and mysterious as these riftseekers could be defeated. My people and I thank you for this act . . . an act that will surely help to embolden us to strike back against the invaders. For your efforts, here is the cloth bracer I spoke about. I am certain it will aid you on your journey.'");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70946,100000); -- Item: Mindreaver's Bracer of Coercion
@@ -79,7 +79,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70925,100000); -- Item: Blightbringer's Bracer of the Grave
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51481,item2 = 51509,item3 = 51509})) then -- int hands rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51481,item2 = 51509,item3 = 51509})) then -- int hands rewards
 			e.self:Emote("opens his hands for the axe and the two stones. 'Thank you. For helping to fulfill my master's last wishes, I will give you the gloves I spoke about earlier. I know only that they are magical and therefore will have to let you uncover the secret to unlocking their power.'");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70947,100000); -- Item: Mindreaver's Handguards of Coercion
@@ -93,7 +93,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70926,100000); -- Item: Blightbringer's Handguards of the Grave
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51476,item2 = 51504,item3 = 51504,item4 = 51504})) then -- int chest rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51476,item2 = 51504,item3 = 51504,item4 = 51504})) then -- int chest rewards
 			e.self:Emote("takes the vest and begins to examine it thoroughly. 'Yes, I think this small seam here conceals the note my master was waiting for. Ah, this is it, I am certain.' He takes the note, unfolds it, and places it on its side. He takes the fruit and begins to mash it up into a bowl while adding a few other ingredients. Moment later a small plume of blue-gray smoke begins to rise up out of the bowl. Nerask picks up the note and reads it. 'Thank you, I will give this note to our remaining elders. It is very important, indeed. Here is the robe I spoke about. The powerful magic woven into the very fibers should enable you to overcome powerful enemies.'");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70949,100000); -- Item: Mindreaver's Vest of Coercion
@@ -107,7 +107,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70928,100000); -- Item: Blightbringer's Tunic of the Grave
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51477,item2 = 51505,item3 = 51505,item4 = 51505})) then -- int leg rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51477,item2 = 51505,item3 = 51505,item4 = 51505})) then -- int leg rewards
 			e.self:Emote("holds the amulet up to the sky. 'Yes, this is the amulet my master was so proud of. It signified his elevation to a respected elder for all of the selfless work my master had done for our people. I will take these hides and get a tanner to create a small ornamental pouch befitting it. Take these mystical cloth leggings my master often used in performing his duties.'");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70950,100000); -- Item: Mindreaver's Leggings of Coercion
@@ -121,7 +121,7 @@ function event_trade(e)
 				if class == "Necromancer" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70929,100000); -- Item: Blightbringer's Pants of the Grave
 				end
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 51478,item2 = 51506,item3 = 51506})) then -- int feet rewards
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 51478,item2 = 51506,item3 = 51506})) then -- int feet rewards
 			e.self:Emote("smiles widely as you show him the medal and the wings. 'Yes, now at least a small measure of justice has been exacted for my people. Please take these footwraps that accompanied my master on so many journeys.'");
 				if class == "Enchanter" or e.other:GetGM() then
 					e.other:QuestReward(e.self,0,0,0,0,70948,100000); -- Item: Mindreaver's Shoes of Coercion

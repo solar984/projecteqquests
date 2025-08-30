@@ -22,7 +22,7 @@ end
 function event_trade(e)
     local item_lib = require("items");
     if e.other:IsTaskActivityActive(4,6) then -- Frostfell A Gift for Tinam (#4) Activity ID 6 active
-        if item_lib.check_turn_in(e.trade, {item1 = 87544}) then -- Morky's Spear
+        if item_lib.check_turn_in(e.self, e.trade, {item1 = 87544}) then -- Morky's Spear
 			e.self:Say("Well done! You must be quick to catch that little guy! Here take the cloak, as promised.")
 			e.other:UpdateTaskActivity(4,6,1); -- Frostfell A Gift for Tinam (#4) Activity ID 6 complete
             e.other:SummonItem(87543); -- Firin's Bear Skin Cloak

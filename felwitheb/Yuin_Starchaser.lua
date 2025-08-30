@@ -38,7 +38,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 20293})) then -- Orc Thaumaturgists Spell Book
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20293})) then -- Orc Thaumaturgists Spell Book
 		e.self:Say("Well done young Art Keeper. Take this Rough Art Keepers Initiate Staff and go forth and gather a Pristine Forest Drakeling Scales and an Arborean Amber. When you have acquired those two items return them to me with the Rough Art Keepers Initiate Staff and I will put the final touches on the staff.");
 		e.other:SummonItem(20296); -- Rough Art Keepers Initiate Staff
 		e.other:Ding();
@@ -48,7 +48,7 @@ function event_trade(e)
 		e.other:Faction(239,-10,0); -- The Dead
 		e.other:AddEXP(250);
 	-- Handin: Rough Artkeepers Initiate Staff, Pristine Forest Drakeling Scales, Arborean Amber
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 20296,item2 = 20271,item3 = 20274})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20296,item2 = 20271,item3 = 20274})) then
 		e.self:Emote("fashions a grip for the staff from the pristine forest drakeling scales, places the arborean amber into a mithril fixture and attaches the fixture to one end of the staff. 'Here is your new staff young Art Keeper may it serve you well in the pursuit of your studies.'");
 		e.other:SummonItem(20332); -- Art Keepers Initiate Staff
 		e.other:Ding();

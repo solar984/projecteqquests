@@ -30,12 +30,12 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if (item_lib.check_turn_in(e.trade, {item1 = 10992})) then
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 10992})) then
 		e.self:Say("You have done well " .. e.other:GetName() .. ", here is your reward."); -- unable to locate real reward text.
 		e.other:SummonItem(11079); -- Item: Plague Rust Stiletto
 		e.other:Ding();
 		e.other:AddEXP(100);
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 18705})) then -- Old Folded Letter
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 18705})) then -- Old Folded Letter
 		e.self:Say("A new rogue eh? Well put this tunic on and get to it! Once you are ready to begin your training please make sure that you see Morlan. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13518); 	-- Tin Patched Tunic*
 		e.other:Ding();

@@ -8,7 +8,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 9590})) then -- Notice to Cease and Desist
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9590})) then -- Notice to Cease and Desist
 		e.self:Say("What's this? It says that you wish me to cease and desist spreading slander about the swashbuckler known as Stanos, or else . . .? You know, I am new in Freeport. Haven't been performing at this venue for long. I'm just a fledgling muse trying to make ends meet in this big city. My father told me that someday I'd have to put up my fists to protect my rights. I can see that day is today. What I have to say to you is . . . Guards, help!");
 		e.self:SetSpecialAbility(19, 0);
 		e.self:SetSpecialAbility(20, 0);		

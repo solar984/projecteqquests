@@ -11,7 +11,7 @@
 function event_trade(e)
     local item_lib = require("items");
 
-    if (item_lib.check_turn_in(e.trade, {item1 = 56010})) then --Check for "Talisman of the Plasmatic Priests"
+    if (item_lib.check_turn_in(e.self, e.trade, {item1 = 56010})) then --Check for "Talisman of the Plasmatic Priests"
         e.other:SummonItem(56010); --return "Talisman of the Plasmatic Priests"
         -- Spawn High Priestess Shima
         eq.spawn2(27128, 0, 0, 113, 1672, 56, 462); -- NPC: High_Priestess_Shima

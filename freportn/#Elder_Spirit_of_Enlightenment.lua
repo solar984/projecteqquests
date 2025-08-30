@@ -106,36 +106,36 @@ end
 function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	local item_lib = require("items");
-	if(qglobals["shaman_epic"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 52921})) then --hand in the Distilled Potion of Endurance (Received from Wilslik Gissu on the previous step)
+	if(qglobals["shaman_epic"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 52921})) then --hand in the Distilled Potion of Endurance (Received from Wilslik Gissu on the previous step)
 		e.self:Emote("drinks the potion hastily and shudders. Its essence grows brighter and it's dull eyes begin to sparkle with renewed strength.");
 		e.self:Say("You have bought me time -- time to explain how you may aid us all. The darkness of Discord seeps ever deeper into Norrath and the spirit world. Some of the most revered and oldest spirits known have turned to grim pursuits, becoming the [" .. eq.say_link("wasichu") .. "] -- those creatures you may remember from you time conversing with another great spirit.");
 		eq.set_global("shaman_epic","2",5,"F");
 	end
-	if(qglobals["shaman_epic"] == "2" and item_lib.check_turn_in(e.trade, {item1 = 57083, item2 = 57084})) then --hand in Talisman of Patience (drops from  Punisher Veshtaq in POJ Trial of Torture, which needs to be added) and Talisman of Wisdom (from Eternal Spirit in PoSky in exchange for Potion of Sustenance)
+	if(qglobals["shaman_epic"] == "2" and item_lib.check_turn_in(e.self, e.trade, {item1 = 57083, item2 = 57084})) then --hand in Talisman of Patience (drops from  Punisher Veshtaq in POJ Trial of Torture, which needs to be added) and Talisman of Wisdom (from Eternal Spirit in PoSky in exchange for Potion of Sustenance)
 		e.self:Say("This is a start. There is still much to do. While we have gotten the talismans from our allies, there are those that are not our friends -- the wasichu and worse -- who carry or have [" .. eq.say_link("stolen") .. "] items we need. They will not part with them willingly. This is where your strength and might will be put to the test . . . and your presence of mind. Are you certain you wish to go on?");
 		eq.set_global("shaman_epic","3",5,"F");
 	end
-	if(qglobals["shaman_epic"] == "5" and item_lib.check_turn_in(e.trade, {item1 = 57614})) then --hand in Runed Purse of the McShannels
+	if(qglobals["shaman_epic"] == "5" and item_lib.check_turn_in(e.self, e.trade, {item1 = 57614})) then --hand in Runed Purse of the McShannels
 		e.self:Say("I will have to pass these along as soon as my messenger gets here. I'm sure you understand that as each spirit loses strength, each of our abilities to keep a form in this tangible world becomes very difficult. We must find a way to sustain a physical presence here or the Ruchu will be in jeopardy. We will ask you to [" .. eq.say_link("take part") .. "] in the ceremony where our strength may fail us.");
 		eq.set_global("shaman_epic","6",5,"F");
 	end
-	if(qglobals["shaman_epic"] == "10" and item_lib.check_turn_in(e.trade, {item1 = 57551})) then --hand in Impervious Medicine Bag (received from Lupot Nukla in Fungus Grove)
+	if(qglobals["shaman_epic"] == "10" and item_lib.check_turn_in(e.self, e.trade, {item1 = 57551})) then --hand in Impervious Medicine Bag (received from Lupot Nukla in Fungus Grove)
 		e.self:Say("You never cease to surprise me. I felt in my heart that you would get this far, but I did not expect you to be so bold and steady with your advance. Can you feel the spirits smiling on you?' The spirit lifts its weary head and closes its eyes . . . Yes, yes, they are pleased, but they are weak just as I am. And now the path grows dark and dreary. We must ask you to once again to risk your life, but not in this world, but the world of [" .. eq.say_link("Discord") .. "].");
 		eq.set_global("shaman_epic","11",5,"F");
 	end
-	if(qglobals["shaman_epic"] == "11" and item_lib.check_turn_in(e.trade, {item1 = 57987})) then --hand in Glowing Spirit Charm of Might (made from combine, probably needs added to db)
+	if(qglobals["shaman_epic"] == "11" and item_lib.check_turn_in(e.self, e.trade, {item1 = 57987})) then --hand in Glowing Spirit Charm of Might (made from combine, probably needs added to db)
 		e.self:Say("The time is nearly here! We have only a few remaining pieces that we must collect in order to restore our spirits. We did miss something, however, and it must be stopped. You must gather your allies and return to Discord. A wasichu has learned to summon the fiercest beasts and has grown out of control. It is now a [" .. eq.say_link("spiritcaller") .. "] who is drawing the strength of our most precious elders to do it.");
 		eq.set_global("shaman_epic","12",5,"F");
 	end
-	if(qglobals["shaman_epic"] == "12" and item_lib.check_turn_in(e.trade, {item1 = 57404})) then --hand in Spiritcaller Beads (looted from Discordling Spiritcaller in Walls of Slaughter)
+	if(qglobals["shaman_epic"] == "12" and item_lib.check_turn_in(e.self, e.trade, {item1 = 57404})) then --hand in Spiritcaller Beads (looted from Discordling Spiritcaller in Walls of Slaughter)
 		e.self:Say("There is one last thing you must do. Your defeat of the spiritcaller has proven your strength and I believe you are ready. Do not fail us now. You must go into the lair of Mata Muram himself. There is a strange orb that only exists there. We believe some of our spirits, beyond those we shall restore with Ruchu, are becoming absorbed or attracted to these orbs. You must find one and bring it to me and then we shall have all we need.");
 		eq.set_global("shaman_epic","13",5,"F");
 	end
-	if(qglobals["shaman_epic"] == "13" and item_lib.check_turn_in(e.trade, {item1 = 47100})) then --hand in Globe of Discordant Energy (from Citadel of Anguish)
+	if(qglobals["shaman_epic"] == "13" and item_lib.check_turn_in(e.self, e.trade, {item1 = 47100})) then --hand in Globe of Discordant Energy (from Citadel of Anguish)
 		e.self:Emote("lowers its head and you believe you see a shade of a tear drop from its eyes and disappear into nothingness. 'You have done it. You cannot imagine our gratitude. The time for Ruchu is at hand and we offer you the privilege of taking part. If you are able to do the ceremony now, tell me you are [" .. eq.say_link("prepared for the ceremony") .. "].'");
 		eq.set_global("shaman_epic","14",5,"F");
 	end
-	if(qglobals["shaman_epic"] == "14" and item_lib.check_turn_in(e.trade, {item1 = 57400})) then --hand in Crafted Talisman of Fates (Epic 1.5)
+	if(qglobals["shaman_epic"] == "14" and item_lib.check_turn_in(e.self, e.trade, {item1 = 57400})) then --hand in Crafted Talisman of Fates (Epic 1.5)
 		e.self:Say("You have heard the stories of the blessings bestowed on some of Norrath's most faithful to the ways of the heyokah. To reward you for all that you've done, the spirits have chosen to bless this talisman and offer it to you as our thanks, for without you, all shaman would have suffered without our presence in this realm. Walk proud, heyokah, and never forget what you are.' All around you, you feel the strength of the spirit world begin to strengthen as the spirit leaves to tend to his wounded companions.");
 		e.other:QuestReward(e.self,{itemid=57405, exp=50000}); --Blessed Spiritstaff of the Heyokah (Epic 2.0)
 		e.other:AddAAPoints(10);

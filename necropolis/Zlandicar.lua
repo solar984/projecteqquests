@@ -16,7 +16,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	if (e.other:GetFaction(e.self) <= 5) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 26010})) then  -- Nebs Head
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 26010})) then  -- Nebs Head
 	   	e.self:Say("Excellent work! Here is your key, go bother that prattling fool Jaled Dar, and leave me be.");
 		  e.other:Ding();
 		  e.other:SummonItem(28060);	-- Jaled Dars Tomb Key

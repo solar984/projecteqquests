@@ -194,7 +194,7 @@ function event_trade(e)
       -- hypothetically riddle doesn't need given for success. never guessed right
       -- to confirm so for now having key IS required for success (can still open door)
       local riddle = riddles[active_riddle_index]
-      if is_riddle_given and riddle_item_count == 1 and item_lib.check_turn_in(e.trade, {item1 = riddle.item}) then
+      if is_riddle_given and riddle_item_count == 1 and item_lib.check_turn_in(e.self, e.trade, {item1 = riddle.item}) then
         check_bic(e.other)
         e.other:SummonItem(riddle.item) -- correct riddle item is returned
         e.self:Say(string.format("I have no need for this, %s. You can have it back.", e.other:GetCleanName())) -- msg id: 1105

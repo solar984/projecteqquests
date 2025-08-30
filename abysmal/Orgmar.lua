@@ -10,7 +10,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if item_lib.check_turn_in(e.trade, {item1 = 55621}) then -- Item: A rotting Satchel
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 55621}) then -- Item: A rotting Satchel
 		e.self:Say("Ye done a good deed this day, me friend. Not that I am scared of ghosts or anything. Take this as your reward. I found it on one of me adventures in the new land. I know it be a bit gruesome lookin', but it has some magic power. Now to see if I can get rid o' this ghost. Farewell.");
 		e.other:QuestReward(e.self,0,0,0,0,55622,eq.ExpHelper(52)); -- Item: Gouged Out Ukun Eye
 	end

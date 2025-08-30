@@ -12,7 +12,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 28792, item2 = 29133})) then--Beginner Stealth Manual, Rattican's Head
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 28792, item2 = 29133})) then--Beginner Stealth Manual, Rattican's Head
 		e.self:Say("Good work, " .. e.other:GetCleanName() .. ". I must say I am quite impressed with your recovery of this. Clearly you have shown you are ready to begin your next lesson. Take this new book and when you are ready, speak to Ethoach Trokith. And remember, difficult tasks are put in our way not to stop us, but to call out our strength and resolve.");
 		-- Confirmed Live Experience
 		e.other:QuestReward(e.self,0,math.random(10),math.random(10),math.random(0,10),28793,500000);--Intermediate Stealth Manual

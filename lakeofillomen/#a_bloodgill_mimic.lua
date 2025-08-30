@@ -15,7 +15,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 52941})) then	-- Garudon's Statue
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 52941})) then	-- Garudon's Statue
 		e.self:Say("I thank you. How terrible it must be to still remain after such time. You must possess some measure of power to return this to me. I believe Aida could benefit from the help of one such as yourself.");
 		eq.set_global("EnchPre","1",5,"F");
 	end

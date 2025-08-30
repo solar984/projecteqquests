@@ -25,7 +25,7 @@ function event_trade(e)
     if (e.other:GetGlobal("greatadventuresturnins") ~= "Undefined") then
         turnins = tonumber(e.other:GetGlobal("greatadventuresturnins"))
     end
-    if (item_lib.check_turn_in(e.trade, {item1 = 67618})) then -- Rashere's Writings
+    if (item_lib.check_turn_in(e.self, e.trade, {item1 = 67618})) then -- Rashere's Writings
         e.self:Emote("takes the dusty tome from " .. e.other:GetName() .. "'s hands.")
         e.self:Emote("opens the book and begins to read from the last page aloud. As she reaches the final sentence her voice begins to crack and tears stream down her face. Wiping the tears from her face Jenna looks up at you and says 'Thank you but I really must be going. If you have done this wonderful thing for the others who have been suffering with me then return to De`van and tell him your task is complete and he will reward you.' Unable to continue she turns away from you motioning for you to leave.")
         e.other:SetGlobal("greatadventuresturnins", tostring(bit.bor(turnins, 2048)), 5, "F")

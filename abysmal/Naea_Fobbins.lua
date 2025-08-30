@@ -10,7 +10,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if item_lib.check_turn_in(e.trade, {item1 = 55586, item2 = 55585, item3 = 55585, item4 = 55585}) then -- reef crustacean gland, broken shore shell x3
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 55586, item2 = 55585, item3 = 55585, item4 = 55585}) then -- reef crustacean gland, broken shore shell x3
 		e.self:Say("Oh, you have returned. And you brought all the items I asked for! As promised I will make you a necklace.' Naea begins to carefully thread the shells and adds the secretion from the gland. 'This should do nicely. Here you go! It was a pleasure making it for you. Take care!");
 		e.other:QuestReward(e.self,0,0,0,0,55587,eq.ExpHelper(42)); -- Item: broken shore necklace
 	end

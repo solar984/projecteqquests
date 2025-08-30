@@ -25,7 +25,7 @@ end
 
 function event_trade(e)
 	local item_lib =require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 18714})) then -- Tattered Note
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18714})) then -- Tattered Note
 		e.self:Say("Welcome to the Temple of Life. I am Jahnda. the High Priestess of the Clerics of Nife. Wear this tunic with pride and carry out the will of Nife. Please. see Tonmerk Plorsin or Nomsoe Jusagta. They will help get you started spreading the will of The Prime Healer.");
 		e.other:SummonItem(13506); -- Faded Tunic*
 		e.other:Ding();
@@ -35,7 +35,7 @@ function event_trade(e)
 		e.other:Faction(221,-25,0); -- Bloodsabers
 		e.other:Faction(219,15,0); -- Antonius Bayle
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13724})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13724})) then
 		e.self:Say("Excellent! Rodcet smiles upon us this day! Here, please take this pouch of evidence to Jahnda in the Temple of Life. She will know what we must do. I will remain here to keep an eye out for the minions of Bertoxxlous. Also, accept this small reward as a token of my appreciation of your efforts to rid Norrath of the influence of the Plaguebringer.");
 		-- Confirmed Live Factions
 		e.other:Faction(341,50); -- Priest of Life

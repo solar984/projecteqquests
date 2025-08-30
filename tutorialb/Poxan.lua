@@ -16,7 +16,7 @@ end
 function event_trade(e)
   local item_lib = require("items");
 
-  if (item_lib.check_turn_in(e.trade, {item1 = 59968})) then -- Poxan's Sword
+  if (item_lib.check_turn_in(e.self, e.trade, {item1 = 59968})) then -- Poxan's Sword
     e.self:QuestSay(e.other, "Excellent! Now I can fight along side the revolt against the kobolds. Here take this. I found it in the tunnels earlier. You might need it.");
     e.other:QuestReward(e.self,{itemid=59969}); --Kobold Leather Mask
     eq.update_task_activity(1448, 14, 1); --Basic Training(1448)

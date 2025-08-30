@@ -16,7 +16,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13903}) and proof == 2) then -- Bent Card
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13903}) and proof == 2) then -- Bent Card
         proof = 0;
 		e.self:Say("");
 		e.other:SummonItem(18722); --Sealed Note For Knargon 

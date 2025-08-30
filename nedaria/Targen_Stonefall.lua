@@ -39,7 +39,7 @@ end
 function event_trade(e)
   local qglobals = eq.get_qglobals(e.other);
   local item_lib = require('items');
-  if ( qglobals["ranger_epic15_pre"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 62601})) then -- Blasted Stone from The Bloodfields
+  if ( qglobals["ranger_epic15_pre"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62601})) then -- Blasted Stone from The Bloodfields
     e.self:Emote("looks carefully at the stone. He takes out a cloth and some liquid and rubs the stone thoroughly.");
     e.self:Say("Why do you waste my time, friend? This is a rock from Norrath. I suppose it's kind of you to bring it to me, you probably didn't know any better, but I can't do anything with this. Where did you find this?");
 
@@ -47,7 +47,7 @@ function event_trade(e)
 
     eq.set_global("ranger_epic15_pre","2",5,"F");
 
-  elseif ( qglobals["ranger_epic15_pre"] == "4" and item_lib.check_turn_in(e.trade, {item1 = 62641})) then -- Closed Sample Cloth
+  elseif ( qglobals["ranger_epic15_pre"] == "4" and item_lib.check_turn_in(e.self, e.trade, {item1 = 62641})) then -- Closed Sample Cloth
     e.self:Emote("Targen Stonefall works a fine cloth on both stones for a while, then takes out what appears to be a prism and peers at the stones through it. ");
     e.self:Say("Well, the stone is indeed native to the Plane of Discord. It just has many properties in common with the stone native to Norrath. I have never seen something like this before. My best guess is that it is some sort of stone amalgamation. I believe that matter is pulled into Discord when gates open. From what I have been told a gate was opened to Norrath in the past. Perhaps matter from Norrath and matter from Discord were merged when the gate was opened. That would make sense if there was a powerful magical disruption or explosion. I understand that Taelosians had powerful geomantic magic. If this stone came from Taelosia many years ago during the height of their power, it might be very special. It's too bad there isn't any way to remove the [" .. eq.say_link("impurities") .. "] from it.");
     eq.set_global("ranger_epic15_pre","5",5,"F");

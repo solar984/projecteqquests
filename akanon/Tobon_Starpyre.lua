@@ -35,7 +35,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 18774})) then -- Registration Letter
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18774})) then -- Registration Letter
 		e.self:Say("Ah.. Welcome, friend! I am Tobon Starpyre, Master Wizard of Library Mechanimagica. This is our tunic - wear it with pride. Study hard, master your skills, and make us proud. Once you are ready to begin your training please make sure that you see Xalirilan, he can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.");
 		e.other:SummonItem(13523);	-- Soot Stained Gold Robe*
 		e.other:Faction(245,100,0); 	-- eldritch collective
@@ -45,7 +45,7 @@ function event_trade(e)
 		e.other:Faction(333,15,0); 	-- king ak'anon
 		e.other:Ding();
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13275, item2 = 13276, item3 = 13277, item4 = 13279})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13275, item2 = 13276, item3 = 13277, item4 = 13279})) then
 		e.self:Say("Thank you for your work. I heard news of the troubles you encountered. Besides these troubles you still completed your mission. We are grateful. And as I once stated, your reward awaits.");
 		e.other:SummonItem(eq.ChooseRandom(15380,15477,15656)); -- Item(s): Spell: Column of Frost (15380), Spell: Fire Bolt (15477), Spell: Shock of Ice (15656)
 		e.other:Ding();

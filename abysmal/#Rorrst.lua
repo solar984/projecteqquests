@@ -12,7 +12,7 @@ end
 
 function event_trade(e)
 	local item_lib = require('items');
-	if item_lib.check_turn_in(e.trade, {gold = 25000}) then -- 25000 gold
+	if item_lib.check_turn_in(e.self, e.trade, {gold = 25000}) then -- 25000 gold
 		e.other:QuestReward(e.self,0,0,0,0,52181,1000); -- Impression of a Key
 	end
 	item_lib.return_items(e.self, e.other, e.trade);

@@ -42,15 +42,15 @@ end
 function event_trade(e)
 	if (event_started == 0) then
 		local item_lib = require("items");
-		if (item_lib.check_turn_in(e.trade, {item1 = 56001,item2 = 56001,item3 = 56001,item4 = 56001})) then
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 56001,item2 = 56001,item3 = 56001,item4 = 56001})) then
 			e.self:Say("'The spirits shall come. Ready yourselves.'");
 			event_started = event_started + 1;
 			eq.set_timer('lowwave1', 6 * 1000);
-		elseif (item_lib.check_turn_in(e.trade, {item1 = 56002,item2 = 56002,item3 = 56002,item4 = 56002})) then
+		elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 56002,item2 = 56002,item3 = 56002,item4 = 56002})) then
 			e.self:Say("'The spirits shall come. Ready yourselves.'");
 			event_started = event_started + 1;
 			eq.set_timer('midwave1', 6 * 1000);
-		elseif (item_lib.check_turn_in(e.trade, {item1 = 56003,item2 = 56003,item3 = 56003,item4 = 56003})) then
+		elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 56003,item2 = 56003,item3 = 56003,item4 = 56003})) then
 		  e.self:Say("'The spirits shall come. Ready yourselves.'");
 			event_started = event_started + 1;
 			eq.set_timer('topwave1', 6 * 1000);

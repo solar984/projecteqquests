@@ -29,24 +29,24 @@ function event_trade(e)
   local item_lib = require("items");
 
   if (e.other:GetFaction(e.self) <= 2 and (class == "Warrior" or class == "Paladin" or class == "Shadowknight" or class == "Bard" or class == "Monk" or class == "Beastlord" or class == "Berserker" or class == "Ranger" or class == "Rogue")) then -- require warmly and melee
-    if (item_lib.check_turn_in(e.trade, {item1 = 36504, item2 = 36505, item3 = 36506, item4 = 36507})) then -- Makyahs Statue quest
+    if (item_lib.check_turn_in(e.self, e.trade, {item1 = 36504, item2 = 36505, item3 = 36506, item4 = 36507})) then -- Makyahs Statue quest
       e.self:Say("Can it be? You've found it! I shall have this pieced together where no Muramite can find it again. It will be an inspiration for the coming generations and a beacon of hope in these times of darkness. Here take this mask. May it help you always to see the light and protect you from the trials of darkness.");
       e.other:QuestReward(e.self, 0, 0, 0, 0, 71135, 100000); -- (71135); #Glowing Enameled Visor
       e.other:Faction(1016, 5) --Dranik Loyalists +5
       e.other:Faction(1013, -1) -- Overlord Mata Muram -1
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 36500, item2 = 36501, item3 = 36502, item4 = 36503})) then -- Zakarivs Shattered Sword quest
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 36500, item2 = 36501, item3 = 36502, item4 = 36503})) then -- Zakarivs Shattered Sword quest
       e.self:Say("This... this is amazing. I never thought to have anything to remember Zakariv by. Thank you for returning these pieces to me. I will have them reforged and once again this weapon will be amazing to behold! Here, take this cloak as a reward. It was one that I wore in my days as a warrior. Perhaps some of the enchantments on it will still prove useful.");
       e.other:QuestReward(e.self, 0, 0, 0, 0, 71151, 100000); -- (71151); #Cloak of the Dragorn Militia
       e.other:Faction(1016, 5) --Dranik Loyalists +5
       e.other:Faction(1013, -1) -- Overlord Mata Muram -1
     end
   elseif (e.other:GetFaction(e.self) <= 2 and (class == "Magician" or class == "Wizard" or class == "Enchanter" or class == "Cleric" or class == "Druid" or class == "Shaman" or class == "Necromancer")) then -- require warmly and caster
-    if (item_lib.check_turn_in(e.trade, {item1 = 36504, item2 = 36505, item3 = 36506, item4 = 36507})) then -- Makyahs Statue quest
+    if (item_lib.check_turn_in(e.self, e.trade, {item1 = 36504, item2 = 36505, item3 = 36506, item4 = 36507})) then -- Makyahs Statue quest
       e.self:Say("Can it be? You've found it! I shall have this pieced together where no Muramite can find it again. It will be an inspiration for the coming generations and a beacon of hope in these times of darkness. Here take this mask. May it help you always to see the light and protect you from the trials of darkness.");
       e.other:QuestReward(e.self, 0, 0, 0, 0, 71136, 100000); -- (71136); #Veil of Woven Light
       e.other:Faction(1016, 5) --Dranik Loyalists +5
       e.other:Faction(1013, -1) -- Overlord Mata Muram -1
-    elseif (item_lib.check_turn_in(e.trade, {item1 = 36500, item2 = 36501, item3 = 36502, item4 = 36503})) then -- Zakarivs Shattered Sword quest
+    elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 36500, item2 = 36501, item3 = 36502, item4 = 36503})) then -- Zakarivs Shattered Sword quest
       e.self:Say("This... this is amazing. I never thought to have anything to remember Zakariv by. Thank you for returning these pieces to me. I will have them reforged and once again this weapon will be amazing to behold! Here, take this cloak as a reward. It was one that I wore in my days as a warrior. Perhaps some of the enchantments on it will still prove useful.");
       e.other:QuestReward(e.self, 0, 0, 0, 0, 71152, 100000); -- (71152); #Woven Cape of the Militia
       e.other:Faction(1016, 5) --Dranik Loyalists +5

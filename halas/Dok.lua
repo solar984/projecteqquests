@@ -22,7 +22,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if(item_lib.check_turn_in(e.trade, {item1 = 12222})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12222})) then
 		e.self:Say("Great work!! Now I can make more candles! Here ye are, me fri. I call this the Everburn Candle. It has a wee bit o' magic in it. I hope ye like it.");
 		e.other:SummonItem(12220); -- Item: Everburn Candle
 		e.other:GiveCash(0,0,0,1);
@@ -31,7 +31,7 @@ function event_trade(e)
 		e.other:Faction( 328,3); -- Faction: Merchants of Halas
 		e.other:Faction( 320,3); -- Faction: Wolves of the North
 		e.other:Faction( 327,3); -- Faction: Shamen of Justice
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 12275, item2 = 12276, item3 = 12282, item4 = 13953})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12275, item2 = 12276, item3 = 12282, item4 = 13953})) then
 		e.self:Say("Here is your Candle o' Bravery.");
 		e.other:Faction(328,25); -- Faction: Merchants of Halas
 		e.other:Faction(320,25); -- Faction: Wolves of the North

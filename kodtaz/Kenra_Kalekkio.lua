@@ -109,7 +109,7 @@ function event_trade(e)
 
   local item_lib = require("items")
 
-  if item_lib.check_turn_in(e.trade, { item1 = 60154 }) then -- Item: Thrice-Notched Arrow Remains
+  if item_lib.check_turn_in(e.self, e.trade, { item1 = 60154 }) then -- Item: Thrice-Notched Arrow Remains
     if not has_kevren_flag then
       e.other:Message(MT.NPCQuestSay, "Kenra Kalekkio says, 'You are no doubt a brave adventurer and I wish you well, but you must first speak with Kevren Nalavat about the trials and the dangers that await you before I can accept this. According to my records, you must complete the previous two trials and prove your abilities with those before I can take this from you and claim that you have finished the final trial. Good luck.'")
       e.other:SummonItem(60154) -- Item: Thrice-Notched Arrow Remains

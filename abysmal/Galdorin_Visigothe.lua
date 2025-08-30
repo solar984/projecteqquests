@@ -95,7 +95,7 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	if item_lib.check_turn_in(e.trade, {item1 = 9590}) then -- Item: Notice to Cease and Desist
+	if item_lib.check_turn_in(e.self, e.trade, {item1 = 9590}) then -- Item: Notice to Cease and Desist
 		e.self:Say("Hello. Please pardon me, but. . . Hmm, what do we have here? It says that you wish me to cease and desist spreading slander about the swashbuckler known as Stanos, or else . . .? I'd hardly place him in the 'swashbuckling' category, friend. Let's not sugercoat it. He's more of a scoundrel or smuggler or sniveling scumsucking slimeball. I can't believe you would have the nerve to come in here and threaten my right to say what I wish. My very livelihood depends upon my being able to speak freely to entertain the visitors of this tavern. I'll not be threatened by you, brute. Fight me if you dare!'");
 		make_attackable(e.self, true);
 		e.self:AddToHateList(e.other, 1);

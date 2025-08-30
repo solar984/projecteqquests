@@ -44,34 +44,34 @@ function event_trade(e)
 	local item_lib = require("items");
 	
 	-- Portal Prism (63114)
-	if (item_lib.check_turn_in(e.trade, {item1 = 63114})) then
+	if (item_lib.check_turn_in(e.self, e.trade, {item1 = 63114})) then
 		e.other:Message(MT.Yellow, "Anlut Heavenfall tells you, 'Let us see if you've learned the hidden way or if you must return the crystal to me and beg for further guidance. . .");
 		e.other:SummonItem(63115); -- Portal Prism
 		e.other:MovePC(152, 0.00, 0.00, -30.25, 360); -- Teleport to Nexus
 	-- Portal Prism (63115), Twilight Bloom x3
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 63115, item2 = 63125, item3 = 63125, item4 = 63125})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 63115, item2 = 63125, item3 = 63125, item4 = 63125})) then
 		e.other:Message(MT.Yellow, "Anlut Heavenfall tells you, 'Hmph. Well, I hope that you've studied it more carefully this time . . .");
 		e.other:SummonItem(63116); -- Portal Prism
 		e.other:MovePC(37, -910.00, 886.00, 350.00, 0); -- Teleport to Oasis of Marr (Change needed when Oasis is eventually removed)
 	-- Portal Prism (63116), Time Torn Skull
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 63116, item2 = 63124})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 63116, item2 = 63124})) then
 		e.self:Say("Well, at least you are honest. And that deserves some reward. Here is your prism. Your lessons have changed it, see? Keep it. And take this spell. Study the scroll more carefully than you did the stone. When you've grown some in ability, return and we will continue your lessons.");
 		e.other:SummonItem(63117); -- Purged Portal Prism
 		e.other:SummonItem(15562); -- Item: Spell: North Portal
 	-- Purged Portal Prism
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 63117})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 63117})) then
 		e.self:Say("Yes. It grows in power. As do you. Now, I've started a spell within it. Let's have you experiment a bit. Use Igok. He's daft and nearly useless. A perfect test subject. Take the prism and focus your energies on it, but keep me as your target. You must split your concentration. Good. Now, slowly, allow those energies to extend towards Igok there. Do you feel the [growing power]?");
 		e.other:SummonItem(63118); -- Attuned Portal Prism
 	-- Attuned Portal Prism, First Igok Fragment, Second Igok Fragment
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 63118, item2 = 63127, item3 = 63128})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 63118, item2 = 63127, item3 = 63128})) then
 		e.self:Say("Always repairing your blunders doesn't make up for them! Bah! If it weren't for your obvious talent, I would end you myself. Leave me! Go and search the world. Perhaps you'll find some grain of intelligence, some iota of wisdom. Do not return to me until you've gained many, many seasons. And here. . .keep this with you as a token from me.");
 		e.other:SummonItem(63126); -- Anlut's Hint
 	-- Anlut's Hint
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 63126})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 63126})) then
 		e.other:SetGlobal("time_terror", "1", 4, "S30");
 		e.other:MovePC(86, 9722.00, 1136.00, 2626.00, 0); -- Teleport to Dreadlands
 	-- Time Terror Essence
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 63130})) then
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 63130})) then
 		e.self:Say("Go away! You are not the one finishing the trial!");
 		e.self:Emote(". .amazing. . . I knew there was some gift within you, some desire to do more. Well, now you've proven it. It is good to see you succeed after so much failure. I cannot deny it. Nor can I deny that you deserve recognition for your efforts. Here, take this. Perhaps it will keep you safe. Good luck, " .. e.other:GetName());
 		e.other:SummonItem(63129); -- Heavenfall Girding

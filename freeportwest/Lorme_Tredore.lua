@@ -24,7 +24,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18740})) then -- A Tattered Note
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18740})) then -- A Tattered Note
 		e.self:Say(string.format("Welcome to the Academy of Arcane Sciences. I am Lorme Tredore, Master Magician. Here is our guild robe, wear it with pride and represent us well, young %s. Once you are ready to begin your training please make sure that you see Shana Liskia, he can assist you in developing your hunting and gathering skills. Return to me when you have become more experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [trades] you will have available to you.",e.other:GetName()));
 		e.other:SummonItem(13559); -- Item: Used Violet Robe*
 		e.other:Ding();
@@ -33,7 +33,7 @@ function event_trade(e)
 		e.other:Faction(296,-15,0); -- Opal Dark Briar
 		e.other:Faction(330,-15,0); -- The Freeport Militia
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13951})) then -- Fleshy Orb
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13951})) then -- Fleshy Orb
 		e.self:Say("Ah. Thank you for bringing this to me! I will make very good use of it. Here take this small token of my appreciation in return. Guard Jenkins will no longer require it as he was killed on the training field yesterday. Tsk. tsk. tsk.");
 		e.other:SummonItem(5353); -- Item: Fine Steel Scimitar
 		e.other:Ding();

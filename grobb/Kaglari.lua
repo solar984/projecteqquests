@@ -38,7 +38,7 @@ function event_trade(e)
 
 	if (pfaction > 4) then
 		e.self:Say("'You need to prove your dedication to our cause before I can discuss such matters with you.");
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 13073, item2 = 13073, item3 = 13070, item4 = 13070})) then -- Majik power
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 13073, item2 = 13073, item3 = 13070, item4 = 13070})) then -- Majik power
 		e.self:Say("Good. Innoruuk get special gift. Not you, dis time. Here. Learning majik wid dis. You more want to [" .. eq.say_link("help Innoruuk",false,"help Innoruuk") .. "]?");
 		e.other:SummonItem(15093); -- Item: Spell: Burst of Flame
 		e.other:Ding();
@@ -46,7 +46,7 @@ function event_trade(e)
 		e.other:Faction(308,1,0);  -- +Shadowknights of Night Keep
 		e.other:Faction(251,-1,0); -- -Frogloks of Guk
 		e.other:AddEXP(30);
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 13916})) then -- More Help for Innoruuk
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 13916})) then -- More Help for Innoruuk
 		e.self:Say("Good job. Dat help lerns um. Takes dis ta help ya lerns how ta do more hateful tings. Ya gots a good starts fer Him ta be prouds a ya.");
 		e.other:SummonItem(15272); -- Item: Spell: Spirit Pouch
 		e.other:Ding();
@@ -54,7 +54,7 @@ function event_trade(e)
 		e.other:Faction(308,1,0);  -- +Shadowknights of Night Keep
 		e.other:Faction(251,-1,0); -- -Frogloks of Guk
 		e.other:AddEXP(150);
-	elseif (item_lib.check_turn_in(e.trade, {item1 = 18791})) then -- Tattered Note
+	elseif (item_lib.check_turn_in(e.self, e.trade, {item1 = 18791})) then -- Tattered Note
 		e.self:Say("Good.. Kaglari need you help.. Kaglari teach you majik now.  When you ready for task you tell Kaglari!!  Yooz reeturn to mez when yooz ar strongur, mez teech yooz bout da mor advanced tings.");
 		e.other:SummonItem(13529); -- Muck Stained Tunic
 		e.other:Ding();

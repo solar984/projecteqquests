@@ -24,7 +24,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 13818})) then -- Boat Beakon
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13818})) then -- Boat Beakon
 		e.self:Say("Oh!! You must work for that Erudite named Palatos. I guess he won't have to spend anymore money drinking in Freeport. Here. Here is the portrait I kept until he could get me a new boat beacon.");
 		e.other:SummonItem(12146); -- A'kanon's Portrait
 		e.other:Ding();
@@ -33,7 +33,7 @@ function event_trade(e)
 		e.other:Faction(265,1,0); -- Faction: Heretics
 		e.other:Faction(267,1,0); -- Faction: High Guard of Erudin
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 13814})) then -- L.S. Pouch
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13814})) then -- L.S. Pouch
 		e.self:Say("You found my pouch! Thanks kid. Let me buy you A drink and this is for the good work. Hmmmm. It looks as though they took my voucher. Darn it! Hey... It looks like they were using my bag to hold items they were stealing. Here you go. You can have it. It looks like junk.");
 		e.other:SummonItem(eq.ChooseRandom(13922,13923)); -- Snapped Pole or Moggok's Right Eye
 		e.other:Ding();

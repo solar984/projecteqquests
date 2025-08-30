@@ -73,7 +73,7 @@ local item_lib = require("items");
 local race = e.other:GetRaceName();
 
 	if(race == "Halfling") then
-		if(item_lib.check_turn_in(e.trade, {item1 = 12372, item2 = 12373, item3 = 13077, item4 =  14019})) then --Cat Skull Cap, Fractured Femur, Minotaur Horn, Bunch of Optic Nerves
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12372, item2 = 12373, item3 = 13077, item4 =  14019})) then --Cat Skull Cap, Fractured Femur, Minotaur Horn, Bunch of Optic Nerves
 			e.self:Say(string.format("Oh, hey there, %s. I'm still working on my history book. In fact, I just wrote down the part	where we first met. Here let me read it for you!", e.other:GetCleanName()));
 			e.self:Emote("clears his throat.");
 			e.self:Say("Ahem, so I was writing my history book when Dryssa comes up to me and says 'Hail.' And so I reply...");

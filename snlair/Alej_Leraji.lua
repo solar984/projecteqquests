@@ -73,7 +73,7 @@ end
 function event_trade(e)
   local item_lib = require("items")
 
-  if item_lib.check_turn_in(e.trade, {item1 = 68298}) then -- Item: Seal of the Nihil High Priest
+  if item_lib.check_turn_in(e.self, e.trade, {item1 = 68298}) then -- Item: Seal of the Nihil High Priest
     turned_in_seal = true
     eq.get_entity_list():MessageClose(e.self, true, 100, MT.SayEcho, "Alej Leraji looks at the clay seal and with a tired breath says, 'I see you have the seal, you are trustworthy. I need your help, for I don't know if I can survive much longer. I will need my stone shaping tools to get me out of this rocky prison. Please tell me when you [" .. eq.say_link("find my three stone shaping tools") .. "] and make haste! I left them in the water wheel room, the cocoon room, and the entrance to this section of the sewers.  I have little time left.'")
     eq.spawn2(286104, 0, 0, 10, 10, 10, 0) -- NPC: #lair_trigger (spawns event tool room mobs)

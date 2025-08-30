@@ -13,14 +13,14 @@ end
 
 local function master_trade(e)
   local item_lib = require("items")
-  if not delivered_small_sack and item_lib.check_turn_in(e.trade, { item1 = 36215 }) then -- Small Sack of Koi Food
+  if not delivered_small_sack and item_lib.check_turn_in(e.self, e.trade, { item1 = 36215 }) then -- Small Sack of Koi Food
     -- on live master does the emote on hand in also
     eq.get_entity_list():MessageClose(e.self, true, 100, MT.SayEcho, "A Stillmoon koi master says, 'You let him get away with my precious gift!  Quickly, find him before he is able to escape the temple walls!  Wounded as he was, he could not have gotten far away.'")
     eq.spawn2(338423, 0, 0, 930, 375, 16, 94):AddToHateList(e.self)  -- a_drake_usurper
     eq.spawn2(338424, 0, 0, 924, 413, 16, 106):AddToHateList(e.self) -- a_drake_conspirator
     eq.spawn2(338424, 0, 0, 950, 375, 16, 85):AddToHateList(e.self)  -- a_drake_conspirator
     delivered_small_sack = true
-  elseif item_lib.check_turn_in(e.trade, { item1 = 36216 }) then -- Torn Bag of Koi Food
+  elseif item_lib.check_turn_in(e.self, e.trade, { item1 = 36216 }) then -- Torn Bag of Koi Food
     eq.get_entity_list():MessageClose(e.self, true, 100, MT.SayEcho, "A Stillmoon koi master says, 'Ah, very good.  Thank you for returning my gift.  I shall use it to create the most beautiful koi the world has ever seen!  Perhaps outsiders aren't worthless after all.'")
   end
   item_lib.return_items(e.self, e.other, e.trade)

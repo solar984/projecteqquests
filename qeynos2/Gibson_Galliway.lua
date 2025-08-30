@@ -22,7 +22,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 55006})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 55006})) then
 		e.self:Say("You really did it? Yes, this is my ring! I cannot believe it! Father look! He has returned my ring to me!' Sneed ignores Gibson. 'I found this the other day in an old storage room. Perhaps it will aid you in your adventures. You are truly a friend to Sneed's Trading Outpost. Remember to come back again some time. I was going to offer you a discount on all goods here but father wouldn't allow it. I must get back to work now. Farewell, friend!");
 		e.other:SummonItem(55026); -- Item: Galliways' Ring of Good Fortune
 		e.other:Ding();

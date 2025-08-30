@@ -36,10 +36,10 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-		if(item_lib.check_turn_in(e.trade, {item1 = 9585})) then -- Turn in for Magically Sealed Letter
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9585})) then -- Turn in for Magically Sealed Letter
 			e.self:Emote("opens the envelope and pulls out a short letter, his brow furrows as his eyes dance across the pages. 'This is truly grim news. Until now I held hopes that the rumors held no truth, but this is irrefutable evidence of their existence. They call themselves the Disciples of Discord. As we speak they are gaining information for the Legion, gathering information about races that would prove to be powerful allies or enemies for the Legion. Bring this note to Plavo, I do not know where he is, but he must be found. His scouts may already have found what they are looking for, so make haste.");
 			e.other:SummonItem(9591); -- Dark Disciples Note of Service
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 9954})) then -- Aegis of Chaotic Worship Turn in.
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 9954})) then -- Aegis of Chaotic Worship Turn in.
 			e.self:Say("Interesting, I heard about your fight with the leader of the Disciples. I've never seen anything like this. Take it to Borik Darkanvil in the Plane of Knowledge. Return to me when you are done with him, in the meantime I will try to find information on where he went after your fight.");
 			e.other:SummonItem(9954); -- Returns Aegis of Chaotic Worship to player
 		end

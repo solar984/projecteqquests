@@ -13,7 +13,7 @@ end
       
 function event_trade(e)
 	local item_lib = require("items");
-		if (item_lib.check_turn_in(e.trade, {item1 = 54085,item2 = 54084,item3 = 54087,item4 = 54086})) then -- Intact stomemite shell, legs, eye and meat
+		if (item_lib.check_turn_in(e.self, e.trade, {item1 = 54085,item2 = 54084,item3 = 54087,item4 = 54086})) then -- Intact stomemite shell, legs, eye and meat
 			e.self:Say("Wonderful! I should be able to garner quite a bit of information with these specimens. Here are those pearls I mentioned.");
 			 e.other:QuestReward(e.self,0,0,0,0,54092,12000); --Strand of Sea Pearls
     end

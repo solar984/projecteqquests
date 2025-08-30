@@ -11,22 +11,22 @@ function event_trade(e)
 	local item_lib = require("items");
 	local tunic = 0;
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 26528})) then -- Bile Stained Robes
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 26528})) then -- Bile Stained Robes
 		e.other:SummonItem(77503); -- Bile Stained Jerkin
 		tunic =1;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 6073})) then -- Cured Shade Silk Robe
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 6073})) then -- Cured Shade Silk Robe
 		e.other:SummonItem(77501); -- Cured Shade Silk Tunic
 		tunic =1;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 29084})) then -- Guardian Robe
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 29084})) then -- Guardian Robe
 		e.other:SummonItem(77504); -- Guardian Jerkin
 		tunic =1;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 10845})) then -- Robe of the Azure Sky
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 10845})) then -- Robe of the Azure Sky
 		e.other:SummonItem(77502); -- Tunic of the Azure Sky
 		tunic =1;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 2798})) then -- Shade Silk Robe
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 2798})) then -- Shade Silk Robe
 		e.other:SummonItem(77500); -- Shade Silk Tunic
 		tunic =1;
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 30858})) then -- Shainai's Nightie
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 30858})) then -- Shainai's Nightie
 		e.other:SummonItem(77505); -- Shainai's Tunic
 		tunic =1;
 	end

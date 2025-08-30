@@ -47,7 +47,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.other);
 
-	if( qglobals["Fatestealer_bard"] == "1" and qglobals["Fatestealer_page"] == "1" and qglobals["Fatestealer_forge"] == "1" and item_lib.check_turn_in(e.trade, {item1 = 52337}) ) then 
+	if( qglobals["Fatestealer_bard"] == "1" and qglobals["Fatestealer_page"] == "1" and qglobals["Fatestealer_forge"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 52337}) ) then 
 		e.self:Emote("discusses the process with his assistant. She listens, nodding, then begins work immediately. She takes measurements of your hands and fashions the grip so that it's a perfect fit, then turns to the hot coals of the forge. She selects a brick of fine metal. Her back to you, Dandi hammers away at the metal, sparks flying in all directions. When the job is completed she hands you the blade, still warm. 'Best work I've ever done. I hope it serves you well. Unfortunately the metal I have to work with isn't the recommended 'Velixite'. Based on the description I used the closest thing we have. Also, without an example to work from I had to improvise on a few details that weren't fully described in your documentation.");
 		e.other:SummonItem(52347); -- Item: Fatestealer
 		e.other:AddAAPoints(5);
@@ -55,7 +55,7 @@ function event_trade(e)
 		e.other:Message(MT.Yellow,'You have gained 5 ability points!');
 		eq.set_global("Fatestealer","2",5,"F");
 	end
-	if( qglobals["Fatestealer"] == "3" and item_lib.check_turn_in(e.trade, {item1 = 47100,item2 = 52342,item3 = 21346,item4 = 52347}) ) then
+	if( qglobals["Fatestealer"] == "3" and item_lib.check_turn_in(e.self, e.trade, {item1 = 47100,item2 = 52342,item3 = 21346,item4 = 52347}) ) then
 		e.other:QuestReward(e.self,{itemid=52348, exp=50000}); --Nightshade, Blade of Entropy
 		e.other:AddAAPoints(10);
 		e.other:Message(MT.Yellow,'You have gained 10 ability points!');

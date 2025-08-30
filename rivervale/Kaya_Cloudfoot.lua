@@ -51,7 +51,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 18431})) then -- Halfling Paladin Note
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18431})) then -- Halfling Paladin Note
 		e.self:Say("Karana smiles upon you young " .. e.other:GetName() .. "! Take this tunic to keep you warm through the storms you must face. There is evil encroaching upon the lands of Karana's faithful. The wicked minions of Bertoxxulous and the Teir'Dal children of Hate corrupt the lands to the west and east, and the Deathfist Clan of Orcs are waging war on this region while destoying the wilderness for lumber and stone. It is Karana's will that we defend our lands and way of life from these evil threats. When you are ready to begin adventuring, I will be happy to advise you on how to help us deal with the [evil forces]. I also posses knowledge of various [trades], seek me out when you wish to learn about them.");
 		e.other:SummonItem(13541); -- Jumjum Sack Tunic*
 		e.other:Ding();
@@ -60,7 +60,7 @@ function event_trade(e)
 		e.other:Faction(292,15,0); -- +Merchants of Rivervale
 		e.other:Faction(324,-15,0); -- -Unkempt Druids
 		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.trade, {item1 = 19688})) then
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 19688})) then
 		e.self:Say("Take this Dull Bravefoot Short Sword to the forge at Tagglefoots farm and sharpen it with a sharpening stone. It may take several attempts if you are unfamiliar with the process. Once that is done present the blade and a large snake skin to Bodbin Gimple and he will put the finishing touches on the sword.");
 		e.other:SummonItem(19625); -- Item: Dull Bravefoot Short Sword
 		e.other:Ding();

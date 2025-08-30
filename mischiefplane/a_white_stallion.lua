@@ -16,7 +16,7 @@ end
 function event_trade(e)
     local item_lib = require("items");
 	
-    if item_lib.check_turn_in(e.trade, {item1 = 22856}) then --Check for Lithiniath's Horn
+    if item_lib.check_turn_in(e.self, e.trade, {item1 = 22856}) then --Check for Lithiniath's Horn
         e.self:QuestSay(e.other,"The madness has fled my mind and I am once again whole! Give Gelistial my regards, I must leave this place and try to quell the madness I have inflicted.");
 		e.other:QuestReward(e.self,0,0,0,0,24869,100);  --  Crest of the Unicorns
 		eq.depop_with_timer();

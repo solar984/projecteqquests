@@ -31,7 +31,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	if(e.other:GetFaction(e.self) < 6) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 13246})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13246})) then
 			e.self:Say("Good work!! Kylan will never know o' me negligence. I owe ye one, young warrior. Let's call it even with this. Twas found by one of our foraging parties. It is still useful. And... I believe ye can assist with a more [dangerous matter] as well");
 			e.other:Ding();
 			e.other:SummonItem(eq.ChooseRandom(17009, 17001)); -- Item(s): Purse (17009)
@@ -40,7 +40,7 @@ function event_trade(e)
 			e.other:Faction( 328, 5); -- Faction: Merchants of Halas
 			e.other:Faction( 311, 5); -- Faction: Steel Warriors
 			e.other:AddEXP(2000);
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 13249, item2 = 13248, item3 = 13247, item4 = 13233})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13249, item2 = 13248, item3 = 13247, item4 = 13233})) then
 			e.self:Say("Thank ye, " .. e.other:GetName() .. "! I knew ye could do it. It is a sad thing, but at least now he can rest in peace. Here is something for your efforts. If ye are interested, there is a [dangerous matter] that needs to be looked into.");
 			e.other:Ding();
 			e.other:AddEXP(3000);
@@ -48,7 +48,7 @@ function event_trade(e)
 		end
 	end
 	if(e.other:GetFaction(e.self) < 5) then
-		if(item_lib.check_turn_in(e.trade, {item1 = 12227, item2 = 13248, item3 = 13247, item4 = 13233})) then
+		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12227, item2 = 13248, item3 = 13247, item4 = 13233})) then
 			e.self:Say("Nice work " .. e.other:GetName() .. "! Basil has always been an outcast of sorts. I'm glad to see you were able to stop him. Here is a Langseax for your efforts.");
 			e.other:Ding();
 			e.other:Faction( 320, -15);	--shows neg faction hit on live.   possibly to avoid exploits
@@ -57,7 +57,7 @@ function event_trade(e)
 			e.other:Faction( 311, -15); -- Faction: Steel Warriors
 			e.other:AddEXP(10000);
 			e.other:SummonItem(5367); -- Item: Langseax
-		elseif(item_lib.check_turn_in(e.trade, {item1 = 12225, item2 = 13248, item3 = 13247, item4 = 13233})) then
+		elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12225, item2 = 13248, item3 = 13247, item4 = 13233})) then
 			e.self:Say("Nice work " .. e.other:GetName() .. "! Paglan has always been an outcast of sorts. I'm glad to see you were able to stop him. Here is a Langseax of the Wolves for your efforts.");
 			e.other:Ding();
 			e.other:Faction( 320, -20); -- Faction: Wolves of the North

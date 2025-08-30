@@ -10,7 +10,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.trade, {item1 = 2300})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 2300})) then
 		e.self:Say("Here, take this to Eldarian over there as fast as you can!");
 		e.other:SummonItem(20695); -- Item: Warm Pulsing Treant Heart
 		e.other:Ding();
