@@ -234,7 +234,7 @@ function items.return_items(npc, client, trade, text)
 					eq.debug("Handing back an item it doesn't need (" .. itemid .. ").", 2);
 					returned = true;
 				end
-			elseif(eq.is_disc_tome(itemid) and npc:GetClass() >= 19 and npc:GetClass() < 36) then
+			elseif (eq.is_disc_tome(itemid) and npc:GetClass() >= 19 and npc:GetClass() < 36) then
 				if(client:GetClass() == npc:GetClass() - 19) then
 					client:TrainDisc(itemid);
 				else
@@ -242,6 +242,17 @@ function items.return_items(npc, client, trade, text)
 					client:PushItemOnCursor(inst);
 					returned = true;
 				end
+			elseif (return_count > 0) then
+				client:PushItemOnCursor(inst);
+				if (npc:CanTalk()) then
+					if (not text) then
+						npc:Say("I have no need for this item " .. client:GetCleanName() .. ", you can have it back.");
+					elseif (text ~= "") then
+						npc:Say(text);
+					end
+				end
+				eq.debug("Handing back an item it doesn't need (" .. itemid .. ").", 2);
+				returned = true;
 			end
 		end
 	end
