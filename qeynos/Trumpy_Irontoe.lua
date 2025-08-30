@@ -38,7 +38,7 @@ function event_trade(e)
 	local item_lib = require("items");
 	local text = "Beh! Thanks, Skippy. Why don't ya buy yourself one? And.. <gulp>.. <burp>.. get me another!";
 	
-	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction() >= -500 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13033, item2 = 13033, item3 = 13033, item4 = 13033},1,text)) then
+	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= -500 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13033, item2 = 13033, item3 = 13033, item4 = 13033},1,text)) then
 		e.self:Say("BWAH hah hah! I knew you wasn't the loser you.. <gulp>.. <gulp>.. appear to be! I will have to tell [Kane].. <burp>.. all about you. Maybe get you in the gang!");
 		-- Confirmed Live Factions
 		e.other:Faction(223,1,0); -- Faction: Circle of Unseen Hands
