@@ -151,19 +151,19 @@ function Velarte2Trade(e)
 	if(jars == 3  and item_lib.check_turn_in(e.self, e.trade, {item1 = 2587, item2 = 2588 , item3 = 2589},0)) then -- many checks to confirm event is a sucess!
 		if(not eq.get_entity_list():IsMobSpawnedByNpcTypeID(2001)) then
 			e.self:Say("You did it! You have proven you have the intelligence required and you may wear this Researcher's Badge with pride! Thank you for returning the jars.");
-			e.other:Faction(e.self,341,5); -- Priest of Life
-			e.other:Faction(e.self,280,1); -- Knight of Thunder
-			e.other:Faction(e.self,262,2); -- Guards of Qeynos
-			e.other:Faction(e.self,221,-1); -- Bloodsabers
-			e.other:Faction(e.self,219,1); -- Antonius Bayle
+			e.other:Faction(341,5); -- Priest of Life
+			e.other:Faction(280,1); -- Knight of Thunder
+			e.other:Faction(262,2); -- Guards of Qeynos
+			e.other:Faction(221,-1); -- Bloodsabers
+			e.other:Faction(219,1); -- Antonius Bayle
 			e.other:QuestReward(e.self,{itemid = 2583, exp = 10000}); -- Researcher's Badge
 		else
 			e.self:Say("How unfornate. It appears as though the test failed.  I'm very sorry.  Take these coins for your time at least.");
-			e.other:Faction(e.self,341,5); -- Priest of Life
-			e.other:Faction(e.self,280,1); -- Knight of Thunder
-			e.other:Faction(e.self,262,2); -- Guards of Qeynos
-			e.other:Faction(e.self,221,-1); -- Bloodsabers
-			e.other:Faction(e.self,219,1); -- Antonius Bayle
+			e.other:Faction(341,5); -- Priest of Life
+			e.other:Faction(280,1); -- Knight of Thunder
+			e.other:Faction(262,2); -- Guards of Qeynos
+			e.other:Faction(221,-1); -- Bloodsabers
+			e.other:Faction(219,1); -- Antonius Bayle
 			e.other:QuestReward(e.self,math.random(5),math.random(5),math.random(5),math.random(5),0,1000);
 		end
 		jars = 0;
@@ -232,28 +232,28 @@ function Enchantedtimer(e)
 			for npc in npc_list.entries do	
 				if (npc:GetNPCTypeID() == healthy) then
 					if(npc.valid) then
-						if (npc:CalculateHeadingToTarget(x,y) == 128) then --Checks north of tile 
+						if (npc:CalculateHeadingToTarget(x,y) == 256) then --Checks north of tile 
 							if(minNorth == nil) then
 								minNorth = npc:CalculateDistance(x,y,z);
 							elseif(npc:CalculateDistance(x,y,z) < minNorth) then
 								minNorth = npc:CalculateDistance(x,y,z);
 							end
 						end
-						if(npc:CalculateHeadingToTarget(x,y) == 256) then  --Checks south of tile 
+						if(npc:CalculateHeadingToTarget(x,y) == 0) then  --Checks south of tile 
 							if(minSouth == nil) then
 								minSouth = npc:CalculateDistance(x,y,z);
 							elseif(npc:CalculateDistance(x,y,z) < minSouth) then
 								minSouth = npc:CalculateDistance(x,y,z);
 							end
 						end
-						if(npc:CalculateHeadingToTarget(x,y) == 192) then  --Checks west of tile 
+						if(npc:CalculateHeadingToTarget(x,y) == 384) then  --Checks west of tile 
 							if(minWest == nil) then
 								minWest = npc:CalculateDistance(x,y,z);
 							elseif(npc:CalculateDistance(x,y,z) < minWest) then
 								minWest = npc:CalculateDistance(x,y,z);
 							end
 						end
-						if(npc:CalculateHeadingToTarget(x,y) > 62 and npc:CalculateHeadingToTarget(x,y) < 66) then  --Checks east of tile 
+						if(npc:CalculateHeadingToTarget(x,y) == 128) then  --Checks east of tile 
 							if(minEast == nil) then
 								minEast = npc:CalculateDistance(x,y,z);
 							elseif(npc:CalculateDistance(x,y,z) < minEast) then
@@ -269,22 +269,22 @@ function Enchantedtimer(e)
 			for npc in npc_list.entries do			
 				if (npc:GetNPCTypeID() == diseased) then
 					if(npc.valid) then
-						if(npc:CalculateHeadingToTarget(x,y) == 128) then --Checks north of tile 
+						if(npc:CalculateHeadingToTarget(x,y) == 256) then --Checks north of tile 
 							if (minNorth ~= nil and npc:CalculateDistance(x,y,z) < minNorth) then
 								eq.spawn2(healthy,0,0,npc:GetX(),npc:GetY(),npc:GetZ(),0);	--spawns healthy rat
 								npc:Depop();		--depop diseased rat
 							end
-						elseif(npc:CalculateHeadingToTarget(x,y) == 256) then  --Checks south of tile 
+						elseif(npc:CalculateHeadingToTarget(x,y) == 0) then  --Checks south of tile 
 							if (minSouth ~= nil and npc:CalculateDistance(x,y,z) < minSouth) then
 								eq.spawn2(healthy,0,0,npc:GetX(),npc:GetY(),npc:GetZ(),0);	--spawns healthy rat
 								npc:Depop();		--depop diseased rat
 							end
-						elseif(npc:CalculateHeadingToTarget(x,y) == 192) then  --Checks west of tile 
+						elseif(npc:CalculateHeadingToTarget(x,y) == 384) then  --Checks west of tile 
 							if (minWest ~= nil and npc:CalculateDistance(x,y,z) < minWest) then
 								eq.spawn2(healthy,0,0,npc:GetX(),npc:GetY(),npc:GetZ(),0);	--spawns healthy rat
 								npc:Depop();		--depop diseased rat
 							end
-						elseif(npc:CalculateHeadingToTarget(x,y) > 62 and npc:CalculateHeadingToTarget(x,y) < 66) then  --Checks east of tile 
+						elseif(npc:CalculateHeadingToTarget(x,y) == 128) then  --Checks east of tile 
 							if (minEast ~= nil and npc:CalculateDistance(x,y,z) < minEast) then
 								eq.spawn2(healthy,0,0,npc:GetX(),npc:GetY(),npc:GetZ(),0);	--spawns healthy rat
 								npc:Depop();		--depop diseased rat
