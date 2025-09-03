@@ -1,4 +1,3 @@
--- items: 17266, 22610, 22611, 22613, 22612, 22614, 22615, 22616, 27399, 27417, 27490
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Good day " .. e.other:GetName() .. ". I am Davloran Girionlis Holy Knight in service to the Prime Healer Rodcet Nife. I pride myself on being responsible for ridding my homeland of unimaginable evil during my fighting days. Nowadays I just like to train new Temple of Life paladin [recruits].");
@@ -41,16 +40,13 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 27399,item2 = 27399,item3 = 27417,item4 = 27417})) then
-		e.self:Say("These are exactly what I needed! Its for sure that I have a lot to learn about Smithing but low and behold I was able to create this fine blade out of my remaining materials. Please carry it with you as a symbol of my gratitude. Rodcet smiles down upon you young " .. e.other:GetName() .. ", you have done well.");
-		e.other:SummonItem(27490); -- Item: Rodcet Nife Defenders Blade
-		e.other:Ding();
-		e.other:Faction(280,3,0); -- Faction: Knights of Thunder
-		e.other:Faction(221,-3,0); -- Faction: Bloodsabers
-		e.other:Faction(341,3,0); -- Faction: Priests of Life
-		e.other:Faction(262,3,0); -- Faction: Guards of Qeynos
-		e.other:AddEXP(100);
+		e.self:Say("These are exactly what I needed! Its for sure that I have a lot to learn about Smithing but low and behold I was able to create this fine blade out of my remaining materials. Please carry it with you as a symbol of my gratitude. Rodcet smiles down upon you young " .. e.other:GetCleanName() .. ", you have done well.");
+		-- Confirmed Live Experience and Faction
+		e.other:Faction(280,10); -- Faction: Knights of Thunder
+		e.other:Faction(221,-10); -- Faction: Bloodsabers
+		e.other:Faction(341,7); -- Faction: Priests of Life
+		e.other:Faction(262,7); -- Faction: Guards of Qeynos
+		e.other:QuestReward(e.self,{itemid = 27490,exp = 500});
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end
-
--- END of FILE Zone:qeynos2  ID:2033 -- Davloran_Girionlis

@@ -1,4 +1,3 @@
--- items: 17267, 22610, 22611, 22613, 22612, 22614, 22615, 22616, 27498
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Pleased to meet you " .. e.other:GetName() .. ". I am Filian Weagleross High Priest of the glorious Rodcet Nife! I have recently taken upon some very [important duties] here in our temple so if your business is not urgent please excuse me.");
@@ -40,5 +39,3 @@ function event_trade(e)
 	local item_lib = require("items");
 	item_lib.return_items(e.self, e.other, e.trade);
 end
-
--- END of FILE Zone:qeynos2  ID:2032 -- Filian_Weagleross 
