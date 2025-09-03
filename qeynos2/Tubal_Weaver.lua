@@ -1,6 +1,18 @@
+function event_spawn(e)
+	eq.set_timer("pick_up", 2000);
+end
+
+function event_timer(e)
+	if ( e.timer == "pick_up" ) then		
+		while ( e.self:CheckGround() ) do
+			e.self:Say("Hey!  Someone dropped a perfectly good thing-a-ma-jig!  Oh well, finders keepers!");
+		end
+	end	
+end
+
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say(string.format("Hail. %s!  I am Tubal Weaver. humble merchant and retired guardsman of Highkeep.  I make a tidy living dealing with the throngs of adventurers who take it upon themselves to keep Qeynos beetle-free.  If you want some free advice. I recommend that you not deal with any of the merchants in town.  I can offer much lower prices than they because I do not have the overhead of a shop to maintain.",e.other:GetName()));
+		e.self:Say("Hail, " .. e.other:GetCleanName() .. "!  I am Tubal Weaver, humble merchant and retired guardsman of Highkeep.  I make a tidy living dealing with the throngs of adventurers who take it upon themselves to keep Qeynos beetle-free.  If you want some free advice, I recommend that you not deal with any of the merchants in town.  I can offer much lower prices than they because I do not have the overhead of a shop to maintain.");
 	end
 end
 

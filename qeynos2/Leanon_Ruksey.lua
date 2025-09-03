@@ -1,4 +1,3 @@
--- items: 18020, 18024
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Ah..  good day. friend.  My name's Leanon Ruksey. loyal member of the League of Antonican Bards..  Qeynos Chapter. of course.  It's part of my job to keep up with the goings-on of the city. who's coming and going and all that.  So we usually keep a man here and one at the docks.  Anyway. nice chatting with you..  be careful out there!");
@@ -9,15 +8,14 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18020})) then
-		e.self:Say(string.format("Ah, hello there, %s. It's such a fine day out, wouldn't you say? Ah, reports are due in. Very well, here you go. Say hello to the fellows back at the Wind Spirit's Song for me. May you have many safe travels, my friend.",e.other:GetName()));
-		e.other:SummonItem(18024); -- Item: Leanon's Report
-		e.other:Ding();
-		e.other:Faction(284,2,0); -- Faction: League of Antonican Bards
-		e.other:Faction(281,2,0); -- Faction: Knights of Truth
-		e.other:Faction(262,2,0); -- Faction: Guards of Qeynos
-		e.other:Faction(304,-2,0); -- Faction: Ring of Scale
-		e.other:Faction(285,-2,0); -- Faction: Mayong Mistmoore
-		e.other:AddEXP(200);
+		e.self:Say("Ah, hello there, " .. e.other:GetCleanName() .. ". It's such a fine day out, wouldn't you say? Ah, reports are due in. Very well, here you go. Say hello to the fellows back at the Wind Spirit's Song for me. May you have many safe travels, my friend.");
+		-- live confirmed text + faction
+		e.other:Faction(284,10); 
+		e.other:Faction(281,1); 
+		e.other:Faction(262,1);
+		e.other:Faction(304,-1);
+		e.other:Faction(285,-1);
+		e.other:QuestReward(e.self,{itemid = 18024, exp = 200}); -- Item: Leanons Report
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

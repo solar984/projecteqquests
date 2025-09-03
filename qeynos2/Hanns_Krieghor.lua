@@ -1,4 +1,3 @@
--- items: 18708, 13501, 28058, 7501
 function event_spawn(e)
 	local xloc = e.self:GetX();
 	local yloc = e.self:GetY();
@@ -29,9 +28,14 @@ end
 
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say("My name is Hanns..  Do as I say. and we shall get along just fine.");
+		e.self:Say("My name is Hanns..  Do as I say, and we shall get along just fine.");
+	elseif(e.message:findi("knargon")) then
+		e.self:Say("That little weasel is scurrying around here somewhere, I suppose.");
 	elseif(e.message:findi("carson has a mole in the highpass")) then
 		e.self:Say("Arrgg, that Carson can't control anything. Sometimes he's practically useless. Go tell Zannsin that [I want him to send some of his men to Prak in Highpass], to help Carson get back on track.");
+	elseif(e.message:findi("stanos")) then
+		e.self:Say("Stanos Herkanor? <he roars in frustration> That bastard should be long dead by now. if you see him, you hightail it back and let me know at once. Do I make myself clear, " .. e.other:GetCleanName() .. "? Do not speak to him, do not attack him, just return here and inform me. And that is ALL you need to know about Stanos.");
+		e.self:DoAnim(60); -- glare animation
 	end
 end
 
@@ -40,22 +44,21 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18708})) then -- Napkin From Crow's
 		e.self:Say("Lucky thing you weren't followed. or you'd be breathing through holes in your back right now. Go find Knargon, maybe you can help run the next [shipment]. Remember, we keep our business quiet, so watch yourself, sewer crawler.");
-		e.other:SummonItem(13501); -- Second Hand Tunic*
-		e.other:Ding();
-		e.other:Faction(223,100,0); -- Circle of Unseen Hands
-		e.other:Faction(291,-15,0); -- Merchants of Qeynos
-		e.other:Faction(230,15,0); -- Corrupt Qeynos Guards
-		e.other:Faction(262,-15,0); -- Guards of Qeynos
-		e.other:Faction(273,10,0); -- Kane Bayle
-		e.other:AddEXP(100);
+		e.other:Faction(223,100); -- Circle of Unseen Hands
+		e.other:Faction(291,-15); -- Merchants of Qeynos
+		e.other:Faction(230,15); -- Corrupt Qeynos Guards
+		e.other:Faction(262,-15); -- Guards of Qeynos
+		e.other:Faction(273,10); -- Kane Bayle
+		e.other:QuestReward(e.self,{itemid = 13501,exp = 20}); -- Second Hand Tunic*
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 28058})) then
-		e.self:Say("Well done, " .. e.other:GetName() .. "."); -- Text made up
-		e.other:SummonItem(7501); -- Item: Fanged Skull Stiletto
-		e.other:Ding();
-		e.other:Faction(223,20,0); -- Circle of Unseen Hands
-		e.other:AddEXP(50000);
+		e.self:Say("YES! The bastard is dead, finally. I would have loved to do the work myself, but this will suffice. Here, take this, you have proven yourself a true friend of the Circle!");
+		-- Confirmed Live Factions
+		e.other:Faction(223,200); -- Circle of Unseen Hands
+		e.other:Faction(291,-30); -- Merchants of Qeynos
+		e.other:Faction(230,30); -- Corrupt Qeynos Guards
+		e.other:Faction(262,-30); -- Guards of Qeynos
+		e.other:Faction(273,20); -- Kane Bayle
+		e.other:QuestReward(e.self,{itemid = 7501,exp = 50000}); -- Item: Fanged Skull Stiletto
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end
-
--- Submitted by Jim Mills

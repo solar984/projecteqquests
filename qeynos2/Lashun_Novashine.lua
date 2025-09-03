@@ -1,7 +1,15 @@
--- items: 13073
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say(string.format("Well met, %s. My name is Lashun Novashine and I am a humble priest of Rodcet Nife, the Prime Healer. I wish to spread His word to every corner of Norrath. My job gets more difficult each day with so many so willing to take lives rather than preserve them.",e.other:GetName()));
+		e.self:Say("Well met, " .. e.other:GetCleanName() .. ". My name is Lashun Novashine and I am a humble priest of [Rodcet Nife], the Prime Healer. I wish to spread His word to every corner of Norrath. My job gets more difficult each day with so many so willing to take lives rather than preserve them.");
+	elseif(e.message:findi("rodcet nife") or e.message:findi("prime healer")) then
+		e.self:Say("Rodcet Nife is the Prime Healer. It is He who protects the health and well-being of the people of Norrath. The Temple of Life in North Qeynos is dedicated to His glory. I am but one of His loyal clerics who seek to cure all disease and heal all wounds.");
+	elseif(e.message:findi("heal") or e.message:findi("cure")) then
+		e.self:Say("Rodcet wills us to cure and heal all who seek it. But He asks that you pay a price in return. I can cure diseases with a small donation of 2 gold pieces. I can also heal your wounds, but as proof of your desire to rid Norrath of the evil of Bertoxxulous and as an offering to the Prime Healer, you must bring me 2 bone chips from the undead that roam these hills.");
+	elseif(e.message:findi("bertoxxulous") or e.message:findi("bloodsabers")) then
+		e.self:Say("Bertoxxulous is the fiend who rules the Plane of Disease. His followers are the Temple of Life's greatest foes. We believe a sect of his disciples known as the Bloodsabers are at this moment planning to make Qeynos a breeding ground for all sorts of terrible plagues.");
+	elseif(e.message:findi("temple") or e.message:findi("life")) then
+		e.self:Say("The lost shall find salvation in the Temple of Life! Follow me if you wish. I was just on my way back there.");	-- TODO Travel to Ironforge House
+		eq.move_to(0,0,4,0,false);
 	end
 end
 
@@ -15,41 +23,34 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-	local number_of_bone_chip = 0;
-	local two_gold = 0;
-	
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13073,item2 = 13073,item3 = 13073,item4 = 13073})) then
-		number_of_bone_chip = 4;
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13073,item2 = 13073,item3 = 13073})) then
-		number_of_bone_chip = 3;	
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13073,item2 = 13073})) then
-		number_of_bone_chip = 2;	
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13073})) then
-		number_of_bone_chip = 1;
-	elseif(item_lib.check_turn_in(e.self, e.trade, {gold = 2})) then
-		number_of_bone_chip = 1;
-		two_gold = 1;
-	end
+	local chip = item_lib.count_handed_item(e.self, e.trade, {13073});
 
-	if(number_of_bone_chip >= 1) then
-		e.other:Ding();
-		e.self:CastSpell(17,e.other:GetID()); -- Spell: Light Healing
+	-- experience reward verified through live data
+	if(item_lib.check_turn_in(e.self, e.trade, {gold = 2}, 0)) then
+		e.self:Say("Thank you for the donation to the Temple of Life. May Rodcet Nife cleanse your body of all ills.");
+		e.self:CastSpell(213,e.other:GetID()); -- Cure Disease
+		-- Confirmed Live Factions
+		e.other:Faction(341,1); -- Priests of Life
+		e.other:Faction(280,1); -- Knights of Thunder
+		e.other:Faction(262,1); -- Guards of Qeynos
+		e.other:Faction(221,-1); -- Bloodsabers
+		e.other:Faction(219,1); -- Antonius Bayle
+		e.other:QuestReward(e.self,{exp = 1});
+	elseif(chip > 0) then
 		repeat
-			if(two_gold == 1) then
-				e.self:Say("Thank you for the donation to the Temple of Life. May Rodcet Nife cleanse your body of all ills.");
-				e.other:AddEXP(1);
-				two_gold = 0;
-			else
-				e.self:Say("Very well, young one. May the light of the Prime Healer wash away your scars.");
+			if(chip == 2) then
+				e.self:Say("Very well, young one. May the light of the Prime Healer wash away your scars."); -- 2 Bone Chips
+				e.self:CastSpell(200,e.other:GetID()); -- Minor Healing
 			end
-			e.other:Faction(341,2,0); -- Faction: Priests of Life
-			e.other:Faction(280,2,0); -- Faction: Knights of Thunder
-			e.other:Faction(262,2,0); -- Faction: Guards of Qeynos
-			e.other:Faction(221,-2,0); -- Faction: Bloodsabers
-			e.other:Faction(219,2,0); -- Faction: Antonius Bayle
-			e.other:AddEXP(12);
-			number_of_bone_chip = number_of_bone_chip - 1;
-		until number_of_bone_chip == 0
+			-- Confirmed Live Factions
+			e.other:Faction(341,1); -- Priests of Life
+			e.other:Faction(280,1); -- Knights of Thunder
+			e.other:Faction(262,1); -- Guards of Qeynos
+			e.other:Faction(221,-1); -- Bloodsabers
+			e.other:Faction(219,1);	-- Antonius Bayle
+			e.other:QuestReward(e.self,{exp = 100});
+			chip = chip - 1;
+		until chip == 0;
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -38,11 +38,17 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 19942})) then
 		e.self:Say("Excellent! It is fortunate you recovered this message in time. Take this Rusty Unseen Hands Dagger to a forge and sharpen it with a sharpening stone. It may take you several attempts if you are unfamiliar with the process. Once that is accomplished bring me the sharpened dagger, a gnoll fang, and a large king snake skin and I will put the finishing touches on the weapon for you.");
-		e.other:SummonItem(19943); -- rusty unseen hands dagger
-		e.other:Ding();
+		-- Confirmed Live Experience and Faction
+		e.other:Faction(223,10);		-- Circle of Unseen Hands
+		e.other:Faction(291,-1); 	-- Merchants of Qeynos
+		e.other:Faction(230,1); 		-- Corrupt Qeynos Guards
+		e.other:Faction(262,-1); 	-- Guards of Qeynos
+		e.other:Faction(273,1);		-- Kane Bayle
+		e.other:QuestReward(e.self,{itemid = 19943,exp = 1000}); -- rusty unseen hands dagger
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 19944,item2 = 13915,item3 = 19945})) then
-		e.other:SummonItem(20266); -- Dagger of Unseen Hands
-		e.other:Ding();
+		e.self:Emote("fashions a grip out of the large king snake skin, fastens the gnoll fang to the heel of the hilt, and polishes the blade with a faintly glowing polish. 'Herei syour new weapon young rogue.'");
+		-- Confirmed Live Experience
+		e.other:QuestReward(e.self,{itemid = 20266,exp = 1000}); -- Dagger of Unseen Hands
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
