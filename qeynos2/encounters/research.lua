@@ -223,10 +223,10 @@ function Enchantedtimer(e)
 		e.self:Emote("scurries happily out of the jar");
 		
 		local npc_list = eq.get_entity_list():GetNPCList();
-		local minNorth = nil;	--heading to target 128
-		local minSouth = nil;	--heading to target 256
-		local minWest = nil;	--heading to target 192
-		local minEast = nil;	--heading to target 64
+		local minNorth = nil;	--heading to target 256
+		local minSouth = nil;	--heading to target 512
+		local minWest = nil;	--heading to target 384
+		local minEast = nil;	--heading to target 128
 		
 		if(npc_list ~= nil) then		-- first loop to establish minimum distance to healthy rats
 			for npc in npc_list.entries do	
@@ -239,7 +239,7 @@ function Enchantedtimer(e)
 								minNorth = npc:CalculateDistance(x,y,z);
 							end
 						end
-						if(npc:CalculateHeadingToTarget(x,y) == 0) then  --Checks south of tile 
+						if(npc:CalculateHeadingToTarget(x,y) == 512) then  --Checks south of tile 
 							if(minSouth == nil) then
 								minSouth = npc:CalculateDistance(x,y,z);
 							elseif(npc:CalculateDistance(x,y,z) < minSouth) then
@@ -274,7 +274,7 @@ function Enchantedtimer(e)
 								eq.spawn2(healthy,0,0,npc:GetX(),npc:GetY(),npc:GetZ(),0);	--spawns healthy rat
 								npc:Depop();		--depop diseased rat
 							end
-						elseif(npc:CalculateHeadingToTarget(x,y) == 0) then  --Checks south of tile 
+						elseif(npc:CalculateHeadingToTarget(x,y) == 512) then  --Checks south of tile 
 							if (minSouth ~= nil and npc:CalculateDistance(x,y,z) < minSouth) then
 								eq.spawn2(healthy,0,0,npc:GetX(),npc:GetY(),npc:GetZ(),0);	--spawns healthy rat
 								npc:Depop();		--depop diseased rat
