@@ -1,4 +1,4 @@
---Elite_Guard_Evanet (2031)(roams north of gate) 119,635,3,259 (grid number 108)
+--Elite_Guard_Evanet (2099)(roams north of gate) 119,635,3,259 (grid number 108)
 
 --Elite_Guard_Drag (2126)(spawns near eastern south qeynos zoneline, paths up out past north gate and stops, paths near rogue guild) 17,-116,3,386 (grid 109)
 
@@ -30,7 +30,7 @@ function event_signal(e)
         event_started = 1;
         --do things
         eq.zone_emote(MT.White, "a gruff voice shouts, 'Stay alert, men. Word is that the package will be delivered shortly.The smuggler is likely already here.");
-        eq.unique_spawn(2031, 108, 0, 119, 635, 3, 259);
+        eq.unique_spawn(2099, 108, 0, 119, 635, 3, 259);
         eq.unique_spawn(2126, 109, 0, 17, -116, 3, 386);
         eq.unique_spawn(2160, 0, 0, 69, 542, 3, 0);
         eq.unique_spawn(2161, 110, 0, 342, 147, 3, 254);
@@ -45,7 +45,7 @@ function event_signal(e)
     elseif e.signal == 2 and event_started == 1 then
         --signal win from turn in. depop event
         eq.stop_timer("fail");
-        eq.depop(2031);
+        eq.depop(2099);
         eq.depop(2126);
         eq.depop(2160);
         eq.depop(2161);
@@ -63,7 +63,7 @@ end
 function event_timer(e)
     if e.timer == "fail" then
         eq.stop_timer("fail");
-        eq.depop(2031);
+        eq.depop(2099);
         eq.depop(2126);
         eq.depop(2160);
         eq.depop(2161);
