@@ -1,4 +1,3 @@
--- items: 15931, 15932, 15933, 15934, 15935
 function event_spawn(e)
 	eq.set_timer("depop",math.random(1200000,3600000));
 end
@@ -24,9 +23,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 15931,item2 = 15932,item3 = 15933,item4 = 15934})) then
 		e.self:Emote("takes a look at the documents you handed her and smiles, 'This is exactly what we needed. We'll be better prepared if the gnolls are foolish enough to actually attack. I hope you are willing to assist us in the defense of Surefall. Should you choose to aid us, this club will serve you well.'");
-		e.other:SummonItem(15935); -- Item: Club of Gnoll Bashing
-		e.other:Ding();
-		e.other:AddEXP(15000);
+		e.other:QuestReward(e.self,{itemid = 15935, exp = 15000}); -- Item: Club of Gnoll Bashing
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

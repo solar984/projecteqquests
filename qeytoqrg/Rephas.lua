@@ -1,56 +1,55 @@
--- items: 13072, 13719, 13076, 13050, 18103, 27428, 27429, 27430, 27431
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say("Aagggh..  Get away from here..  Go, run..  Far away..  Or I shall call [Karana's] wrath upon you!");
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= -100) then
+			e.self:Say("Aagggh..  Get away from here..  Go, run..  Far away..  Or I shall call [Karana's] wrath upon you!");
+		else
+			e.self:Say(eq.ChooseRandom("I didn't know Slime could speak common.  Go back to the sewer before I lose my temper.","Is that your BREATH, or did something die in here?  Now go away!","I wonder how much I could get for the tongue of a blithering fool?  Leave before I decide to find out for myself.","Oh look..a talking lump of refuse..how novel!"));
+		end
 	elseif(e.message:findi("karana")) then
-		e.self:Say("Heh!..  Ignorant one!  Begone, and take your stupidity with you!");
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= -100) then
+			e.self:Say("Heh!..  Ignorant one!  Begone, and take your stupidity with you!");
+		else
+			e.self:Say(eq.ChooseRandom("I didn't know Slime could speak common.  Go back to the sewer before I lose my temper.","Is that your BREATH, or did something die in here?  Now go away!","I wonder how much I could get for the tongue of a blithering fool?  Leave before I decide to find out for myself.","Oh look..a talking lump of refuse..how novel!"));
+		end
 	end
 end
 
 function event_trade(e)
 	local item_lib = require("items");
+	local text = "Hey..  wow..  Now THESE are some good, meaty ears..  These will make one great rat ear pie..  Tell ya what, kid..  bring me a few more o' these beauties, and I'll give you my secret recipe for cooking 'em.";
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13072})) then
+	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= -100 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13072})) then
 		e.self:Say("Ahh yes..  These are a little small, but still some good eating, if you know how to cook 'em of course..   Here ya go, enjoy and may Karana keep your fields lush and green.");
-		e.other:SummonItem(13719); -- Item: Grilled Rat Ears
-		e.other:Ding();
-		e.other:Faction(220,2,0); -- Arcane Scientists
-		e.other:Faction(281,2,0); -- Knights of Truth
-		e.other:Faction(330,-3,0); -- Freeport Militia
-		e.other:Faction(296,-3,0); -- Opal Dark Briar
-		e.other:AddEXP(200);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13719})) then
+		-- Confirmed Live Faction and Experience
+		e.other:Faction(220,5); -- Arcane Scientists
+		e.other:Faction(281,1); -- Knights of Truth
+		e.other:Faction(296,-1); -- Opal Dark Briar
+		e.other:Faction(330,-1); -- Freeport Militia
+		e.other:QuestReward(e.self,{itemid = 13719,exp = 100}); -- Item: Grilled Rat Ears
+	elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= -100 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13719})) then
 		e.self:Say("Wha?..   Ah, I guess it's a bit of an acquired taste..  Oh well, your loss..  Here, take this..  They ain't no ears, but it's the least I could do..   And if ya find any more rat ears, good ol' Rephas here will be glad to take 'em off your hands for ya!");
-		e.other:SummonItem(13076); -- Item: Fish Scales
-		e.other:Ding();
-		e.other:Faction(220,2,0); -- Arcane Scientists
-		e.other:Faction(281,2,0); -- Knights of Truth
-		e.other:Faction(330,-3,0); -- Freeport Militia
-		e.other:Faction(296,-3,0); -- Opal Dark Briar
-		e.other:AddEXP(200);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13050,item2 = 13050,item3 = 13050,item4 = 13050})) then
+		-- Confirmed Live Faction and Experience
+		e.other:Faction(220,5); -- Arcane Scientists
+		e.other:Faction(281,1); -- Knights of Truth
+		e.other:Faction(296,-1); -- Opal Dark Briar
+		e.other:Faction(330,-1); -- Freeport Militia
+		e.other:QuestReward(e.self,{itemid = eq.ChooseRandom(1038,13076,15041,15208,15205),exp = 100}); -- Item: Fish Scales, Tattered cloth sandals, Spell: Weaken, Spell: Lull, Spell: True North
+	elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= -100 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13050,item2 = 13050,item3 = 13050},1,text)) then
 		e.self:Say("Wow!..  How big was the dang varmint that these come off of?!  Bigger'n a ol' grizzly, I bet!  You've earned this, my friend!  It's my own secret recipe for rat ear pie..  sure is tasty, easy to make, and keeps your belly full while you're running about in the hills and such.  Take care, and may Karana keep your path clear and our lakes full.");
-		e.other:SummonItem(18103); -- Item: Rat Ear Pie
-		e.other:Ding();
-		e.other:Faction(220,8,0); -- Arcane Scientists
-		e.other:Faction(281,8,0); -- Knights of Truth
-		e.other:Faction(330,-12,0); -- Freeport Militia
-		e.other:Faction(296,-12,0); -- Opal Dark Briar
-		e.other:AddEXP(200);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13050})) then
-		e.self:Say("Hey..  wow..  Now THESE are some good, meaty ears..  These will make one great rat ear pie..  Tell ya what, kid..  bring me a few more o' these beauties, and I'll give you my secret recipe for cooking 'em.");
-		e.other:Ding();
-		e.other:Faction(220,2,0); -- Arcane Scientists
-		e.other:Faction(281,2,0); -- Knights of Truth
-		e.other:Faction(330,-3,0); -- Freeport Militia
-		e.other:Faction(296,-3,0); -- Opal Dark Briar
-		e.other:AddEXP(50);
+		-- Confirmed Live Faction and Experience
+		e.other:Faction(220,5); -- Arcane Scientists
+		e.other:Faction(281,1); -- Knights of Truth
+		e.other:Faction(296,-1); -- Opal Dark Briar
+		e.other:Faction(330,-1); -- Freeport Militia
+		e.other:QuestReward(e.self,{itemid = 18103,exp = 140}); -- Item: Rat Ear Pie
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 27428,item2 = 27429,item3 = 27430})) then
-		e.self:Say("Ah! You've found them! I hope those gnolls payed dearly for stealing them from me. Did they beg for mercy? I sure hope so. Well, here is the completed research book for Juegile.");
-		e.other:SummonItem(27431); -- Item: Enchanted Book
-		e.other:Ding();
-		e.other:AddEXP(200);
+		e.self:Say("These were the exact pages I was missing. I have been compiling this research for Juegile. It is now finished so please bring this book to him. Thank you!");
+		-- Confirmed Live Faction and Experience
+		e.other:Faction(220,10); -- Arcane Scientists
+		e.other:Faction(281,2); -- Knights of Truth
+		e.other:Faction(296,-1); -- Opal Dark Briar
+		e.other:Faction(330,-1); -- Freeport Militia
+		e.other:QuestReward(e.self,{itemid = 27431,exp = 500}); -- Item: An Enchanted Book
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
-

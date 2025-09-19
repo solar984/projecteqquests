@@ -7,7 +7,7 @@ function event_waypoint_arrive(e)
 end
 
 function event_say(e)
-	if (e.message:findi("hail") ) then
-		e.self:Say("Bug off!  Unless you want an Irontoe boot to caress your head?!");
+	if(e.message:findi("hail")) then
+		e.self:Say("Hello. How nice to meet you, " .. e.other:GetCleanName() .. "!");
 	end
 end

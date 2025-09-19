@@ -5,10 +5,10 @@ function event_say(e)
 	elseif(e.message:findi("spectator")) then
 		e.self:Say("As I thought!!  You shall be better off upon the ramparts of the arena.  It would be dreadful to see a fine citizen injured in the arena.");
 	elseif(e.message:findi("young steel warrior")) then
-		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) <= 4) then -- requires amiably
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100) then -- requires amiably
 			e.self:Say("I say!! Good show!! I see the look of the warrior in you. Some day you may be as great as Brin Stolunger. Ha!! Still, you are surely wet behind the ears. You will need to polish your skills. Take this sack. Return it to me when you have filled it with 5 bat wings and 5 snake scales. Be sure you combine the contents of the bag before you give it back to me. Now, be off!!");
 			e.other:SummonItem(17935); -- Empty Arena Sack
-		elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) == 5) then
+		elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 0) then
 			e.self:Say("The Steel Warriors have no cause to dislike you, but you have yet to truly prove your worth to this guild.");
 		else
 			e.self:Say("Your head shall look grand mounted on the wall of the Steel Warriors Arena!!");
@@ -19,7 +19,7 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 	
-	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) <= 4) then -- requires amiably
+	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100) then -- requires amiably
 		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13399})) then -- Full Arena Sack
 			e.self:Say("Jolly good!! You are clearly on your way to being a fine addition to the Steel Warriors. Now you must take this message to the person noted. All shall be explained.");
 			-- Confirmed Live Factions

@@ -23,19 +23,3 @@ function event_waypoint_arrive(e)
 		end
 	end
 end
-
-function event_say(e)
-	if(e.message:findi("hail")) then
-		e.self:Say("How dare you address me thus?!  Your ignorance shall bring your doom!");
-		eq.attack(e.other:GetName());
-	end
-end
-
-function event_death_complete(e)
-	local xloc = e.self:GetX();
-	local yloc = e.self:GetY();
-	local zloc = e.self:GetZ();
-	local hloc = e.self:GetHeading();
-
-	eq.spawn2(4190,26,0,xloc,yloc,zloc,hloc); -- NPC: Varsoon_the_Undying
-end
