@@ -4,11 +4,11 @@
 -- 3 = Successfully completed Experiment (Badge Complete)
 
 local jars = 0;
-local spawner = 2025; -- NPC control script ID
-local diseased = 2109	--diseased rat
-local healthy = 2119;	--healthy rat
-local empty = 2135; 	--empty tile
-local enchanted = 2137; -- healthy rat (enchanted)
+local spawner = 2000; -- NPC control script ID
+local diseased = 2001	--diseased rat
+local healthy = 2009;	--healthy rat
+local empty = 2019; 	--empty tile
+local enchanted = 2010; -- healthy rat (enchanted)
 
 local game1 = {	--ordered from left to right  10 x 10 square
 	AD  = {healthy, -270, -180, 1, 0},	--x,y,z,h
@@ -138,7 +138,7 @@ function VelarteTrade(e)
     elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18295},0)) then -- starts event when Research Briefing handed in
 		eq.spawn2(spawner,0,0,-225,-236,3,0)  -- spawns game control NPC script
 		e.self:Say("Well done " .. e.other:GetName() .. "!  Now you must recall what you learned in the research briefing to successfully complete the experiment.  Time is of the essence!");
-		eq.unique_spawn(2145,0,0,e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading());
+		eq.unique_spawn(2022,0,0,e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading());
 		jars = 0;
 		eq.depop_with_timer();
 	end
@@ -317,10 +317,10 @@ end
 function event_encounter_load(e)
 	eq.register_npc_event("research", Event.say, 2052, VelarteSay);
 	eq.register_npc_event("research", Event.trade, 2052, VelarteTrade);
-	eq.register_npc_event("research", Event.trade, 2145, Velarte2Trade);
-	eq.register_npc_event("research", Event.spawn, 2025, SpawnerSpawn);
-	eq.register_npc_event("research", Event.timer, 2025, SpawnerTimer);
-	eq.register_npc_event("research", Event.trade, 2135, TileTrade);
-	eq.register_npc_event("research", Event.spawn, 2137, EnchantedSpawn);
-	eq.register_npc_event("research", Event.timer, 2137, Enchantedtimer);
+	eq.register_npc_event("research", Event.trade, 2022, Velarte2Trade);
+	eq.register_npc_event("research", Event.spawn, 2000, SpawnerSpawn);
+	eq.register_npc_event("research", Event.timer, 2000, SpawnerTimer);
+	eq.register_npc_event("research", Event.trade, 2019, TileTrade);
+	eq.register_npc_event("research", Event.spawn, 2010, EnchantedSpawn);
+	eq.register_npc_event("research", Event.timer, 2010, Enchantedtimer);
 end
