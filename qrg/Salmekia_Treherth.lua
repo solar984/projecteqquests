@@ -1,4 +1,3 @@
--- items: 17125, 19559, 19561, 19558, 19555, 19560, 19557, 19556, 20268, 20258, 20259, 13915, 19945, 20265
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say(string.format("Welcome to Surefall Glade, %s, the home of the Jaggedpine Treefolk. I help teach young druids the ways of our people. We have worshipers of both Karana, the Storm Lord, and Tunare, the All Mother, living here in the glade. If you are a new druid I will help you obtain a [suit of clothing] that will offer comfort and protection while working in the wilds and help protect you from the weapons of the Gnolls that wish to take these lands.",e.other:GetName()));
@@ -40,23 +39,22 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20268})) then
 		e.self:Say("It is a shame that some people decide to throw away their humanity with the worship of evil deities. Your actions have saved the lives of many creatures that rely on the waters of this glade. Take this Rusty Pine Druid Scimitar and sharpen it in a forge with a sharpening stone. It may take you several attempts if you are unfamiliar with the process. Once that is done return to me with the Sharpened Pine Druid Scimitar, a Gnoll Fang, and a Large King Snake Skin.");
-		e.other:SummonItem(20258); -- Item: Rusty Pine Druid Scimitar
-		e.other:Ding();
-		e.other:Faction(272,30,0); --
-		e.other:Faction(302,30,0); --
-		e.other:Faction(343,30,0); --
-		e.other:Faction(262,30,0); --
-		e.other:Faction(324,-30,0); --
-		e.other:AddEXP(5000);
+			-- Confirmed Live Experience and Faction
+		e.other:Faction(272,10); -- Jaggedpine Treefolk
+		e.other:Faction(302,2); -- Protectors of Pine
+		e.other:Faction(343,1); -- QRG Protected Animals
+		e.other:Faction(324,-2); -- Unkempt Druids
+		e.other:Faction(262,1); -- Guards of Qeynos
+		e.other:QuestReward(e.self,{itemid = 20258,exp = 1000}); -- Item: Rusty Pine Druid Scimitar
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20259,item2 = 13915,item3 = 19945})) then
-		e.other:SummonItem(20265); -- Item: Pine Druid Scimitar
-		e.other:Ding();
-		e.other:Faction(272,30,0); --
-		e.other:Faction(302,30,0); --
-		e.other:Faction(343,30,0); --
-		e.other:Faction(262,30,0); --
-		e.other:Faction(324,-30,0); --
-		e.other:AddEXP(10000);
+		e.self:Emote("fashions a grip from the large king snake skin, attaches the gnoll fang to the heel of the swords hilt, and polishes the blade of the sword with a luminescent green polish. 'Here is your new weapon young druid. May it serve you well.'");
+		-- Confirmed Live Experience and Faction
+		e.other:Faction(272,5); -- Jaggedpine Treefolk
+		e.other:Faction(302,1); -- Protectors of Pine
+		e.other:Faction(343,1); -- QRG Protected Animals
+		e.other:Faction(324,-1); -- Unkempt Druids
+		e.other:Faction(262,1); -- Guards of Qeynos
+		e.other:QuestReward(e.self,{itemid = 20265,exp = 1000}) -- Item: Pine Druid Scimitar
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

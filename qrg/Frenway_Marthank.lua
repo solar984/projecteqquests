@@ -15,15 +15,12 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18809,item2 = 13912})) then
-		e.self:Say(string.format("It is not right to feel satisfied at the sight of Mammoth's hide, but I do. Thank you, %s.",e.other:GetName()));
-		e.other:SummonItem(18809); -- Item: Bayle List II
-		e.other:Ding();
-		e.other:Faction(302,10,0); -- Faction: Protectors of Pine
-		e.other:Faction(272,10,0); -- Faction: Jaggedpine Treefolk
-		e.other:Faction(306,-30,0); -- Faction: Sabertooths of Blackburrow
-		e.other:Faction(262,10,0); -- Faction: Guards of Qeynos
-		e.other:AddEXP(500);
-		e.other:GiveCash(0,6,0,0);
+		e.self:Say("It is not right to feel satisfied at the sight of Mammoth's hide, but I do. Thank you, " .. e.other:GetCleanName() .. ".");
+		e.other:Faction(302,5); -- Faction: Protectors of Pine
+		e.other:Faction(272,1); -- Faction: Jaggedpine Treefolk
+		e.other:Faction(306,-1); -- Faction: Sabertooths of Blackburrow
+		e.other:Faction(262,1); -- Faction: Guards of Qeynos
+		e.other:QuestReward(e.self,{silver = 6, itemid = 18809, exp = 500}); -- Item: Bayle List II
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

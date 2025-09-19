@@ -12,31 +12,31 @@ function event_say(e)
 	elseif(e.message:findi("need guidance")) then
 		e.self:Say("Then go forth into the church and speak with Gehna Solbenya. She will assist you."); 
 	elseif(e.message:findi("follower of karana") or e.message:findi("wish to assist")) then
-		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) <= 4) then
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100) then
 			if(e.message:findi("follower of karana")) then
 				e.self:Say("So you are one with our cause? This is good. Be aware that there are forces at work which not even the Qeynos Guard can keep at bay. We are here to spread the words of Karana and smite those who should try to end His children. We and Antonius Bayle shall work together in our destruction of evil. He requests our aid. Do you also [wish to assist Lord Bayle]?");
 			elseif(e.message:findi("wish to assist")) then
 				e.self:Say("Then we command you to assist the Qeynos Guard with the destruction of Blackburrow. Report to Captain Tillin of Qeynos Guard and speak with him of the [gnolls of Blackburrow]. I believe he is at the arena. My loyal friend, if you have earned your Thunder Staff, I urge you to [retrieve the Bayle list].");						
 			end		
-		elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) == 5) then
+		elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) > 0) then
 			e.self:Say("Well, friend, the Temple of Thunder has recognized and appreciates your past deeds for us.  But this matter is of vital importance to us and we need more proof of your devotion to our cause.");
 		else
 			e.self:Say("You have proven yourself not only an enemy of the Knights of Thunder, but an enemy of Karana himself. Now leave, sewer rat!");
 		end	
 	elseif(e.message:findi("retrieve the Bayle list")) then
 		if(not eq.is_content_flag_enabled("Classic_OldWorldDrops")) then
-			if(e.other:GetFactionValue(e.self) >= 900) then
+			if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 900) then
 				e.self:Say("The Temple of Thunder was asked by Antonius Bayle to retrieve a list. He does not trust his own militia of late. He asked me to send a knight to the Jaggedpine to find a man named Frenway Marthank. When you find him, you are to tell him that [Toe needs the Bayle List]. Return the Bayle List and your Thunder Staff to me and I shall provide a fine reward. Be aware that the shadowknights of Bertoxxulous are also after the list. Be careful!");	
-			elseif(e.other:GetFactionValue(e.self) >= 0) then
+			elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 0) then
 				e.self:Say("Well, friend, the Temple of Thunder has recognized and appreciates your past deeds for us.  But this matter is of vital importance to us and we need more proof of your devotion to our cause.");
 			else
 				e.self:Say("You have proven yourself not only an enemy of the Knights of Thunder, but an enemy of Karana himself. Now leave, sewer rat!");
 			end			
 		end
 	elseif(e.message:findi("honored member")) then
-		if(e.other:GetFactionValue(e.self) >= 50) then
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 50) then
 			e.self:Say("Yes.  The light of righteousness shines from within you.");
-		elseif(e.other:GetFactionValue(e.self) >= 0) then
+		elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 0) then
 			e.self:Say("Well, friend, the Temple of Thunder has recognized and appreciates your past deeds for us.  But this matter is of vital importance to us and we need more proof of your devotion to our cause.");
 		else
 			e.self:Say("You have proven yourself not only an enemy of the Knights of Thunder, but an enemy of Karana himself. Now leave, sewer rat!");
@@ -65,7 +65,7 @@ function event_trade(e)
 		e.other:Faction(341,75,0); -- Faction: Priests of Life
 		e.other:Faction(262,75,0); -- Faction: Guards of Qeynos
 		e.other:QuestReward(e.self,0,0,0,0,13505,100); -- Old Gray Tunic*
-	elseif(e.other:GetFactionValue(e.self) >= 900 and item_lib.check_turn_in(e.self, e.trade, {item1 = 18809,item2 = 6357},1,text)) then
+	elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 900 and item_lib.check_turn_in(e.self, e.trade, {item1 = 18809,item2 = 6357},1,text)) then
 		e.self:Say("Antonius Bayle will be pleased. The Temple is also pleased. Here is the enchanted staff we call Bonethunder. Should you find the enchantment gone, just ask Kasine to [enchant Bonethunder]. We need more disciples like you! Go forth to tell the world of the Rainkeeper.");
 		e.other:Faction(280,-50,0); -- Faction: Knights of Thunder
 		e.other:Faction(221,50,0); -- Faction: Bloodsabers

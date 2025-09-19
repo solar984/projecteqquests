@@ -34,8 +34,7 @@ function event_trade(e)
 	local qglobals = eq.get_qglobals(e.other);
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20476})) then
 		e.self:Say("This, this is my mother's amulet. I cannot believe it. Please, take this powder you say you need. Perhaps it does have powers, I don't know, I don't care. Thank you, my eternal thanks for this.");
-		e.other:SummonItem(20456); -- Item: Platinum Speckled Powder
-		e.other:Ding();
+		e.other:QuestReward(e.self,{itemid = 20456}); -- Item: Platinum Speckled Powder
 	end
 	
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 62811})) then --Tuft of Sickly Maiden's Hair
