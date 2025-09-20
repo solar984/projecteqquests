@@ -145,7 +145,7 @@ function event_trade(e)
 		eq.depop_all(8120);
 		eq.depop_all(8121);
 		eq.depop_all(8122);
-		eq.depop_all(8123);
+		eq.depop_all(8127);
 		eq.depop_all(8124);
 		eq.depop_all(8125);
 		eq.depop_all(8126);
@@ -163,7 +163,7 @@ function event_timer(e)
 		eq.spawn2(8120 ,0,0, 50.65, 72.66,17.13 ,260); --#Elder Spirit of Understanding
 		eq.spawn2(8121 ,0,0, 57.8,67.3 ,17.13 , 384); --#Elder Spirit of Fortitude
 		eq.spawn2(8122 ,0,0,56.7 ,59.5 ,17.13 , 420); --#Elder Spirit of Will
-		eq.spawn2(8123 ,0,0, 46.3,55 ,17.13 ,0 ); --#Elder Spirit of Sense
+		eq.spawn2(8127 ,0,0, 46.3,55 ,17.13 ,0 ); --#Elder Spirit of Sense
 		e.self:Say("It is time to begin the Ruchu. Collect your strength and let us begin.");
 		eq.set_timer("event",10000);
 		eq.stop_timer("start_event");
@@ -178,7 +178,7 @@ function event_timer(e)
 			eq.depop_all(8120);
 			eq.depop_all(8121);
 			eq.depop_all(8122);
-			eq.depop_all(8123);
+			eq.depop_all(8127);
 			eq.depop_all(8124);
 			eq.depop_all(8125);
 			eq.depop_all(8126);
@@ -239,7 +239,7 @@ function event_timer(e)
 		eq.depop_all(8120);
 		eq.depop_all(8121);
 		eq.depop_all(8122);
-		eq.depop_all(8123);
+		eq.depop_all(8127);
 		eq.depop_all(8124);
 		eq.depop_all(8125);
 		eq.depop_all(8126);

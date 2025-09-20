@@ -1,4 +1,3 @@
--- items: 17257, 22613, 22611, 22615, 22612, 22610, 22614, 22616, 9924, 9925, 9926, 9935
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Greetings to you " .. e.other:GetName() .. ". I am Sten Harnak Virtuoso of Freeport. I have lived in Freeport and studied the art of songweaving here for all of my days. I am always eager to see new faces here in our concert hall. If you are here for a performance I am afraid it does not start till a bit later but if you are a young bard in training then I might have some [work] for you.");
@@ -41,9 +40,13 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9924,item2 = 9925,item3 = 9926})) then
-		e.self:Say("Good work " .. e.other:GetName() .. ".");
-		e.other:Ding();
-		e.other:SummonItem(9935); -- Item: Etched Songweavers Longsword
+		e.self:Say("I knew I could count on you " .. e.other:GetCleanName() .. "! The defeat of these high ranking orcs will definitely be a positive turn in our constant battle of ridding the commons of these vile creatures. For your dedication to the Choir of Lore I would like to present you with this blade. May it keep you safe and serve you well wherever your journeys may take you.");
+		e.other:Faction(284,25); -- league of antonican bards
+		e.other:Faction(281,3); -- knights of truth
+		e.other:Faction(262,3); -- guards of qeynos
+		e.other:Faction(304,-1); -- ring of scale
+		e.other:Faction(285,-1); -- mayong mistmoore		
+		e.other:QuestReward(e.self,{itemid = 9935, exp = 500}); -- Item: Etched Songweavers Longsword
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

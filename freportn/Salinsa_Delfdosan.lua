@@ -43,15 +43,13 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9931,item2 = 9932, item3 = 9932})) then -- A Torn Qeynos Newsletter and Pristine Scarab Eyes 2x
-		e.self:Say("Yes, finally I can read the messages from Qeynos. Please take this as a reward for your efforts."); --  text made up
-		e.other:SummonItem(9937); -- Mace of the Ordained
-		e.other:Ding();
-		e.other:Faction(281,1,0); -- Faction: Knights of Truth
-		e.other:Faction(362,1,0); -- Faction: Priests of Marr
-		e.other:Faction(336,-2,0); -- Faction: Coalition of Tradefolk Underground
-		e.other:Faction(330,-2,0); -- Faction: The Freeport Militia
-		e.other:Faction(311,1,0); -- Faction: Steel Warriors
-		e.other:AddEXP(200);
+		e.self:Say("I knew that Deisnak would still have this! This has more useful information to us here at the temple then you could imagine. I am very happy to see that you were able to get it back for me. For your tireless devotion to our House I would like to present you with this mace. It has brought me good fortune in all the days that I carried it, I only wish that it can do the same for you. Good luck Knobinshu, and thank you.");
+		e.other:Faction(281,25); -- Faction: Knights of Truth
+		e.other:Faction(271,-3); -- Faction: Dismal Rage
+		e.other:Faction(330,-3); -- Faction: The Freeport Militia
+		e.other:Faction(362,5); -- Faction: Priests of Marr
+		e.other:Faction(311,2); -- Faction: Steel Warriors
+		e.other:QuestReward(e.self,{itemid = 9937, exp = 200}); -- Mace of the Ordained
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

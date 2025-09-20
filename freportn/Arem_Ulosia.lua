@@ -1,5 +1,4 @@
 function event_say(e)
-	local qglobals = eq.get_qglobals(e.other);
 	if(e.other:HasItem(69960)) then
 		if(e.message:findi("hail")) then
 			e.self:Say("That looks like an interesting set of beads you have around your hand " .. e.other:GetName() .. ". Where did you get them from?");
@@ -12,6 +11,12 @@ function event_say(e)
 			eq.create_ground_object(69961,386.77,132.4,2.2,0); --Freeport Prayer Bead, freportn
 		elseif(e.message:findi("others")) then
 			e.self:Say("Very well, I know it's only one gem but head to the high elf city. I've heard many jewels come from there and you might be able to find some of use for your cause.");
+		end
+	else
+		if(e.message:findi("hail")) then
+			e.self:Say("Praise be to Marr, my friend! Welcome to the temple. If you are not a member of the congregation, please speak with our priests. I am sure they can give you guidance.");
+		elseif(e.message:findi("healing")) then
+			e.self:Say("It is not my duty to see to the wounded. You must seek out Plur Etinu. He is in here somewhere.");
 		end
 	end
 end
