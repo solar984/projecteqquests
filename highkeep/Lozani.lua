@@ -1,4 +1,3 @@
--- items: 13225, 13845, 15200, 15042, 15226, 13360, 15246, 15276
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Greetings. friend!!  I am Lozani. Scribe Supreme of the Eldritch Collective.  I have been sent forth from the great Library of Mechanimagica in the city of Ak'Anon. to study the arcane knowledge of man and beast alike.  I have studied many languages and spells. from Crushbone to Kerra Ridge.  I have found most languages hard to decipher.  As of this date. I have learned to read only the script of the [orc oracles].  Oh well. I am on a five decade mission.  Better luck next language.");
@@ -13,25 +12,21 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
+	local text1 = "I need TWO illegible cantrips. Not much to ask for.";
+	local text2 = "Hey! I said FOUR gold and the illegible scroll! Sheesh.";
 	local scroll = 0;
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13225,gold = 4})) then -- Illegible Scroll and 4 gold#
-		e.self:Say("I managed to decipher this one.");
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13225,gold = 4},1,text2)) then -- Illegible Scroll and 4 gold#
+		e.self:Say("Hmmm... Aha! Well, I think this is it. A fine spell. I hope you need it because you are not getting your gold back.");
 		scroll = 1;
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13845,item2 = 13845})) then -- Illegible Cantrip
-		e.self:Say("I managed to decipher these.");
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13845,item2 = 13845},1,text1)) then -- Illegible Cantrip
+		e.self:Say("And the winning spell is... Here, you do the honors.");
 		scroll = 1;
 	end
 	if(scroll == 1) then
-		e.other:SummonItem(eq.ChooseRandom(15200, 15042, 15226, 13360, 15246, 15276)); -- Item(s): Spell: Minor Healing (15200)
-		e.other:Ding();
-		e.other:Faction(255,5,0); -- Gem Choppers
-		e.other:Faction(333,5,0); -- King AkAnon
-		e.other:Faction(288,5,0); -- Merchants of AkAnon
-		e.other:Faction(238,-5,0); -- Dark Reflection
-		e.other:Faction(239,-5,0); -- The Dead
-		e.other:AddEXP(100);
+		e.other:QuestReward(e.self,{itemid = eq.ChooseRandom(15200, 15042, 15226, 13360, 15246, 15276, 15211, 15203, 15054), exp = 100});
 		scroll = 0;
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
+

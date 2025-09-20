@@ -24,19 +24,14 @@ function event_trade(e)
 	local fac = e.other:GetFaction(e.self);
 	local item_lib = require("items");
 	
-	if(fac < 5) then
-		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13111})) then
-			e.self:Say("Good work, bounty hunter! You have served your legend well. I hope a few plat is good enough and, please, take this item we confiscated from one of our guests now serving time in our dungeon.");
-			e.other:SummonItem(eq.ChooseRandom(2314,2314,2314,7321)); -- Item(s): Bearskin Gloves (2314), Bearskin Gloves (2314), Bearskin Gloves (2314), Scouts Blade (7321)
-			e.other:Ding();
-			e.other:Faction(332, 25,0); -- Faction: Highpass Guards
-			e.other:Faction(329, 25,0); -- Faction: Carson McCabe
-			e.other:Faction(331, 25,0); -- Faction: Merchants of Highpass
-			e.other:Faction(230, 25,0); -- Faction: Corrupt Qeynos Guards
-			e.other:Faction(330, 25,0); -- Faction: The Freeport Militia
-			e.other:AddEXP(250);
-			e.other:GiveCash(0,0,0,4);
-		end
+	if(fac < 5 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13111})) then
+		e.self:Say("Good work, bounty hunter! You have served your legend well. I hope a few plat is good enough and, please, take this item we confiscated from one of our guests now serving time in our dungeon.");
+		e.other:Faction(332, 20); -- Faction: Highpass Guards
+		e.other:Faction(329, 3); -- Faction: Carson McCabe
+		e.other:Faction(331, 3); -- Faction: Merchants of Highpass			
+		e.other:Faction(230, 1); -- Faction: Corrupt Qeynos Guards
+		e.other:Faction(330, 1); -- Faction: The Freeport Militia
+		e.other:QuestReward(e.self,math.random(0,5),math.random(0,5),math.random(0,5),math.random(0,5),eq.ChooseRandom(2314,5026,5027,5028,6019,6302,7321,5300),250);
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
