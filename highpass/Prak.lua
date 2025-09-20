@@ -1,4 +1,13 @@
--- items: 18795, 13793, 18028
+function event_signal(e)
+	if(e.signal == 1) then
+		e.self:Say("The boss might need some help!");
+		local stanos = eq.get_entity_list():GetMobByNpcTypeID(5088); -- Stanos_Herkanor
+		if ( stanos.valid ) then
+			e.self:MoveTo(stanos:GetX(), stanos:GetY(), stanos:GetZ(), -1, false);
+		end
+	end
+end
+
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Yeah, hello. I'm Prak, co-owner of the Golden Rooster. If you're thirsty, we have some great imported ales at our bar. If you're looking for a little excitement, try your hand at a little King's Court. We aim to please, my friend.");
@@ -10,25 +19,23 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18795})) then
+	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100 and item_lib.check_turn_in(e.self, e.trade, {item1 = 18795})) then
 		e.self:Say("Hmm, I see. We think we've found out who the mole is in Carson's guards, some guy named Stald. We need to get rid of this guy as quickly, and as quietly, as possible. Carson doesn't want to cause a stink by eliminating one of his own men, so he asked us to do it. What about you? Do you think [you could get rid of Stald] for us?");
-		e.other:Ding();
-		e.other:Faction(329,10,0); -- Carson Mccabe
-		e.other:Faction(336,10,0); -- Coalition of Tradefolk Underground
-		e.other:Faction(304,-10,0); -- Ring of Scale
-		e.other:Faction(332,10,0); -- Highpass Guards
-		e.other:Faction(331,10,0); -- Merchants of Highpass
-		e.other:AddEXP(500);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13793})) then
-		e.self:Say("Great! Thanks for taking care of this 'problem' for us "..e.other:GetName()..". Please return to Zannsin with this note and he should reward you for your assistance."); -- Made up text
-		e.other:SummonItem(18028); -- Item: Message to Zannsin
-		e.other:Ding();
-		e.other:Faction(329,10,0); -- Carson Mccabe
-		e.other:Faction(336,10,0); -- Coalition of Tradefolk Underground
-		e.other:Faction(304,-10,0); -- Ring of Scale
-		e.other:Faction(332,10,0); -- Highpass Guards
-		e.other:Faction(331,10,0); -- Merchants of Highpass
-		e.other:AddEXP(500);
+		e.other:Faction(329,50); -- Carson Mccabe
+		e.other:Faction(336,37); -- Coalition of Tradefolk Underground
+		e.other:Faction(304,-12); -- Ring of Scale
+		e.other:Faction(332,50); -- Highpass Guards
+		e.other:Faction(331,50); -- Merchants of Highpass
+		eq.unique_spawn(5119,0,0,464,127,31.75,47); -- NPC: Guard_Stald
+		e.other:QuestReward(e.self,{exp = 500});
+	elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 200 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13793})) then
+		e.self:Say("Ah, boy! Looks like I owe Kaden two plat... I thought you'd fumble it up for sure. Well, you've impressed me friend. Here, take this back to Zan... I'll make sure note your fine works to Carson, too, next time we speak.");
+		e.other:Faction(329,50); -- Carson Mccabe
+		e.other:Faction(336,37); -- Coalition of Tradefolk Underground
+		e.other:Faction(304,-12); -- Ring of Scale
+		e.other:Faction(332,50); -- Highpass Guards
+		e.other:Faction(331,50); -- Merchants of Highpass
+		e.other:QuestReward(e.self,{itemid = 18028, exp = 500}); -- Item: Message to Zannsin
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
