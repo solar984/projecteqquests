@@ -1,10 +1,18 @@
-function event_combat(e)
-    e.self:Emote("erupts in a cloud of spores!");
-    
+function event_spawn(e)
+	local xloc = e.self:GetX();
+	local yloc = e.self:GetY();
+	local zloc = e.self:GetZ();
+	eq.set_proximity(xloc - 25, xloc + 25, yloc - 25, yloc + 25, zloc - 3, zloc + 6);
+end
+
+function event_enter(e)
     local spawns = math.random(1,5);
-	  for n = 1, spawns do
-		mob = eq.spawn2(11164,0,0,e.self:GetX() + math.random (-5,5), e.self:GetY() + math.random(-5,5), e.self:GetZ(), e.self:GetHeading());	-- a_sporeling (11164)
-      
-    eq.depop_with_timer();
-  end
+    
+	e.self:Emote("erupts in a cloud of spores!");
+	
+	for n = 1, spawns do
+		mob = eq.spawn2(11000,0,0,e.self:GetX() + math.random (-5,5), e.self:GetY() + math.random(-5,5), e.self:GetZ(), e.self:GetHeading());	-- a_sporeling (11000)
+ 	end
+	
+	eq.depop_with_timer();
 end
