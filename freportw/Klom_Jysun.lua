@@ -40,13 +40,12 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(e.other:Class() == "Monk") then
-		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9934,item2 = 9920,item3 = 9920})) then
-			e.self:Say("Good work, "..e.other:GetName()..", try these knuckles.");
-			e.other:SummonItem(9939); -- Kloms Brass Knuckles
-			e.other:Ding();
-			e.other:AddEXP(100);
-		end
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9934,item2 = 9920,item3 = 9920})) then
+		e.self:Say("Your dedication to the Ashen Fist is unquestioned. I can see this by your willingness to assist me in whatever task I assigned you. I would like you to take this as a symbol of my gratitude.");
+		e.other:Faction(e.self,361,25); -- Ashen Order
+		e.other:Faction(e.self,281,3); -- Knights of Truth
+		e.other:Faction(e.self,309,1); -- Silent Fist Clan
+		e.other:QuestReward(e.self,{itemid = 9939, exp = 100}); -- Kloms Brass Knuckles
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

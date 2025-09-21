@@ -38,13 +38,14 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(e.other:Class() == "Warrior") then
-		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9919,item2 = 9918,item3 = 9923})) then -- Pristine Giant Scarab Leg, Lion Paw, Vial of Smoke
-			e.self:Say(""..e.other:GetName()..", you have proven your value to the Steel Warriors. Here is a weapon that will let you slay magical creatures that you couldn't with a normal weapon.");
-			e.other:Ding();
-			e.other:SummonItem(9940); -- Jagged Blade of the Steel Warrior
-			e.other:AddEXP(100);
-		end
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9919,item2 = 9918,item3 = 9923})) then -- Pristine Giant Scarab Leg, Lion Paw, Vial of Smoke
+		e.self:Say("Your determination to further your training and knowledge never ceases to amaze me. I knew I could count on you to retrieve these items for me. Luck was also on my side because I was able to craft the blade we spoke of before. May it protect you in all of your battles that await you. Excellent work "..e.other:GetName()..".");
+		e.other:Faction(311,25); -- Steel Warriors
+		e.other:Faction(262,5); -- Guards of Qeynos
+		e.other:Faction(230,-3); -- Corrupt Qeynos Guards
+		e.other:Faction(330,-3); -- Freeport Militia
+		e.other:Faction(281,5); -- Knights of Truth
+		e.other:QuestReward(e.self,{itemid = 9940, exp = 100}); -- Jagged Blade of the Steel Warrior
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

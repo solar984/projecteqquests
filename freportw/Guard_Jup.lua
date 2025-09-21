@@ -1,4 +1,3 @@
--- items: 17174, 54010, 54024
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Hail, Citizen. In this time of piracy on the high seas, your [duty] is clear, is it not?");
@@ -19,9 +18,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 54010})) then
 		e.self:Say(string.format("Excellent work, %s!  This will teach the pirates of Broken Skull a lesson and help our cause in repelling them.  Here is your reward.",e.other:GetName()));
-		e.other:SummonItem(54024); -- Item: Twisted Silver Torque
-		e.other:Ding();
-		e.other:AddEXP(10000);
+		e.other:QuestReward(e.self,{itemid = 54024, exp = 10000}); -- Item: Twisted Silver Torque
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

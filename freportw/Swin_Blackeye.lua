@@ -12,13 +12,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12147})) then -- Hog Key
 		e.self:Say("Here you go then.");
-		e.other:SummonItem(18814); -- A Sealed Letter
-		e.other:Ding();
-		e.other:Faction(229,1,0); -- Coalition of Trade Folk
-		e.other:Faction(281,1,0); -- Knights of Truth
-		e.other:Faction(291,1,0); -- Merchants of Qeynos
-		e.other:Faction(5015,1,0); -- Coalition of TradeFolk III
-		e.other:AddEXP(100);
+		e.other:QuestReward(e.self,0,0,0,0,18814); -- A Sealed Letter
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

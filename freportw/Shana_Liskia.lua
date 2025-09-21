@@ -1,16 +1,13 @@
--- items: 17260, 22586, 22584, 22583, 22588, 22585, 22587, 22589, 9917, 9933, 9938, 62617, 62654, 40420, 62846, 62618, 62619, 62655, 62852, 62853, 62854, 62855
 function event_say(e)
-	if(e.message:findi("hail")) then
-		e.self:Say("Hail and well met "..e.other:GetName()..". I am Shana Liskia. Enchantress of Freeport. I have studied my art for years here in our wonderful academy. I am also delighted to meet and teach those that come here to gain knowledge. My specialty however lies in Beguiling so I like to train young newcomers to our academy. Are you studying the ways of a [" .. eq.say_link("Magician") .. "] an [" .. eq.say_link("Enchanter") .. "] or a [" .. eq.say_link("Wizard") .. "]??");
-	elseif(e.message:findi("magician") or e.message:findi("enchanter") or e.message:findi("wizard")) then
-		e.self:Say("Wonderful! Let me be the first to tell you that your training here will be top notch and you will learn all that is to be known about being an enchanter should you put forth the willingness to learn. I will walk you through your early training and assist you in your hunting and gathering skills. I have created a [" .. eq.say_link("special sewing kit") .. "] that I present to all of the new initiates.");
-	elseif(e.message:findi("diseases of the mind")) then
-		e.self:Say("I study the mind. My most recent research deals with, well, I'd rather not discuss that. Unless you need something specific, I don't really have time for long random conversations right now.");
-	elseif(e.other:Class() == "Enchanter" or e.other:Class() == "Magician" or e.other:Class() == "Wizard") then
-		if(e.message:findi("special sewing kit")) then
+	if(eq.is_the_shadows_of_luclin_enabled()) then
+		if(e.message:findi("hail")) then
+			e.self:Say("Hail and well met " .. e.other:GetCleanName() .. ". I am Shana Liskia, Enchantress of Freeport. I have studied my art for years here in our wonderful academy. I am also delighted to meet and teach those that come here to gain knowledge. My specialty however lies in Beguiling so I like to train young newcomers to our academy. Are you studying the ways of a [Magician] an [Enchanter] or a [Wizard]??");
+		elseif(e.message:findi("magician") or e.message:findi("enchanter") or e.message:findi("wizard")) then
+			e.self:Say("Wonderful! Let me be the first to tell you that your training here will be top notch and you will learn all that is to be known about being an enchanter should you put forth the willingness to learn. I will walk you through your early training and assist you in your hunting and gathering skills. I have created a [special sewing kit] that I present to all of the new initiates.");
+		elseif(e.message:findi("special sewing kit")) then
 			e.self:Say("This kit that I speak of is one that is able to magically infuse different components into materials used for creating Arcane Scientists Armor. The components that you use will be collected from numerous different areas and shops in Freeport. You will use these materials along with patterns that I will present you with to create your armor. Once you are [ready to begin] I will present you with your Enchanted Sewing Kit.");
 		elseif(e.message:findi("ready to begin")) then
-			e.self:Say("Very well. Here you are "..e.other:GetName()..". in this box you will combine specific component recipes as I mentioned before. When you are ready to attempt a specific piece you must tell me what piece you [want] to craft. For example if you had intent on crafting a cap you would say. [I want to craft a cap]. I can offer you the recipes for Arcane Scientists [Caps], [Bracers], [Sleeves], [Sandals], [Trousers], [Gloves] and [Robes]. I must also suggest that you attempt your robe last due to the difficult nature of collecting the correct components.");
+			e.self:Say("Very well. Here you are " .. e.other:GetCleanName() .. ", in this box you will combine specific component recipes as I mentioned before. When you are ready to attempt a specific piece you must tell me what piece you [want] to craft. For example if you had intent on crafting a cap you would say. [I want to craft a cap]. I can offer you the recipes for Arcane Scientists [Caps], [Bracers], [Sleeves], [Sandals], [Trousers], [Gloves] and [Robes]. I must also suggest that you attempt your robe last due to the difficult nature of collecting the correct components.");
 			e.other:SummonItem(17260); -- Enchanted Sewing Kit
 		elseif(e.message:findi("sleeve")) then
 			e.self:Say("Sleeves will be a great and necessary addition to your armor. To create your sleeve material you will need to combine 2 Woven Spider Silks, 2 Bone Chips, 1 Spider Legs and Cloth Sleeves in your assembly kit. Once you have created the proper material take it to a loom along with this mold to fashion your very own Arcane Scientists Sleeves.");
@@ -35,8 +32,10 @@ function event_say(e)
 			e.other:SummonItem(22589); -- An Enchanted Robe Pattern
 		elseif(e.message:findi("final assignment")) then
 			e.self:Say("I have a trinket that was given to me by my mother a long time ago. Before she died I told her I would always keep it close to me. Recently, some militia officers came in to our academy and confiscated anything that appeared to be valuable. Fearing for my life I did not fight to keep the necklace my mother gave me. The officer that took it was named Teridsan. If you should find him you have my permission to kill him if that's what it takes to get my necklace back. Return to me when you have my necklace along with 2 Lion Teeth.");
-		else
-			e.self:Say("Only casters may earn the rewards of the Academy!");
+		end
+	else
+		if(e.message:findi("hail")) then
+			e.self:Say("Hail and well met " .. e.other:GetCleanName() .. ". I am Shana Liskia, Enchantress of Freeport. I have studied my art for years here in our wonderful academy. I am also delighted to meet and teach those that come here to gain knowledge.");	-- text made up
 		end
 	end
 end
@@ -44,35 +43,13 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(e.other:Class() == "Enchanter" or e.other:Class() == "Magician" or e.other:Class() == "Wizard") then
-		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9917,item2 = 9917,item3 = 9933})) then -- Lion Tooth x 2, Shana's Necklace
-			e.self:Say("Thank you for bringing back one of my most valued possesion. You have proven yourself to be worthy to wield the Dagger of the Academy.");
-			e.other:SummonItem(9938); -- Dagger of the Academy
-			e.other:Ding();
-			e.other:AddEXP(100);
-		end
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 62617})) then
-		e.self:Say("Well, this certainly is an interesting puzzle. I see here that these creatures were infected in their spinal columns. I'll tell you that a part of my research involves the use of the fluids of the brain and spine. I suspect that further details might be unpleasant. I might be able to help you, but I'll need materials to work with. Gather fluids from the brain of the creature with the greatest mental power that you can find. I'll test it and see if it's strong enough and has the right properties. If I can duplicate what you saw in these infected creatures, perhaps I can help. Aslo, bring back those notes that Corun made, I'll need them as well.");
-		e.self:Emote("makes a few hasty scribbles in the margins of Corun's Notes and hands them back to you.");
-		e.other:SummonItem(62654); -- Item: Corun's Notes - annotated
-		eq.set_global("ranger_epic","2",5,"F");
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 40420,item2 = 62654})) then
-		e.self:Say("Perfect! Yes, this will work nicely. Shana looks through Corun's notes while gathering items from her stores. This should work. What I'm going to do is grow a crystal around this fluid and some of the key ingredients of the disease. The crystal will focus the power of the fluid and the elements of the disease will guide it. If this goes well, I should be able to create a crystal that will guide you to the disease. Shana places the gathered items into a violet-tinted container and casts a spell over them. A moment later she retrieves a crystal from the container. The crystal is clear except for a dark, murky coloration at the center. Take that crystal and see if you can locate any creatures with the disease. If you have any success, please return and let me know.");
-		e.other:SummonItem(62846); -- Item: Mind Crystal
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 62618,item2 = 62619})) then
-		e.self:Say("Ah, well, it seems as though the crystal was attuned to these other crystals. They must have come in contact with a rather large element of the disease, otherwise I just can't see how the Mind Crystal would have noticed them. These crystals were created by someone with more experience than I have in this area. I will examine them further and attempt to learn something from them. I can tell now, though, that they were probably created in a fashion similar to the one I used to create the Mind Crystal. Shana pulls out a piece of parchment and writes a note. She gives you the note and says, Take this note to Corun along with the Mind Crystal. He can use the crystal and my notes to seek out the plague in whatever fashion he thinks is best. I need to get to work investigating these new crystals.");
-		e.other:SummonItem(62655); -- Item: Letter to Corun
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 62852,item2 = 62852,item3 = 62852})) then
-		e.self:Say("Well these certainly are interesting. You say there might be more of them on those necromancers that escaped? Well here, take this. Find all of them and place them into this bag to keep them safe. Then bring them all to me and I'll examine them more closely. I can tell you that they are similiar to the Mind Crystal, but it appears to have different magical properties. I have never seen anything like them and I suspect that they are not from Norrath.");
-		e.other:SummonItem(62852); -- Item: Crystal Fragment
-		e.other:SummonItem(62852); -- Item: Crystal Fragment
-		e.other:SummonItem(62852); -- Item: Crystal Fragment
-		e.other:SummonItem(62853); -- Item: Small Padded Bag
-		eq.set_global("druid_epic", "5", 5, "F");
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 62854})) then  --Full Padded Bag
-		e.self:Emote("takes the crystal fragments from the pouch. She applies a drop of liquid to it. The liquid turns the crystal white where it spreads.");
-		e.self:Say("These small crystals are easier to work with than the Mind Crystal. They also differ from the Mind Crystal in that they are from the Plane of Discord. Take this mixture and find something to enhance its magical power and you just might be able to purify the Mind Crystal. I have no idea what that might be, but I know what it should be. You'll need two components. One will increase the power of the mixture, something with a lot of magical power. It needs to be a liquid or powder to integrate properly. And you'll need a stabilizer, something to help the mixture and the new material to remain stable. This influences the kind of attunement that the crystal takes on during the process. It should be something from nature if you want the result to suit your tastes. You'll have to find someone that knows of something about it among the druids for help on what to use.");
-		e.other:SummonItem(62855); --Bowl of Foul-smelling Liquid	
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 9917,item2 = 9917,item3 = 9933})) then -- Lion Tooth x 2, Shana's Necklace
+		e.self:Say("I am so happy to have my necklace back! I cannot begin to tell you how much this means to me " .. e.other:GetCleanName() .. ". Please take this dagger as a symbol of my sincere thanks. It was presented to me by the academy for my years of teaching but I hope you will take it. Good luck to you and come back to visit us soon!");
+		e.other:Faction(220,25); -- Arcane Scientists
+		e.other:Faction(281,6); -- Knights of Truth
+		e.other:Faction(296,-3); -- Opal Dark Briar
+		e.other:Faction(330,-3); -- The Freeport Militia
+		e.other:QuestReward(e.self,0,0,0,0,9938,100); -- Dagger of the Academy
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

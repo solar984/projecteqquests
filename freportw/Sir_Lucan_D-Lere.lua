@@ -14,22 +14,22 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18822})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18816})) then
 		e.self:Say("So I see you decided to bring me the message. Good. I would hate to have to hunt you down. It could have gotten really messy and I hate reading bloodstained messages. Well it seems Antonius Bayle and the Knights of Truth have begun an alliance. And it sounds as though I may have a traitor among my guards. If you wish to switch your allegiance to Freeport, then find me this traitor. Bring me his militia tunic. Try to keep the blood from staining it.");
-		e.other:Ding();
-		e.other:Faction(330,10,0); -- Faction: The Freeport Militia
-		e.other:Faction(336,10,0); -- Faction: Coalition of Tradefolk Underground
-		e.other:Faction(281,-20,0); -- Faction: Knights of Truth
-		e.other:Faction(362,-20,0); -- Faction: Priests of Marr
-		e.other:AddEXP(5000);
+		-- HK confirmed live factions
+		e.other:Faction(330,25,0); -- Faction: The Freeport Militia
+		e.other:Faction(336,3,0); -- Faction: Coalition of Tradefolk Underground
+		e.other:Faction(281,-2,0); -- Faction: Knights of Truth
+		e.other:Faction(362,-2,0); -- Faction: Priests of Marr
+		e.other:QuestReward(e.self,0,math.random(10),0,0,0,5000);		
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13926})) then
-		e.self:Say("Thank you for your loyalty"); -- need live text and reward
-		e.other:Ding();
-		e.other:Faction(330,10,0); -- Faction: The Freeport Militia
-		e.other:Faction(336,10,0); -- Faction: Coalition of Tradefolk Underground
-		e.other:Faction(281,-40,0); -- Faction: Knights of Truth
-		e.other:Faction(362,-40,0); -- Faction: Priests of Marr
-		e.other:AddEXP(7500);
+		e.self:Say("So, it was Alayle! He was of no importance to us. He knew nothing. I thank you for assisting the Freeport Militia. My men shall keep an eye out for you. Unfortunately, so will the Knights of Truth. Might I suggest you spend less time in North Freeport?"); 
+		-- HK confirmed live factions
+		e.other:Faction(330,25,0); -- Faction: The Freeport Militia
+		e.other:Faction(336,3,0); -- Faction: Coalition of Tradefolk Underground
+		e.other:Faction(281,-2,0); -- Faction: Knights of Truth
+		e.other:Faction(362,-2,0); -- Faction: Priests of Marr
+		e.other:QuestReward(e.self,0,0,math.random(10),0,0,7500);		
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

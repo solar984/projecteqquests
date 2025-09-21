@@ -4,6 +4,7 @@ function event_say(e)
 	elseif(e.message:findi("robe pattern")) then
 		if(e.other:GetRaceName() == "Human") then
 			e.self:Say("As you wish, here is the pattern to tailor the robe.");
+			e.other:SummonItem(65234);
 		else
 			e.self:Say("I only share the pattern with those that deserve it. You may walk amongst us but you will never truly be from our race. Begone.");
 		end

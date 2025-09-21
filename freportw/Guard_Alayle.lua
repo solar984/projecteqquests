@@ -1,4 +1,3 @@
--- items: 18817, 18818
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Greetings, citizen! You should not be in the Militia House. These are restricted grounds. Please leave at once unless you have business here.");
@@ -10,18 +9,15 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(e.other:Class() == "Paladin") then
-		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18817})) then -- Sealed Letter
-			e.self:Say("This is not good news. I must leave immediately. Here. Take this to Kala.. I mean my father. I found it on the floor of Sir Lucan D'Lere's quarters. Thanks again, messenger. I got this just in time.");
-			e.other:SummonItem(18818); -- A Tattered Flier
-			e.other:Ding();
-			e.other:Faction(311,1,0); -- Steel Warriors
-			e.other:Faction(262,1,0); -- Guards of Qeynos
-			e.other:Faction(230,-1,0); -- Corrupt Guards of Qeynos
-			e.other:Faction(330,-1,0); -- Freeport Militia
-			e.other:Faction(281,1,0); -- Knights of Truth
-			eq.unique_spawn(9143,87,0,-154,-55,-10,256); -- spawns Krazen Loosh
-		end
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18817})) then -- Sealed Letter
+		e.self:Say("This is not good news. I must leave immediately. Here. Take this to Kala.. I mean my father. I found it on the floor of Sir Lucan D'Lere's quarters. Thanks again, messenger. I got this just in time.");
+		e.other:Faction(311,1,0); -- Steel Warriors
+		e.other:Faction(262,1,0); -- Guards of Qeynos
+		e.other:Faction(230,-1,0); -- Corrupt Guards of Qeynos
+		e.other:Faction(330,-1,0); -- Freeport Militia
+		e.other:Faction(281,1,0); -- Knights of Truth
+		e.other:QuestReward(e.self,{itemid = 18818}); -- A Tattered Flier
+		eq.unique_spawn(9143,87,0,-154,-55,-10,256); -- spawns Krazen Loosh
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

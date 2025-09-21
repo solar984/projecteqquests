@@ -1,4 +1,3 @@
--- items: 13014
 local Bakery = 0;
 
 function event_say(e)
@@ -15,29 +14,18 @@ function event_say(e)
 end
 
 function event_trade(e)
-	local muffin = 0;
 	local item_lib =require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13014,item2 = 13014,item3 = 13014,item4 = 13014})) then
-		muffin = 4;
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13014,item2 = 13014,item3 = 13014})) then
-		muffin = 3;
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13014,item2 = 13014})) then
-		muffin = 2;
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13014})) then
-		muffin = 1;
-	end
-	
+	local muffin = item_lib.count_handed_item(e.self, e.trade, {13014});
 	if(muffin > 0) then
 		repeat
 			e.self:Say("Mmmm. This smells delicious. Oh great!! No milk!! Don't you have any sense?! Just tell me the name of the bakery and I will run and get it myself. I am sure Lady Shae will be safe.");
-			e.other:Ding();
-			e.other:Faction(226,1,0); -- Clerics of Tunare
 			e.other:Faction(246,1,0); -- Faydark's Champions
 			e.other:Faction(279,1,0); -- King Tearis Thex
+			e.other:Faction(226,1,0); -- Clerics of Tunare
 			e.other:Faction(310,1,0); -- Soldiers of Tunare
 			e.other:Faction(234,-1,0); -- Crushbone Orcs
-			e.other:AddEXP(10);
+			e.other:QuestReward(e.self,0,0,0,0,0,5); -- exp data confirmed
 			muffin = muffin - 1;
 		until muffin == 0
 	end
@@ -52,7 +40,7 @@ function event_timer(e)
 		Bakery = 2;
 		eq.pause(60);
 		e.self:Say("I sure could use some of those famous muffins you make!");
-		eq.signal(9088,1,10000); -- NPC: Pincia_Brownloe Baking Supplies
+		eq.signal(9088,1,10000); -- NPC: Pincia_Brownloe
 	elseif(xloc == -497 and yloc == -204 and Bakery == 2) then
 		eq.stop();
 		eq.stop_timer("Pandos");
@@ -63,7 +51,7 @@ end
 function event_signal(e)
 	if(e.signal == 1) then
 		e.self:Say("Thank you very much! These look delicious. Well, I need to get back to duty. I'll be back tomorrow!");
-		eq.signal(9088,2,10000); -- NPC: Pincia_Brownloe Baking Supplies
+		eq.signal(9088,2,10000); -- NPC: Pincia_Brownloe
 	elseif(e.signal == 2) then
 		eq.resume();
 	elseif(e.signal == 3) then

@@ -13,6 +13,10 @@ function event_waypoint_arrive(e)
 		eq.create_ground_object(12147,-448,-107,-10.870,0,90000);
 	elseif(e.wp == 7) then
 		e.self:Say("Any mail for room number two?");
-		eq.signal(9103, 1); -- NPC: Swin_Blackeye General Supplies
+		eq.signal(9103, 1); -- NPC: Swin_Blackeye
 	end
+end
+
+function event_death_complete(e)
+	eq.unique_spawn(9144,86,0,704,-554,-24,0); -- spawn hollish tnoops
 end
