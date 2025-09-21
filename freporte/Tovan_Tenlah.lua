@@ -16,10 +16,12 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 19918})) then
 		e.self:Say("Sharpen this dagger and take it with this gem and a rattlesnake skin to Verona Rankin.");
-		e.other:SummonItem(19919); -- Item: Faceted Blue Gem
-		e.other:SummonItem(19920); -- Item: Dull Coalition Dirk
-		e.other:Ding();
-		e.other:AddEXP(100);
+		e.other:Faction(336,5); -- Coalition of Trade Folk Underground
+		e.other:Faction(229,5); -- Coalition of Trade Folk
+		e.other:Faction(329,1); -- Carson McCabe
+		e.other:Faction(230,1); -- Corrupt Qeynos Guards
+		e.other:Faction(330,1); -- Freeport Militia
+		e.other:QuestReward(e.self,{items = {19919,19920},exp = 100}); -- Item: Dull Coalition Dirk, Faceted Blue Gem
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

@@ -11,10 +11,9 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18508})) then -- Tesch Val Compilation
+		-- Verified Live experience
 		e.self:Say("So you are from Umvera! What is this? Oh my! INtersting! I'll bind them right away! A little snip here..a little snip there.. All done! That didn't take long, did it? I won't be doing this forever, you know. After the milita burned down my father's home, he could not afford to send me through proper schooling. Ah well, such is life!");
-		e.other:SummonItem(18510); -- Pawbook
-		e.other:Ding();
-		e.other:AddEXP(8000);
+		e.other:QuestReward(e.self,{itemid = 18510,exp = 2500}); -- Pawbook
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

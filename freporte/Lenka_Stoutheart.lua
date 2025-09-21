@@ -18,32 +18,30 @@ function event_say(e)
 	elseif(e.message:findi("journal strongbox")) then
 		e.self:Say("You must be from the Academy of Arcane Science.  Well, kid, bad news.  I was docked at the isle in the Ocean of Tears when I was boarded by the Freeport Militia.  To say the least, I panicked and dropped all my cargo.  It is still there.  Mostly illegal alcohol, but the strongbox is still out there, too.  Directly out from the dock.");
 		eq.set_global("strongbox","1",7,"H1");
+	elseif(e.message:findi("Bronto")) then
+		e.self:Say("My trusted friend. Together we travel the world aboard the [Beast]. He is quite skilled at boat making and other mechanical skills. He has a heart and brain far superior to any ogre I have ever met, as well as most other races.");
 	end
 end
 
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13818})) then -- Boat Beakon
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13818})) then -- Boat Beakon can be turned in at dubious
 		e.self:Say("Oh!! You must work for that Erudite named Palatos. I guess he won't have to spend anymore money drinking in Freeport. Here. Here is the portrait I kept until he could get me a new boat beacon.");
-		e.other:SummonItem(12146); -- A'kanon's Portrait
-		e.other:Ding();
-		e.other:Faction(320,1,0); -- Faction: Wolves of the North
+		-- Confirmed Live Factions
+		e.other:Faction(320,5,0); -- Faction: Wolves of the North
 		e.other:Faction(327,1,0); -- Faction: Shamen of Justice
 		e.other:Faction(265,1,0); -- Faction: Heretics
 		e.other:Faction(267,1,0); -- Faction: High Guard of Erudin
-		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13814})) then -- L.S. Pouch
+		e.other:QuestReward(e.self,0,0,0,0,12146,20000); -- A'kanon's Portrait
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13814})) then -- L.S. Pouch can be turned in at dubious
 		e.self:Say("You found my pouch! Thanks kid. Let me buy you A drink and this is for the good work. Hmmmm. It looks as though they took my voucher. Darn it! Hey... It looks like they were using my bag to hold items they were stealing. Here you go. You can have it. It looks like junk.");
-		e.other:SummonItem(eq.ChooseRandom(13922,13923)); -- Snapped Pole or Moggok's Right Eye
-		e.other:Ding();
-		e.other:Faction(320,2,0); -- Faction: Wolves of the North
-		e.other:Faction(327,2,0); -- Faction: Shamen of Justice
-		e.other:Faction(328,2,0); -- Faction: Merchants of Halas
-		e.other:Faction(311,2,0); -- Faction: Steel Warriors
-		e.other:Faction(305,-2,0); -- Faction: Rogues of the White Rose
-		e.other:AddEXP(200);
-		e.other:GiveCash(0,2,0,0);
+		-- Confirmed Live Factions
+		e.other:Faction(320,5,0); -- Faction: Wolves of the North
+		e.other:Faction(327,1,0); -- Faction: Shamen of Justice
+		e.other:Faction(328,1,0); -- Faction: Merchants of Halas
+		e.other:Faction(311,1,0); -- Faction: Steel Warriors
+		e.other:QuestReward(e.self,0,math.random(10),0,0,eq.ChooseRandom(13922,13923),200); -- Snapped Pole or Moggok's Right Eye
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

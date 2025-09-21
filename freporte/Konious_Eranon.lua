@@ -10,17 +10,12 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18856})) then -- A tattered Note
 		e.self:Say("Hey, Nex, we got another sucker.. er.. volunteer, that is, to help us out around here. Here ya go friend, put this on and let's whip you into shape.");
-		e.other:SummonItem(13566); -- Blood Spotted Robe*
-		e.other:Ding();
 		e.other:Faction(271,100,0); -- Dismal Rage
 		e.other:Faction(281,-15,0); -- Knights of Truth
 		e.other:Faction(296,20,0); -- Opal Dark Briar
-		e.other:AddEXP(100);
+		e.other:QuestReward(e.self,0,0,0,0,13566,20); -- Blood Spotted Robe*
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freporte -- Konious_Eranon
-
-
-

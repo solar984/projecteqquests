@@ -27,7 +27,7 @@ function event_say(e)
 		e.other:SummonItem(19560); -- Item: Tattered Pant Pattern
 	elseif(e.message:findi("rage sorcerer robe")) then
 		e.self:Say("To craft a Rage Sorcerer Robe you will require three [silk thread], gila monster bile, two gila monster skins, and a desert tarantula hairs. Once you have the necessary components combine them in your Curing Kit with this Tattered Robe Pattern.");
-		e.other:SummonItem(19556); -- Item: Tattered Tunic Pattern
+		e.other:SummonItem(11395); -- Item: Tattered Robe Pattern
 	elseif(e.message:findi("staff of dismal rage")) then
 		e.self:Say("The Dismal Rage has many enemies still here in Freeport that would uncover us and see us destroyed. Lately a wizard of the Arcane Scientists, Yovik Splegle, has been asking questions about Opal Darkbriar. Find this inquisitive wizard and silence him for good. When you have completed the task return to me with the wizards head.");
 	end
@@ -37,15 +37,16 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 19935})) then
-		e.other:Ding();
-		e.other:SummonItem(19924); -- Item: Rough Hewn Dismal Staff
+		e.self:Say("Poor, poor Yovik Splegle. Haha! Excellent work, " .. e.other:GetCleanName() .. ". Quickly, fetch me a giant rattlesnake skin and a giant leaf scarab eye along with your Rough Hewn Dismal Staff and I will construct you the Staff of Dismal Rage before your very eyes.");
+		e.other:Faction(271,10,0); -- Faction: Dismal Rage
+		e.other:Faction(281,-1,0); -- Faction: Knights of Truth
+		e.other:Faction(296,2,0); -- Faction: Opal Dark Briar
+		e.other:QuestReward(e.self,0,0,0,0,19924); -- Item: Rough Hewn Dismal Staff
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 19924,item2 = 19852,item3 = 19936})) then
-		e.other:SummonItem(19941); -- Item: Staff of Dismal Rage
-		e.other:Ding();
-		e.other:Faction(271,3,0); -- Faction: Dismal Rage
-		e.other:Faction(281,-3,0); -- Faction: Knights of Truth
-		e.other:Faction(296,3,0); -- Faction: Opal Darkbriar
-		e.other:AddEXP(250);
+		e.other:Faction(271,10,0); -- Faction: Dismal Rage
+		e.other:Faction(281,-1,0); -- Faction: Knights of Truth
+		e.other:Faction(296,2,0); -- Faction: Opal Dark Briar
+		e.other:QuestReward(e.self,0,0,0,0,19941,250); -- Item: Staff of Dismal Rage
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

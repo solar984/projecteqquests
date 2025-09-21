@@ -1,4 +1,3 @@
--- items: 13118, 13383, 13952, 13340, 13379
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Sit down and name your poison!  I know we are lacking in originality. but I intend to create some [exotic drinks].");
@@ -18,6 +17,8 @@ function event_say(e)
 		e.self:Say("Some rare drinks call for ground up fish. I intend to use the Koalindl fish of Qeynos.  It is said to be magical in nature.  The problem with obtaining them is that you must get them from Jahnda's Pool near the Temple of Life and I hear that the members protect these fish with great ferocity.");
 	elseif(e.message:findi("clurg")) then
 		e.self:Say("I do not know. Ask an ogre. Maybe they have heard of him.");
+	elseif(e.message:findi("Brunar")) then
+		e.self:Say("Brunar is just a humble fisherman. He stea... I mean catches, fish and I pay him for them. How else do you think I keep the bar supplied with bowls of tasty hunks of dried halibut?");
 	end
 end
 
@@ -27,15 +28,13 @@ function event_trade(e)
 	-- Erud's Tonic - Koalindl Fish - Honey Jum - Kiola Nut
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13118,item2 = 13383,item3 = 13952,item4 = 13340})) then
 		e.self:Say("Now I have every ingredient mentioned in the Barkeep Compendium. Here. You take it. <..click!.> Whoops!! I just closed it. It's magically sealed, I never closed it before. It's useless to you. I have no need for it any longer. Maybe you can return it to [Clurg] for some type of reward.");
-		e.other:SummonItem(13379); -- Barkeep Compendium
-		e.other:Ding();
+		-- confirmed live factions
 		e.other:Faction(336,5,0); -- Coalition of Tradefolk Underground
 		e.other:Faction(229,5,0); -- Coalition of Trade Folk
 		e.other:Faction(329,1,0); -- Carson McCabe
 		e.other:Faction(230,1,0); -- Corrupt Qeynos Guards
 		e.other:Faction(330,1,0); -- Freeport Militia
-		e.other:AddEXP(200);
-		e.other:GiveCash(0,0,0,2);
+		e.other:QuestReward(e.self,0,0,0,2,13379,200); -- Barkeep Compendium
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

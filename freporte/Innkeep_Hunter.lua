@@ -1,8 +1,3 @@
-function event_say(e)
-	if(e.message:findi("hail")) then
-		e.self:Say("Hail " .. e.other:GetCleanName() .. ". Business is going well these days. I have a full stock of baked goods and other items for sale. Have a look around!");
-	end
-end
 
 function event_trade(e)
 	local item_lib = require("items");

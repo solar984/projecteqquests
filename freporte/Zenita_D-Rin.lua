@@ -1,4 +1,3 @@
--- items: 22298, 13279, 13121, 22293, 22294, 22295, 22296, 22297, 22299
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Greetings. I would love to chat with you, but I just realized something.. I do not waste time with whelps.");
@@ -17,16 +16,14 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 22298})) then
 		e.self:Say("Why I will be.. You got it!! I thought I took it out of the deck. Very well. You win the Spare Lens fair and square. Here you are. Now get out of my sight.");
-		e.other:SummonItem(13279); -- Phiz's lens
-		e.other:Ding();
-		e.other:AddEXP(500);
+		e.other:QuestReward(e.self,0,0,0,0,13279,500); -- Phiz's lens
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13121})) then
 		e.self:Say("Let see what card you pulled.");
-		e.other:SummonItem(eq.ChooseRandom(22293,22294,22295,22296,22297,22298,22299)); -- Item(s): Castle Card (22293), Beggar Card (22294), Joker Card (22295), Wild Card (22296), Queen Card (22297), King Card (22298), Knight Card (22299)
+		e.other:QuestReward(e.self,0,0,0,0,eq.ChooseRandom(22293,22294,22295,22296,22297,22298,22299)); -- Item(s): Castle Card (22293), Beggar Card (22294), Joker Card (22295), Wild Card (22296), Queen Card (22297), King Card (22298), Knight Card (22299)
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 22299} or {item1 = 22297} or {item1 = 22296} or {item1 = 22294} or {item1 = 22293})) then
 		e.self:Say(string.format("Bad luck must be one of your strong suits. You should have been a beggar because you sure aren't a very good %s. You lose!",e.other:Class()));
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 22295})) then
-		e.self:Say(string.format("I see you have drawn the card that best represents a %s such as yourself. You lose!",e.other:GetRaceName()));
+		e.self:Say(string.format("I see you have drawn the card that best represents a %s such as yourself. You lose!",e.other:Race()));
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

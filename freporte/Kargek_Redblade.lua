@@ -1,7 +1,6 @@
 -- items: 20673, 20684, 20679, 17859, 20674, 18083, 60287, 60288
 function event_say(e)
-  if(e.other:Class() == "Warrior") then
-    if(e.message:findi("hail")) then
+     if(e.message:findi("hail")) then
       e.self:Emote(" looks up from his forge and says, 'Hello there, can I help you?' Your eyes are drawn to an extremely large red sword scabbard strapped to his back with no sword in it. Kargek speaks again, 'I said, can I help you or do you need help from Wenden?'");
     elseif(e.message:findi("wenden")) then
       e.self:Emote("points to the other side of the forge and says, 'Wenden is my partner. He is standing right over there. If it is a question about a weapon, he will probably have the answers.'");
@@ -19,30 +18,23 @@ function event_say(e)
     elseif(e.message:findi("find drevlon")) then
       e.self:Say("If you can catch him and return the sword he stole, we can once again place it on the grave of my father where it belongs. He'll be expecting me or someone in lieu of me to try to find him, so you'll have to wait for him during the evening, when he's most likely to come out of hiding. He hasn't had a lot of time to get out of the area, so you can probably find him near my father's grave, in the eastern plains of Karana.");
     end
-  end
 end
 
 function event_trade(e)
-  local item_lib = require("items");
-  local qglobals = eq.get_qglobals(e.other);
+	local item_lib = require("items");
+	local qglobals = eq.get_qglobals(e.other);
 
-  if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20684, item2 = 20679})) then -- Tenal's Note to Kargek & Spiroc Wingblade
-    e.self:Say("What is this? A note from my brother? Thank you for the gift as well.' Kargek reads the note and hands you the huge sword hilt. Your mind is filled with the sound of battle and a voice. 'Place the ancient sword blade, ancient blade, finely crafted dragon head hilt and the jeweled dragon head hilt into the scabbard to receive your rewards. If you think you are worthy, place your rewards into the scabbard and see what havoc you can unleash on the world. Kargek addresses you as you turn to leave. 'One more thing. Gartrog over there has told me of a great discovery. Seems there are all sorts of stones being found in the recently discovered lost dungeons scattered around Antonica. The Wayfarer's Brotherhood has found a way to make items even more powerful by using the stones with existing items.");
-    e.other:SummonItem(17859); -- Red Scabbard
-    e.other:Ding();
-    e.other:AddEXP(1000000);
-  elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20674})) then -- Tiny Lute
-    e.self:Say("Thank you for delivering the note to my associate. Take this book - it will tell you a little of the history of the old scabbard. If you would like to own the scabbard, seek out my younger brother Tenal and give him the book.");
-    e.other:SummonItem(18083); -- Redblade's Legacy
-    e.other:Ding();
-    e.other:AddEXP(1000);
-  elseif (qglobals['warrior_pre'] ~= nil and qglobals['warrior_pre'] == "3" and item_lib.check_turn_in(e.self, e.trade, {item1 = 60287})) then
-    e.self:Say("You got it, I'm so relieved! I know the rest of my family will be just as relieved as I am to know that we can return the sword to its resting spot atop my father's grave. You have done such a service to my family that I must give you something as a token of my thanks. This hilt bears the markings of the Redblade family. Combine it with the proper blade and you will have an amazing weapon. Thanks once again!");
-    e.other:SummonItem(60288); -- Item: Emblazoned Champion's Hilt
-    e.other:Ding();
-    e.other:AddEXP(1000);
-  end
-  item_lib.return_items(e.self, e.other, e.trade)
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20684,item2 = 20679})) then -- Tenal's Note to Kargek & Spiroc Wingblade
+		e.self:Say("What is this? A note from my brother? Thank you for the gift as well.' Kargek reads the note and hands you the huge sword hilt. Your mind is filled with the sound of battle and a voice. 'Place the ancient sword blade, ancient blade, finely crafted dragon head hilt and the jeweled dragon head hilt into the scabbard to receive your rewards. If you think you are worthy, place your rewards into the scabbard and see what havoc you can unleash on the world. Kargek addresses you as you turn to leave. 'One more thing. Gartrog over there has told me of a great discovery. Seems there are all sorts of stones being found in the recently discovered lost dungeons scattered around Antonica. The Wayfarer's Brotherhood has found a way to make items even more powerful by using the stones with existing items.");
+		e.other:QuestReward(e.self,0,0,0,0,17859,1000000); -- Red Scabbard
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20674})) then -- Tiny Lute
+		e.self:Say("Thank you for delivering the note to my associate. Take this book - it will tell you a little of the history of the old scabbard. If you would like to own the scabbard, seek out my younger brother Tenal and give him the book.");
+		e.other:QuestReward(e.self,0,0,0,0,18083,1000); -- Redblade's Legacy
+	elseif (qglobals['warrior_pre'] ~= nil and qglobals['warrior_pre'] == "3" and item_lib.check_turn_in(e.self, e.trade, {item1 = 60287})) then
+		e.self:Say("You got it, I'm so relieved! I know the rest of my family will be just as relieved as I am to know that we can return the sword to its resting spot atop my father's grave. You have done such a service to my family that I must give you something as a token of my thanks. This hilt bears the markings of the Redblade family. Combine it with the proper blade and you will have an amazing weapon. Thanks once again!");
+		e.other:QuestReward(e.self,{itemid = 60288, exp = 1000}); -- Item: Emblazoned Champion's Hilt
+	end
+	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- END of FILE Zone:freporte -- Kargek_Redblade

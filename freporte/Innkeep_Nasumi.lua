@@ -1,14 +1,9 @@
-function event_say(e)
-	if(e.message:findi("hail")) then
-		e.self:Say("Hail " .. e.other:GetCleanName() .. ". Business is going well these days. I have a full stock of baked goods and other items for sale. Have a look around!");
-	end
-end
 
 function event_trade(e)
 	local item_lib = require("items");
 	
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 1839}, 0)) then  -- Full Muffin Crate
-		e.self:Say("These are quality muffins! You are obviously quite a skilled baker. Here is your payment as promised. Now I can get back to business again.");
+		e.self:Say("Ah yes! This is exactly what I am looking for, dear. Let me put these on the shelf right away. Here is some coin for your trouble. Perhaps we can do business again some time.");
 		e.other:Faction(63,2); -- coalition of tradefolk
 		e.other:Faction(281,2); -- knights of truth
 		e.other:Faction(291,1); -- merchants of qeynos

@@ -17,9 +17,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 63005})) then -- Completed Cartography Binder
 		e.self:Say("Incredible! With a little work, I will be able to create a finished map of the Gulf of Gunthak. No longer will the pirates be able to keep their lair a secret. Thank you! Please take this as a reward for your efforts.");
-		e.other:SummonItem(63048); -- Skyfall Seeker
-		e.other:Ding();
-		e.other:AddEXP(200);
+		e.other:QuestReward(e.self,{itemid = 63048, exp = 200}) -- Skyfall Seeker
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

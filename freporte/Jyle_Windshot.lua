@@ -9,17 +9,22 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
-
+	local wooden_chance = 0;
+	
+	if(math.random(10) == 1) then
+		wooden_chance = 12334; -- wooden heart
+	else
+		wooden_chance = 13824; -- wooden shards
+	end
+	
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13536, gold = 2})) then -- dirty green tunic and 2 gold.
 		e.self:Say("Thanks, friend. I have run a long way to get here in time. Mostly at night. I lost my lantern in a card game in Highkeep.");
-		e.other:SummonItem(eq.ChooseRandom(13824, 13824, 13824, 13824, 13824, 13824, 13824, 13824, 13824, 12334)); -- 1/10 chance of wooden heart 9/10 chance of Wooden Shards
-		e.other:Ding();
 		e.other:Faction(246,1,0); -- Faydark's Champions
 		e.other:Faction(279,1,0); -- King Tearis Thex
 		e.other:Faction(226,1,0); -- Clerics of Tunare
 		e.other:Faction(310,1,0); -- Soldiers of Tunare
 		e.other:Faction(234,-1,0); -- Crushbone Orcs
-		e.other:AddEXP(500);
+		e.other:QuestReward(e.self,{itemid = wooden_chance, exp = 500}); -- 1/10 chance of wooden heart 9/10 chance of Wooden Shards
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

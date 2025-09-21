@@ -3,32 +3,36 @@ function event_spawn(e)
 end
 
 function event_timer(e)
-	local sing_it;
-	if(e.timer == "sing") then
-		sing_it = eq.ChooseRandom(1,2,3,4,5,6);
-		if(sing_it == 1) then
-			e.self:Say("Let's hear some music.");
-			bard_sing();
-		elseif(sing_it == 2) then
-			e.self:Say("Music!! Music!!");
-			bard_sing();
-		elseif(sing_it == 3) then
-			e.self:Say("Play us some music bard!!");
-			bard_sing();
-		elseif(sing_it == 4) then
-			e.self:Say("Let's liven this pub up!");
-			bard_sing();
-		elseif(sing_it == 5) then
-			e.self:Say("Try to cheer this place up, bard.");
-			bard_sing();
-		elseif(sing_it == 6) then
-			e.self:Say("Where is the music? I don't pay you bards to drink all the grog!!");
+	local song;
+	
+	if (e.timer == "sing") then
+	
+		if ( not eq.get_entity_list():IsMobSpawnedByNpcTypeID(10141)		-- NPC: Trolon_Lightleer;
+			and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(10158)		-- NPC: Branis_Noolright
+			and not eq.get_entity_list():IsMobSpawnedByNpcTypeID(10165)		-- NPC: Palana_Willin
+		) then		
+			return;
 		end
-	end
-end
 
-function bard_sing()
-	eq.signal(10141,1); -- NPC: Trolon_Lightleer
-	eq.signal(10158,1); -- NPC: Branis_Noolright
-	eq.signal(10165,1); -- NPC: Palana_Willin
+		song = math.random(1, 7);
+		if (song == 1) then
+			e.self:Say("Let's hear some music.");
+		elseif (song == 2) then
+			e.self:Say("Music!! Music!!");
+		elseif (song == 3) then
+			e.self:Say("Play us some music bard!!");
+		elseif (song == 4) then
+			e.self:Say("Let's liven this pub up!");
+		elseif (song == 5) then
+			e.self:Say("Try to cheer this place up, bard.");
+		elseif (song == 6) then
+			e.self:Say("Where is the music? I don't pay you bards to drink all the grog!!");
+		elseif (song == 7) then
+			e.self:Say("Sing us a melody.");			
+		end
+		
+		eq.signal(10141,1); -- NPC: Trolon_Lightleer
+		eq.signal(10158,1); -- NPC: Branis_Noolright
+		eq.signal(10165,1); -- NPC: Palana_Willin
+	end
 end
