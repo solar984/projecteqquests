@@ -25,15 +25,14 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13945})) then
 		e.self:Say("Oh thank Tunare you showed up when you did. I was at a nearby merchant house when a fellow dropped a [note] and I picked it up and read it. It talked of the [Unkempt Druids] and before I could read on, the man swiped it from my hands. I ran for dear life, for surely he would kill me for reading the note. I think I lost him in the woods but I am not sure. Please stay with me a while to be sure.");
-		e.other:Ding();
-		e.other:Faction(302,10,0); -- Faction: Protectors of Pine
-		e.other:Faction(272,10,0); -- Faction: Jaggedpine Treefolk
-		e.other:Faction(343,10,0); -- Faction: Surefall Protected Animals
-		e.other:Faction(324,-30,0); -- Faction: Unkempt Druids
-		e.other:Faction(262,10,0); -- Faction: Guards of Qeynos
-		e.other:AddEXP(500);
-		e.other:GiveCash(math.random(10),math.random(10),math.random(10),math.random(10));
-		eq.spawn2(12181,0,0,-8000,-3400,23,205.8); -- NPC: Draze_Slashyn
+		-- confirmed live factions
+		e.other:Faction(272,10,0); -- Jaggedpine Treefolk
+		e.other:Faction(302,2,0); -- Protector of the Pine
+		e.other:Faction(343,1,0); -- QRG Protected Animals
+		e.other:Faction(324,-2,0); -- Unkempt Druids
+		e.other:Faction(262,1,0); -- Guards of Qeynos
+		e.other:QuestReward(e.self,math.random(10),math.random(10),math.random(5),0,0,2000);
+		eq.unique_spawn(12181,0,0,-8000,-3400,23,102.9); -- NPC: Draze_Slashyn
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

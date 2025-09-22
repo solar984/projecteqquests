@@ -24,14 +24,10 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20379})) then
 		e.self:Say("Excellent!  You are quite a runner.  Here is half of the sheet music.  I decided to keep the other half because it has this wonderful signature.  I think it might be quite valuable.  It is probably worth as much as an instrument the great Mahlin used.");
-		e.other:SummonItem(20376); -- Item: Maestro's Symphony Page 24 Top
-		e.other:Ding();
-		e.other:AddEXP(1000);
+		e.other:QuestReward(e.self,0,0,0,0,20376,1000);
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 20366})) then
 		e.self:Say("Mahlin's bongos!  Here, take the other half of the sheet music.  I can't really make out what the signature was, anyway.");
-		e.other:SummonItem(20383); -- Item: Maestro's Symphony Page 24 Bottom
-		e.other:Ding();
-		e.other:AddEXP(1000);
+		e.other:QuestReward(e.self,0,0,0,0,20383,1000);
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

@@ -10,6 +10,12 @@
 -- Converted to Lua by robregen
 -- ####################################
 
+function event_say(e)
+	if(e.message:findi("hail")) then
+		e.self:Say("Step aside.  I have no quarrel with you.");
+	end
+end
+
 function event_spawn(e)
 	eq.move_to(-7756,-3726,1);
 end

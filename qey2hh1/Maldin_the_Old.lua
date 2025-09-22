@@ -1,7 +1,5 @@
 function event_say(e)
-	if(e.message:findi("hail")) then
-		e.self:Say("Hello. Nice to make your acquaintance. Be careful in the plains. There are many creatures. Just stay close to the guard towers.");
-	elseif(e.message:findi("follower of karana")) then
+	if(e.message:findi("follower of karana")) then
 		e.self:Say("Yes. I am a follower of Karana, the Rainkeeper. It is He who keeps the plains fertile.");
 	elseif(e.message:findi("blessing")) then
 		e.self:Say("Of the things I desire, I can think of nothing I wish for more than the blessings of Karana. By drinking from the temple chalice of a Karana cleric I can attain this.");

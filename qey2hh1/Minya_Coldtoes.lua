@@ -1,12 +1,9 @@
--- items: 12102
 function event_say(e)
-	if(e.message:findi("hail")) then
-		e.self:Say("Great!! I have fifty acres to seed and now I have visitors stopping by to waste my time!!");
-	elseif(e.message:findi("follower of Karana")) then
+	if(e.message:findi("follower of Karana")) then
 		e.self:Say("Yes. I am a follower of Karana, the Rainkeeper. It is He who keeps the plains fertile.");
 	elseif(e.message:findi("blanket")) then
-		e.self:Say(string.format("With the frequent rains, I find my only need is a blanket to keep me warm during the long cold nights. Thank Karana the temple has begun to send young %s to deliver extra blankets.",e.other:Class()));
-	elseif(e.message:findi("karana bandits")) then
+		e.self:Say("With the frequent rains, I find my only need is a blanket to keep me warm during the long cold nights. Thank Karana the temple has begun to send young paladins to deliver extra blankets.");
+	elseif(e.message:findi("karana bandit")) then
 		e.self:Say("The Karana bandits are rogues who operate in the plains. I have heard there are bounties for the bandits. Within the Temple of Thunder in Qeynos, Cleric Gehna offers one for bandit spectacles and Paladin Chesgard offers one for bandit sashes.");
 	end
 end
@@ -20,6 +17,7 @@ function event_trade(e)
 		e.other:Faction(262,1,0); -- Faction: Guards of Qeynos
 		e.other:Faction(341,1,0); -- Faction: Priests of Life
 		e.other:Faction(280,1,0); -- Faction: Knights of Thunder
+		e.other:Faction(223,-1,0); -- Faction: Circle of Unseen Hands
 		e.other:QuestReward(e.self,math.random(20),0,0,0,0,2000);
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

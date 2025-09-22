@@ -9,10 +9,10 @@ sub EVENT_SPAWN {
 
 sub EVENT_DEATH_COMPLETE {
   $werewolf++;
-  my $bigwolf = $entity_list->GetMobByNpcTypeID(12184);
+  my $bigwolf = $entity_list->GetMobByNpcTypeID(12021);
   if (($werewolf == 4) && !$bigwolf) { #All werewolves dead
     quest::say("Your attack was in vain, fool. The staff was stolen from us by a bandit only hours ago.");
-    quest::spawn2(12185,186,0,-11080,-2920,38,0); #Shady Bandit
+    quest::spawn2(12027,186,0,-11080,-2920,38,0); #Shady Bandit
   }
 }
 
