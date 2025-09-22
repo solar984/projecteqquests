@@ -14,8 +14,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20690,item2 = 20689,item3 = 20688})) then
 		e.self:Say("My heart cleansed of Corruption can interrupt the Flow of the corruption between the priest and his dark god, force it upon him quickly, I can sense him, he is in the Karana's somewhere.");
-		e.other:SummonItem(20695); -- Item: Warm Pulsing Treant Heart
-		e.other:Ding();
+		e.other:QuestReward(e.self,{itemid = 20695}); -- Item: Warm Pulsing Treant Heart
 		eq.depop_with_timer();
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

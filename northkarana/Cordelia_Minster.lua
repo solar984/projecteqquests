@@ -23,15 +23,12 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13310})) then -- A cracked Flute
 		e.self:Say("Why thank you, kind adventurer! Here is a little something to keep food in your belly. Now back to practice. La la la..");
-		e.other:SummonItem(13119); -- Winds of Karana sheet 2
-		e.other:Ding();
-		e.other:Faction(262,2,0); -- Faction: Guards of Qeynos
-		e.other:Faction(281,2,0); -- Faction: Knights of Truth
-		e.other:Faction(284,2,0); -- Faction: League of Antonican Bards
-		e.other:Faction(285,-5,0); -- Faction: Mayong Mistmoore
-		e.other:Faction(304,-5,0); -- Faction: Ring of Scale
-		e.other:AddEXP(1000);
-		e.other:GiveCash(0,2,0,0);
+		e.other:Faction(284,5); -- Faction: League of Antonican Bards
+		e.other:Faction(281,1); -- Faction: Knights of Truth
+		e.other:Faction(262,1); -- Faction: Guards of Qeynos
+		e.other:Faction(304,-1); -- Faction: Ring of Scale
+		e.other:Faction(285,-1); -- Faction: Mayong Mistmoore
+		e.other:QuestReward(e.self,0,math.random(5),0,0,13119,1000); -- Winds of Karana sheet 2
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

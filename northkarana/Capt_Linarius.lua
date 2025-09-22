@@ -1,10 +1,3 @@
--- items: 13303, 5369, 9002, 13304
-function event_combat(e)
-  if e.joined then
-    e.self:Say(string.format("Time to die %s!",e.other:GetCleanName()));
-  end
-end
-
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Hail, traveler! You are free to rest within this keep or within any of my towers along the roads to Qeynos. My guards shall keep watch over you. While you tread upon the roads, be warned that there are [local dangers] as well as rumors of [corrupt guards].");
@@ -19,20 +12,24 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
+	local cgb = item_lib.count_handed_item(e.self, e.trade, {13303});
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13303})) then -- Corrupt Guards Bracelet (Guard Bracelet - 13303)
+	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= -100 and (cgb > 0))  then -- Corrupt Guards Bracelet (Guard Bracelet - 13303)
+		repeat
 		e.self:Say("What a pity. Such a promising soldier. I thank you for ridding us of this corruption and offer you this as a reward. It is nothing more than junk which littered the roadways of the Plains of Karana. I hope you can find a use for it.");
-		e.other:SummonItem(eq.ChooseRandom(5369,9002)); -- Bunker Battle Blade , Round Shield
-		e.other:Ding();
+		-- confirmed live factions and exp data
 		e.other:Faction(262,10,0); -- Guards of Qeynos
-		e.other:Faction(219,10,0); -- Antonius Bayle
-		e.other:Faction(230,-10,0); -- Corrupt Qeynos Guards
-		e.other:Faction(223,-10,0); -- Circle Of Unseen Hands
-		e.other:Faction(291,10,0); -- Merchants of Qeynos 
-		e.other:AddEXP(2000);
-		e.other:GiveCash(19,0,8,0);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13304})) then -- Loyal Guards Bracelet (Guard Bracelet - 13304)
-		e.self:Say("You fool!!! You have slain a loyal defender of the guard!  Prepare to DIE!!!"); -- text made up
+		e.other:Faction(219,1,0); -- Antonius Bayle
+		e.other:Faction(230,-1,0); -- Corrupt Qeynos Guards
+		e.other:Faction(223,-2,0); -- Circle Of Unseen Hands
+		e.other:Faction(291,1,0); -- Merchants of Qeynos 
+		e.other:QuestReward(e.self,math.random(20),0,math.random(10),0,eq.ChooseRandom(5369,9002,4209,5028,5034,2248,5310,9003,7350,5350),50000); -- Bunker Battle Blade , Round Shield, Bronze Bracers, Bronze Battle Axe, Bronze Scimitar, Reinforced Boots, Tentacle Whip, Targ Shield, Fine Steel Dagger, Fine Steel Long Sword
+			cgb = cgb - 1;
+		until cgb == 0
+	end	
+
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13304})) then -- Loyal Guards Bracelet (Guard Bracelet - 13304)
+		e.self:Say("You fool! You have killed a fine and outstanding guard. You shall pay dearly for this!");
 		eq.attack(e.other:GetName());
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

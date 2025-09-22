@@ -1,8 +1,11 @@
 -- Part of quest for Incandescent Wand
--- items: 6338, 6339
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say("Welcome. I am Ezmirella.");
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 0) then
+			e.self:Say("Welcome. I am Ezmirella.");
+		else
+			e.self:Say(eq.ChooseRandom("I didn't know Slime could speak common.  Go back to the sewer before I lose my temper.","Is that your BREATH, or did something die in here?  Now go away!","I wonder how much I could get for the tongue of a blithering fool?  Leave before I decide to find out for myself.","Oh look..a talking lump of refuse..how novel!"));
+		end
 	end
 end
 
@@ -11,9 +14,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 6338, gold = 50})) then
 		e.self:Say("I have blessed your silver wand.  To complete the enchantment, you must take the wand to Raine Beteria in the Erudin Library.  Tip her 50 golden coins, and she will help you.");
-		e.other:SummonItem(6339); -- Item: Blessed Silver Wand
-		e.other:Ding();
-		e.other:AddEXP(1000);
+		e.other:QuestReward(e.self,0,0,0,0,6339,1000); -- Item: Blessed Silver Wand
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

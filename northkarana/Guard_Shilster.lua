@@ -30,13 +30,13 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {gold = 5})) then
 		e.self:Say("There you go, sport. If you get caught with that, you didn't get it from me!");
-		e.other:SummonItem(13107); -- Item: Black Burrow Stout
-		e.other:Ding();
-		e.other:Faction(262,-10,0); -- Guards of Qeynos
-		e.other:Faction(273,10,0); -- Kane Bayle
-		e.other:Faction(230,10,0); -- Corrupt Qeynos Guards
-		e.other:Faction(223,10,0); -- Circle Of Unseen Hands
-		e.other:Faction(221,10,0); -- Bloodsabers
+		-- Confirmed Live Factions
+		e.other:Faction(230,1,0); -- Corrupt Qeynos Guards
+		e.other:Faction(262,-1,0); -- Guards of Qeynos
+		e.other:Faction(273,1,0); -- Kane Bayle		
+		e.other:Faction(223,1,0); -- Circle Of Unseen Hands
+		e.other:Faction(221,1,0); -- Bloodsabers
+		e.other:QuestReward(e.self,0,0,0,0,13107); -- Item: Black Burrow Stout
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

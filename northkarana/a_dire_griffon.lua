@@ -1,6 +1,6 @@
 -- bard 1.5
 -- no pre-reqs
-local dragon_id = 13130
+local dragon_id = 13016
 
 function event_spawn(e)
     eq.set_next_hp_event(80)

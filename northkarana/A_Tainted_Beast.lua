@@ -4,13 +4,15 @@ function event_spawn(e)
 end
 
 function event_combat(e)
-  if e.joined then
-    eq.stop_timer("despawn");
-    eq.debug(e.self:GetCleanName() .. " joined combat - stopping the despawn timer.");
-  else
-    eq.set_timer("despawn", 60 * 1000);
-    eq.debug(e.self:GetCleanName() .. " left combat - starting the 60 second despawn timer.");
-  end
+	if(e.joined) then
+		if(not eq.is_paused_timer("depop")) then
+			eq.pause_timer("depop");
+			eq.debug(e.self:GetCleanName() .. " joined combat - pausing the despawn timer.");
+		end
+	else
+		eq.resume_timer("depop");
+		eq.debug(e.self:GetCleanName() .. " left combat - continue the despawn timer.");
+	end
 end
 
 function event_timer(e)

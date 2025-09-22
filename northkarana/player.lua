@@ -3,7 +3,7 @@ function event_enter_zone(e)
 
     if e.self:GetClass() == Class.BARD or e.self:GetClass() == Class.ROGUE then
 		if e.self:HasItem(52355) and not e.self:HasItem(52359) then -- Item Has: Shakey's Dilapidated Noggin Item Does Not Have: Radiant Azure Lightstone
-			eq.unique_spawn(13123, 109, 0, 0, 0, -8); -- NPC: Flighty_Azure_Wisp
+			eq.unique_spawn(13019, 109, 0, 0, 0, -8); -- NPC: Flighty_Azure_Wisp
 			e.self:Message(MT.Yellow, "Out of the corner of your eye, you catch a glimpse of a brightly colored wisp as it darts by. It's moving at an incredible speed.");
 		end
 	end
@@ -25,7 +25,7 @@ end
 
 function event_loot(e)
     local qglobals = eq.get_qglobals(e.self);
-	if e.self:GetClass() == Class.RANGER and e.item:GetID() == 62604 and e.corpse:GetNPCTypeID() == 13131 then
+	if e.self:GetClass() == Class.RANGER and e.item:GetID() == 62604 and e.corpse:GetNPCTypeID() == 13022 then
         if qglobals.ranger_epic15_pre ~= nil and qglobals.ranger_epic15_pre ~= "8" then
             return 1;
         else
@@ -33,7 +33,7 @@ function event_loot(e)
         end
     end
 
-    if e.item:GetID() == 14344 and e.corpse:GetNPCTypeID() == 13125 and e.self:HasItem(26896) and e.self:HasItem(11430) and e.self:HasItem(22892) then -- All 4 Heads
+    if e.item:GetID() == 14344 and e.corpse:GetNPCTypeID() == 13017 and e.self:HasItem(26896) and e.self:HasItem(11430) and e.self:HasItem(22892) then -- All 4 Heads
         e.self:Message(MT.Yellow, "With his last breath, the paladin says, 'You are too late. The last paladin has fled to Natimbi with the staff and is on his way to destroy it!'");
     end
 end
