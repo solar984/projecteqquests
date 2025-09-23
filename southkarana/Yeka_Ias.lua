@@ -12,9 +12,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 20695})) then
 		e.self:Emote("grabs the heart as you toss it to him before realizing what it is. As soon as it touches his hands, his body convulses, a sickly light emanating from his eyes and oozing cracks appear in his skin. As he melts into the ground, a small glowing ball floats where he once stood.");
-		e.other:SummonItem(20698); -- Item: Cleansed Spirit of Antonica
-		e.other:Ding();
-		e.other:AddEXP(2000);
+		e.other:QuestReward(e.self,0,0,0,0,20698,2000); -- Item: Cleansed Spirit of Antonica
 		eq.depop_with_timer();
 	end
 	item_lib.return_items(e.self, e.other, e.trade)

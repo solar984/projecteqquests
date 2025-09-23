@@ -51,8 +51,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 2344}) and (xloc == -3098 and yloc == -5872)) then -- confession document
 		e.self:Emote("makes a big X at the bottom of the document and hands it back saying, 'A bunch of worthless thugs is all you folks are!'");
-		e.other:SummonItem(2395); -- Theodore's Confession
-		e.other:Ding();
+		e.other:QuestReward(e.self,0,0,0,0,2395); -- Theodore's Confession
 		eq.signal(14050,9,5000); -- NPC: an_interrogator
 		eq.depop();
 	end

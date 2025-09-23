@@ -8,16 +8,13 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18292 })) then -- Interrogator's Briefing
 		e.self:Say("I see you wish to become an interrogator. This is not a duty for the weak of heart you know. This job sometimes requires...");
-		e.other:AddEXP(1000);
+		e.other:QuestReward(e.self,0,0,0,0,2344,1000); -- confession document
 		eq.set_timer("brief",10000);
-		e.other:SummonItem(2344); -- confession document
 		name = e.other:GetName();
 		brief = 0;
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 2390,item2 = 2391,item3 = 2395})) then -- Head of Markus Cachexia, Head of Morley Murrain, Theodore's Confession
 		e.self:Say("Excellent work, you did just fine today. You'll make a fine interrogator. Talk to Vegalys about advancing further.");
-		e.other:SummonItem(2387); -- Interrogator's Badge
-		e.other:Ding();
-		e.other:AddEXP(5000);
+		e.other:QuestReward(e.self,0,0,0,0,2387,5000); -- Interrogator's Badge
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
@@ -42,7 +39,7 @@ function event_timer(e)
 		e.self:Say("So our goal is to pry the information we need from Theodore Exanthem so that we may bring these two fugitives to justice. After getting him to comply, you are to collect a confession from Theodore and have him lead us to the two fugitives. Give me Theodore's confession and the heads of these two fugitives and you shall have your badge");
 	elseif(brief == 8) then
 		e.self:Say(string.format("follow me, %s",name));
-		eq.start(110); -- start the grid (one way repop)
+		eq.start(4); -- start the grid (one way repop)
 		eq.stop_timer("brief");
 	end
 end

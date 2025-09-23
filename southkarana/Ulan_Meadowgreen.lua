@@ -37,30 +37,22 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
+	local text = "Wait, " .. e.other:GetCleanName() .. ", are you not forgetting something?";
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 14019,item2 = 10034})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 14019,item2 = 10034},1,text)) then
 		e.self:Say("Very good. I am always in need of more optic nerves. Take this crafted bracer with my thanks.");
-		e.other:SummonItem(4177); -- Item: Crafted Bracers
-		e.other:Ding();
-		e.other:AddEXP(25000);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13742,item2 = 10032,item3 = 10032})) then
-		e.self:Say("Excellent! Here is your reward, you have earned it!");
-		e.other:SummonItem(4179); -- Item: Crafted Greaves
-		e.other:Ding();
-		e.other:AddEXP(25000);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13698,item2 = 13699,item3 = 13738,item4 = 10033})) then
-		e.self:Say("Excellent! Here is your reward, you have earned it!");
-		e.other:SummonItem(4175); -- Item: Crafted Pauldron
-		e.other:Ding();
-		e.other:AddEXP(25000);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13746,item2 = 10035,item3 = 10035,item4 = 10035})) then
-		e.self:Say("Excellent! Here is your reward, you have earned it!");
-		e.other:SummonItem(4174); -- Item: Crafted Breastplate
-		e.other:Ding();
-		e.other:AddEXP(25000);
+		e.other:QuestReward(e.self,0,0,0,0,4177,25000); -- Item: Crafted Bracers
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13742,item2 = 10032,item3 = 10032},1,text)) then
+		e.self:Say("Is this.. it is! I did not recognize it at first, but this is indeed the circlet my father once crafted. It seems to have been enchanted since. Take these crafted greaves with my thanks for a job well done.");
+		e.other:QuestReward(e.self,0,0,0,0,4179,25000); -- Item: Crafted Greaves
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13698,item2 = 13699,item3 = 13738,item4 = 10033},1,text)) then
+		e.self:Say("Most impressive - all three pieces of the dwarven rune. When joined, this shall serve me well. Take this crafted pauldron with my gratitude.");
+		e.other:QuestReward(e.self,0,0,0,0,4175,25000); -- Item: Crafted Pauldron
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13746,item2 = 10035,item3 = 10035,item4 = 10035},1,text)) then
+		e.self:Say("I am most impressed that you have returned from Castle Mistmoore with a werewolf talon. You have justly earned your crafted breastplate.");
+		e.other:QuestReward(e.self,0,0,0,0,4174,25000); -- Item: Crafted Breastplate
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
 
 -- EOF zone: southkarana ID: 14073 NPC: Ulan_Meadowgreen
-
