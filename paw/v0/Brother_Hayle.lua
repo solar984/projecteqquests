@@ -30,7 +30,7 @@ function event_trade(e)
 	-- need MQ implementation
 	-- local text = "I will not hand Soulfire to you until you hand me the Soulfire hilt, Testimony of Truth, Sword of Faith and the returned note. I require them as [proof of nobility].";
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18927})) then -- Temple Summons
+	if(item_lib.check_turn_in(e.trade, {item1 = 18927})) then -- Temple Summons
 		e.self:Say("I am needed!! What am I doing here? I must return to the Temple of Life to commune with the Prime Healer. Rodcet Nife will give me more strength to finish this job. Thank you, young one! Take this key as a reward. Turn it into Tyokan in the temple shop. Safe journey to you!");
 		-- confirmed live faction and Experience
 		e.other:Faction(341,20); 		-- Priest of Life
@@ -39,7 +39,7 @@ function event_trade(e)
 		e.other:Faction(221,-5); 		-- BloodSabers
 		e.other:Faction(219,3); 		-- Antonious Bayle
 		e.other:QuestReward(e.self,{itemid = 13306,exp = 1000}); -- T.O.L. 2020
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18936})) then -- A Sealed Note
+	elseif(item_lib.check_turn_in(e.trade, {item1 = 18936})) then -- A Sealed Note
 		e.self:Say("Finally!! I see that Ariska has found a noble knight to retrieve Soulfire. Per Ariska's orders I am not to give Soulfire to you until you can show me [proof of nobility]. You must honor both the Temple of Life as well as the Hall of Truth and to a high degree. Only then shall you hold Soulfire.");
 		e.other:Faction(341,10); 		-- Priest of Life
 		e.other:Faction(280,3); 		-- Knights of Thunder
@@ -49,7 +49,7 @@ function event_trade(e)
 		e.other:QuestReward(e.self,0,0,0,0,18937,200);
 	-- need MQ implementation.
 	-- elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18937,item2 = 13947,item3 = 18828,item4 = 12197},1,text)) then -- A Note, Brilliant Sword of Faith, Testimony, Glowing Sword Hilt
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18937,item2 = 13947,item3 = 18828,item4 = 12197})) then
+	elseif(item_lib.check_turn_in(e.trade, {item1 = 18937,item2 = 13947,item3 = 18828,item4 = 12197})) then
 		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 750) then -- items will get eaten if faction not high enough.
 			e.self:Say("You have proven yourself worthy to hold Soulfire. Do not let her slip into the hands of evil. There are many who wish to free the many trapped souls of shadowknights and necromancers trapped inside the blade. The power of the blade can be called upon to heal you if need be. May Rodcet Nife and the twins of Marr hold you in their glory.");
 			e.other:Faction(341,100); 		-- Priest of Life

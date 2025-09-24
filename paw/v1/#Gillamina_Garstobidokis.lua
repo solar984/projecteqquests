@@ -14,11 +14,9 @@ end
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 55995,item2 = 55993,item3 = 55992,item4 = 55994})) then -- Air Elemental Orb, Earthen Elemental Orb, Fiery Elemental Orb, Watery Elemental Orb
+	if(item_lib.check_turn_in(e.trade, {item1 = 55995,item2 = 55993,item3 = 55992,item4 = 55994})) then -- Air Elemental Orb, Earthen Elemental Orb, Fiery Elemental Orb, Watery Elemental Orb
 		e.self:Say("Remarkable! I cannot wait to study these! Here is your reward as promised! Safe travels.");
-		e.other:SummonItem(71271); -- Elemental Stone
-		e.other:Ding();
-		e.other:AddEXP(500000);
+		e.other:QuestReward(e.self,{itemid = 71271, exp = 50000}) -- Elemental Stone
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

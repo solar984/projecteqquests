@@ -1,12 +1,11 @@
 function event_click_door(e)
-    local door_id = e.door:GetDoorID();
-    local entity_list = eq.get_entity_list();
+	local id = e.door:GetDoorID();
 
-    if (door_id == 52) then
-        entity_list:FindDoor(10):ForceOpen(e.self);
-        entity_list:FindDoor(7):ForceOpen(e.self);
-    elseif (door_id == 53) then
-        entity_list:FindDoor(5):ForceOpen(e.self);
-    end
+	if ( id == 52 ) then
+		eq.get_entity_list():GetDoorsByDoorID(10):ForceOpen(e.self);
+		eq.get_entity_list():GetDoorsByDoorID(7):ForceOpen(e.self);
+		
+	elseif ( id == 53 ) then
+		eq.get_entity_list():GetDoorsByDoorID(5):ForceOpen(e.self);
+	end
 end
-
