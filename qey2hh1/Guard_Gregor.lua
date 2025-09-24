@@ -7,6 +7,6 @@ function event_say(e)
 			eq.task_selector({500143}); -- Task: Bringing Goods to the Karanas
 		end
 	else
-		e.self:Say("Sorry, " .. e.other:GetCleanName() .. ". I am quite busy...",);
+		e.self:Say("Sorry, " .. e.other:GetCleanName() .. ". I am quite busy...");
 	end
 end
