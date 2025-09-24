@@ -1,19 +1,3 @@
--- items: 87319
-function event_task_stage_complete(e)
-    if e.task_id == 5655 then
-        e.self:SummonItem(87319, 5)
-        e.self:AddLevelBasedExp(10, 0)
-        eq.set_global("halloween_zombie", "1", 0, "H3")
-        e.self:Message(MT.Yellow, "The zombie presence seems somewhat lessened, and perhaps they have been quelled . . . for the time being.")
-    end
-end
-
-function event_signal(e)
-    if e.signal == 667 then
-        eq.update_task_activity(5654, 0, 1)
-    end
-end
-
 function event_enter_zone(e)
     if e.self:GetClass() == Class.BARD then
         local qglobals = eq.get_qglobals(e.self)
