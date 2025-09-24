@@ -1,47 +1,53 @@
--- items: 13870, 17968, 12155, 5423
 function event_say(e)
-	local fac = e.other:GetFaction(e.self);
-
 	if(e.message:findi("hail")) then
-		e.self:Say("Hello. " .. e.other:GetName() .. ".  I am Lanena Wickystick. marshal of all Vale concerns.  If there are any troubles brewing in our fine town which concern the Guardians of the Vale. please inform me.  You must be a [new deputy] or are you an [outsider]?");
-	elseif(e.message:findi("new deputy") and fac > 2 and fac < 5) then
-		e.self:Say("It is good to see such fine stock in the ranks of the Guardians.  Being new. there is much to learn. in battle and in life itself.  If you are not presently obligated. we have need of you here in the hollow.  There seems to be a [small problem].");
-	elseif(e.message:findi("new deputy") and fac == 5) then
-		e.self:Say("You are in good standing with the Guardians of the Vale. Continue with your good work and then we may speak.");
+		e.self:Say("Hello. " .. e.other:GetCleanName() .. ".  I am Lanena Wickystick, marshal of all Vale concerns.  If there are any troubles brewing in our fine town which concern the Guardians of the Vale, please inform me.  You must be a [new deputy] or are you an [outsider]?");
+	elseif(e.message:findi("new deputy")) then
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100) then -- confirmed exact - Elroz
+			e.self:Say("It is good to see such fine stock in the ranks of the Guardians.  Being new, there is much to learn, in battle and in life itself.  If you are not presently obligated, we have need of you here in the hollow.  There seems to be a [small problem].");
+		elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 0) then
+			e.self:Say("You are in good standing with the Guardians of the Vale. Continue with your good work and then we may speak.")
+		else
+			e.self:Say("How can you expect to just waltz into Guardian Stronghold and expect to gather information?! Consider yourself lucky I don't command the Guardian of the Vale deputies to show you the sharpness of their blades!");
+		end
 	elseif(e.message:findi("outsider")) then
-		e.self:Say("Well. then!! You should not be in here.  This place is restricted to all outsiders.  You will leave at once!  Thank you and good day.");
+		e.self:Say("Well, then!! You should not be in here.  This place is restricted to all outsiders.  You will leave at once!  Thank you and good day.");
 	elseif(e.message:findi("small problem")) then
-		e.self:Say("For months. Fiddy Bobick has petitioned the marshals to assist him with a problem he has.  With the addition of new deputies such as yourself. we can now give him the assistance he requires.  Just go down to Bobick's shop near the lake.  Tell him I sent you.");
+		if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100) then
+			e.self:Say("For months, Fiddy Bobick has petitioned the marshals to assist him with a problem he has.  With the addition of new deputies such as yourself, we can now give him the assistance he requires.  Just go down to Bobick's shop near the lake.  Tell him I sent you.");
+		elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 0) then
+			e.self:Say("You are in good standing with the Guardians of the Vale. Continue with your good work and then we may speak.")
+		else
+			e.self:Say("How can you expect to just waltz into Guardian Stronghold and expect to gather information?! Consider yourself lucky I don't command the Guardian of the Vale deputies to show you the sharpness of their blades!");
+		end
 	elseif(e.message:findi("rantho rapier")) then
 		e.self:Say("The Rantho Rapier was crafted by the great blacksmith Rantho Goobler.  It was designed for use by the warriors of the wee folk.  With its light weight and special two-hand hilt, it becomes a formidable weapon in the hands of our younger deputies.  Only a [new deputy] has the right to earn one.");
 	end
 end
 
+
 function event_trade(e)
 	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13870})) then
+	if(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100 and item_lib.check_turn_in(e.self, e.trade, {item1 = 13929})) then
 		e.self:Say("What was I thinking?!! Piranha are coming downstream and eating our supply of fish! We have never had a problem like this!!  Where are these little beasts coming from?  For now we must collect more. Take this bag. Collect enough teeth to fill the bag. Don't worry, if it takes a while I shall reward you with the [Rantho Rapier].  We will need to examine the teeth.");
-		e.other:SummonItem(17968); -- Item: Piranha Bag
-		e.other:Ding();
-		e.other:Faction(263,10,0); -- Faction: Guardians of the Vale
-		e.other:Faction(286,10,0); -- Faction: Mayor Gubbin
-		e.other:Faction(355,10,0); -- Faction: Storm Reapers
-		e.other:Faction(292,10,0); -- Faction: Merchants of Rivervale
-		e.other:Faction(334,-10,0); -- Faction: Dreadguard Outer
-		e.other:AddEXP(200);
-		e.other:GiveCash(0,1,0,0);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12155})) then
+		e.other:Faction(263,2); -- Faction: Guardians of the Vale
+		e.other:Faction(286,1); -- Faction: Mayor Gubbin
+		e.other:Faction(355,1); -- Faction: Storm Reapers
+		e.other:Faction(292,1); -- Faction: Merchants of Rivervale
+		e.other:Faction(334,-1); -- Faction: Dreadguard Outer
+		e.other:QuestReward(e.self,0,math.random(5),0,0,17968,200); -- Item: Piranha Bag
+	elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 100 and item_lib.check_turn_in(e.self, e.trade, {item1 = 12155})) then
 		e.self:Say("Fine work. We shall continue to study these and shall determine if we need to seek the source.");
-		e.other:SummonItem(5423); -- Item: Rantho Rapier
-		e.other:Ding();
-		e.other:Faction(263,15,0); -- Faction: Guardians of the Vale
-		e.other:Faction(286,15,0); -- Faction: Mayor Gubbin
-		e.other:Faction(355,15,0); -- Faction: Storm Reapers
-		e.other:Faction(292,15,0); -- Faction: Merchants of Rivervale
-		e.other:Faction(334,-20,0); -- Faction: Dreadguard Outer
-		e.other:AddEXP(200);
-		e.other:GiveCash(0,1,0,0);
+		e.other:Faction(263,10); -- Faction: Guardians of the Vale
+		e.other:Faction(286,1); -- Faction: Mayor Gubbin
+		e.other:Faction(355,1); -- Faction: Storm Reapers
+		e.other:Faction(292,1); -- Faction: Merchants of Rivervale
+		e.other:Faction(334,-1); -- Faction: Dreadguard Outer
+		e.other:QuestReward(e.self,0,math.random(5),0,0,5423,200); -- Item: Rantho Rapier
+	elseif(e.other:GetModCharacterFactionLevel(e.self:GetPrimaryFaction()) >= 0) then
+		e.self:Say("You are in good standing with the Guardians of the Vale. Continue with your good work and then we may speak.")
+	else
+		e.self:Say("How can you expect to just waltz into Guardian Stronghold and expect to gather information?! Consider yourself lucky I don't command the Guardian of the Vale deputies to show you the sharpness of their blades!");
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

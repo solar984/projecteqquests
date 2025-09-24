@@ -1,6 +1,8 @@
 -- items: 19555, 19558, 19559, 19561, 19557, 19560, 19556, 19629, 17124
 function event_say(e)
-	if(e.message:findi("moss toe cap")) then
+	if(e.message:findi("hail")) then
+		e.self:Say("Good day! If you are a new Druid of the Storm Reapers I have promised Hibbs that I would assist in getting you outfitted for ventures beyond Rivervale but you must bring me a note from Reebo as proof that he sent you. There are many dangers outside of the shire so often leather clothing and a weapon become necessities for a traveling druid.");
+	elseif(e.message:findi("moss toe cap")) then
 		e.self:Say("To assemble a Moss Toe Cap you will require two [silk thread], a ruined mossy rat pelt, and a giant thicket rat skull. Once you have the necessary components combine them in your Mail Assembly Kit with this Tattered Cap Pattern.");
 		-- Summon: Tattered Cap Pattern
 		e.other:SummonItem(19555); -- Item: Tattered Cap Pattern
@@ -45,7 +47,7 @@ function event_trade(e)
 	-- Handin: Letter to Bartle Barnick
 	if(item_lib.check_turn_in(e.self, e.trade,  {item1 = 19629})) then
 		e.self:Say("It is good to see another of our young people choose the humble life of a druid of Karana. I have assembled patterns that will allow you to construct some protective leather garments to keep you comfortable in the wilds and help turn aside the weapons of the Storm Reapers enemies. The required components for the leather vary according to which piece of Moss Toe Leather your are planning on crafting. Do you wish to craft a [moss toe cap], a [moss toe bracer], [moss toe gloves], [moss toe boots], [moss toe sleeves], [moss toe leggings], or a [moss toe tunic]?");
-		e.other:SummonItem(17124); --Mail Assembly Kit
+		e.other:QuestReward(e.self,{itemid = 17124}); --Mail Assembly Kit
 	else
 		item_lib.return_items(e.self, e.other, e.trade);
 	end

@@ -20,19 +20,17 @@ function event_say(e)
 end
   
 function event_trade(e)
-local item_lib = require("items");
+	local item_lib = require("items");
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13870})) then 
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13929})) then 
 		e.self:Say("Whew!! We are sure on the way to saving this village, pal! They're gonna erect a statue in our names.  Fishslayers is what we are!  Let's keep up the good work!");
-		e.other:Faction(292,5); -- Faction: Merchants of Rivervale
-		e.other:Faction(241,5); -- Faction: Deeppockets
-		e.other:Faction(263,5); -- Faction: Guardians of the Vale
-		e.other:Faction(286,5); -- Faction: Mayor Gubbin
-		e.other:Faction(336,-5); -- Faction: Coalition of Tradefolk Underground
-		e.other:GiveCash(0,8,1,0);
-		e.other:AddEXP(15);
-	else
-		item_lib.return_items(e.self, e.other, e.trade); -- return unused items
+		e.other:Faction(292,1); -- Faction: Merchants of Rivervale
+		e.other:Faction(241,1); -- Faction: DeepPockets 
+		e.other:Faction(263,1); -- Faction: Guardians of the Vale  
+		e.other:Faction(286,1); -- Faction: Mayor Gubbin 
+		e.other:Faction(336,-1); -- Faction: Coalition of Tradefolk Underground
+		e.other:QuestReward(e.self,0,math.random(8),math.random(0,3),0,eq.ChooseRandom(13006,13007,13016,13018,17001),200); --Water Flask, Ration, Bottle of Kalish, Short Ale, Wrist Pouch
 	end
+	item_lib.return_items(e.self, e.other, e.trade); -- return unused items
 end
  --END of FILE Zone:rivervale  ID:19086 -- Fiddy_Bobick

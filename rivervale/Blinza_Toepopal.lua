@@ -21,38 +21,34 @@ function event_say(e)
 end
 
 function event_trade(e)
-local item_lib = require("items");
+	local item_lib = require("items");
+
 	if (item_lib.check_turn_in(e.self, e.trade,  {item1 = 13958})) then
-		e.self:Say("Well it is about time!  The mayor gets very upset if he does not have the freshest of carrots in his stew.  Here is the money for the carrots.  Be off with you.  Now. where the heck did [Jillin] go?");
-		e.other:GiveCash(1,0,0,0);
-		e.other:Faction(241, 1); -- Faction: Deeppockets
-		e.other:Faction(292, 1); -- Faction: Merchants of Rivervale
-		e.other:Faction(329, -1); -- Faction: Carson McCabe
-		e.other:Faction(223, -1); -- Faction: Circle of Unseen Hands
-		e.other:Faction(336, -1); -- Faction: Coalition of Tradefolk Underground
-		e.other:AddEXP(10);
-		e.other:Ding();
+		e.self:Say("Well it is about time!  The mayor gets very upset if he does not have the freshest of carrots in his stew.  Here is the money for the carrots.  Be off with you.  Now, where the heck did [Jillin] go?");
+		e.other:Faction(241, 1); -- Faction: DeepPockets
+		e.other:Faction(223, 1); -- Faction: Circle of Unseen Hands
+		e.other:Faction(292, -1); -- Faction: Merchants of Rivervale
+		e.other:Faction(336, 1); -- Faction: Coalition of Tradefolk Underground
+		e.other:Faction(329, 1); -- Faction: Carson McCabe
+		e.other:QuestReward(e.self,1,0,0,0,0,10);
 	elseif (item_lib.check_turn_in(e.self, e.trade,  {item1 = 13957})) then
 		e.self:Say("Oh excellent! These carrots are perfect! The finest Reebo has ever sent us. The mayor will be so pleased. Here is the payment for the carrots. Excuse me, but I must finish preparing the stew. Hmm. Where the heck did [Jillin] go?");
-		e.other:GiveCash(10,0,0,0);
-		e.other:Faction(241, 5); -- Faction: Deeppockets
-		e.other:Faction(292, -1); -- Faction: Merchants of Rivervale
-		e.other:Faction(329, 1); -- Faction: Carson McCabe
+		e.other:Faction(241, 5); -- Faction: DeepPockets
 		e.other:Faction(223, 1); -- Faction: Circle of Unseen Hands
+		e.other:Faction(292, -1); -- Faction: Merchants of Rivervale
 		e.other:Faction(336, 1); -- Faction: Coalition of Tradefolk Underground
-		e.other:AddEXP(20);
-		e.other:Ding();
+		e.other:Faction(329, 1); -- Faction: Carson McCabe
+		e.other:QuestReward(e.self,math.random(5),math.random(2),0,0,0,20);
 	elseif (item_lib.check_turn_in(e.self, e.trade,  {item1 = 13971})) then
 		e.self:Say("What are these?!  I am trying to make stew for the mayor and you bring me ROTTEN CARROTS?!  Have you no sense??  Take these back to Reebo.");
-		e.other:SummonItem(13972); -- Item: Crate of Rotten Carrots
-		e.other:Faction(241, -5); -- Faction: Deeppockets
-		e.other:Faction(292, 1); -- Faction: Merchants of Rivervale
-		e.other:Faction(329, -1); -- Faction: Carson McCabe
+		e.other:Faction(241, -5); -- Faction: DeepPockets
 		e.other:Faction(223, -1); -- Faction: Circle of Unseen Hands
+		e.other:Faction(292, 1); -- Faction: Merchants of Rivervale
 		e.other:Faction(336, -1); -- Faction: Coalition of Tradefolk Underground
-	else
-		item_lib.return_items(e.self, e.other, e.trade);
+		e.other:Faction(329, -1); -- Faction: Carson McCabe
+		e.other:QuestReward(e.self,0,0,0,0,13972);
 	end
+	item_lib.return_items(e.self, e.other, e.trade);
 end
 
 --END of FILE Zone:rivervale  ID:19091 -- Blinza_Toepopal

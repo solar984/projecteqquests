@@ -43,12 +43,12 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 22668,item2 = 22696,item3 = 22696,item4 = 22696})) then
-		e.other:SummonItem(22697); -- Item: Mace of the Stoutdeacon
-		e.other:Ding();
-		e.other:AddEXP(500);
+		e.self:Say("I knew that I could count on you to follow through in your training. You have surely proven yourself in the time that you have trained with me. Please take this Mace, as Bristlebane has blessed you with the power to give life to those that have fallen. Thank you, " .. e.other:GetCleanName() .. ". You have made me very proud!");
+		e.other:Faction(300,10);
+		e.other:Faction(286,1);
+		e.other:Faction(263,1);
+		e.other:QuestReward(e.self,0,0,0,0,22697,500); -- Item: Mace of the Stoutdeacon
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
-
--- END of FILE Zone:rivervale  ID:19068 -- Thekela_Meepup 
 

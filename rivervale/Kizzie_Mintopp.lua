@@ -25,17 +25,16 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
+	local text = "This is not all! Kizzie says, three honeycombs and thirty gold coins! Oooh! They never listen.";
 
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13953,item2 = 13953,item3 = 13953,gold = 30})) then
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 13953,item2 = 13953,item3 = 13953,gold = 30},1,text)) then
 		e.self:Say("You are one lucky bixie buster. I just made a batch of honey jum. Here. No waiting for you.  One jar for your good work. Bye, now!");
-		e.other:SummonItem(13952); -- Item: Honey Jum
-		e.other:Ding();
-		e.other:Faction(292,1,0); -- Faction: Merchants of Rivervale
-		e.other:Faction(241,1,0); -- Faction: Deeppockets
+		e.other:Faction(292,1,0); -- confirmed live faction
+		e.other:Faction(241,1,0); -- Faction: DeepPockets
 		e.other:Faction(263,1,0); -- Faction: Guardians of the Vale
 		e.other:Faction(286,1,0); -- Faction: Mayor Gubbin
 		e.other:Faction(336,-1,0); -- Faction: Coalition of Tradefolk Underground
-		e.other:AddEXP(500);
+		e.other:QuestReward(e.self,0,0,0,0,13952,500);
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

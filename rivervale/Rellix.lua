@@ -14,12 +14,9 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 55523})) then -- Note to Rellix
 		e.self:Say("A note from Chef Chowderly, eh? I haven't heard from him in some time. Hope he is doing well.' Rellix reads the note. 'I do happen to have some spare dishes. Here, take them.");
-		e.other:SummonItem(55524); -- Case of Dishes
-		e.other:Ding();
-		e.other:AddEXP(5000);
+		e.other:QuestReward(e.self,0,0,0,0,55524,5000); -- Case of Dishes
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
-
 -- END of FILE zone:rivervale ID:19117 -- Rellix.pl
 

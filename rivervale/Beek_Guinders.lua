@@ -29,26 +29,21 @@ end
 
 function event_trade(e)
 	local item_lib = require("items");
+	local text = "Whoooops! I'll need the two ruined wolf pelts along with the berries and black wolf skin before I can reward you, " .. e.other:GetCleanName() .. ". Don't dawdle now.";
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18731})) then -- Tattered Note
-		e.self:Say("Aye. Welcome. my fur-footed friend. My name is Beek Guinders. and I am guildmaster here at the Chapel of Mischief. Here is our guild tunic. Wear it with pride, as it will set you apart from the crowd. Once you are ready to begin your training please make sure that you see Thekela Meepup, she can assist you in experienced in our art, I will be able to further instruct you on how to progress through your early ranks, as well as in some of the various [" .. eq.say_link("trades",false,"trades") .. "] you will have available to you.");
-		e.other:SummonItem(13538); -- Faded Gold Felt Tunic*
-		e.other:Ding();
+		e.self:Say("Aye. Welcome. my fur-footed friend. My name is Beek Guinders. and I am guildmaster here at the Chapel of Mischief. Here is our guild tunic. Wear it with pride, as it will set you apart from the crowd.");
 		e.other:Faction(300,100,0); -- Priest of Mischief
 		e.other:Faction(286,15,0); -- Mayor Gubbin
 		e.other:Faction(263,15,0); -- Guardian of the Vale
-		e.other:AddEXP(100);
-	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13045,item2 = 13782,item3 = 13782,item4 = 13758})) then -- Tattered Note
+		e.other:QuestReward(e.self,0,0,0,0,13538,20); -- Faded Gold Felt Tunic*
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 13045,item2 = 13782,item3 = 13782,item4 = 13758},1,text)) then -- can be done at dubiously
 		e.self:Say("Hey, great! You found the materials! We'll get to work right away. If you find any more, please come by again. Here's a little something for your troubles, friend.");
-		e.other:SummonItem(eq.ChooseRandom(15014,15201,15207,15208,16303)); -- Item(s): Spell: Strike (15014), Spell: Flash of Light (15201), Spell: Divine Aura (15207), Spell: Lull (15208), Spell: Gate (16303)
-		e.other:Ding();
-		e.other:Faction(300,10,0); -- Priest of Mischief
-		e.other:Faction(286,10,0); -- Mayor Gubbin
-		e.other:Faction(263,10,0); -- Guardian of the Vale
-		e.other:AddEXP(100);
-		e.other:GiveCash(23,13,0,0);
-	else
-		e.self:Say("Whoooops! I'll need the two ruined wolf pelts along with the berries and black wolf skin before I can reward you, " .. e.other:GetName() .. ". Don't dawdle.");
+		-- Confirmed Live Factions
+		e.other:Faction(300,3,0); -- Priest of Mischief
+		e.other:Faction(286,1,0); -- Mayor Gubbin
+		e.other:Faction(263,1,0); -- Guardian of the Vale
+		e.other:QuestReward(e.self,math.random(10),math.random(10),math.random(5),0,eq.ChooseRandom(15014,15201,15207,15208,16303),5000); -- Item(s): Spell: Strike (15014), Spell: Flash of Light (15201), Spell: Divine Aura (15207), Spell: Lull (15208), Spell: Gate (16303)
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
