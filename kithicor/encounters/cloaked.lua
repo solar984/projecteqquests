@@ -1,8 +1,8 @@
 --[[ bard 1.5
 --   Thief part
---   #a_cloaked_figure (20290)
---   a_malignant_shadow (20291)
---   #a_shadow_thief (20292)
+--   #a_cloaked_figure 20027
+--   a_malignant_shadow 20028
+--   #a_shadow_thief 20029
 --
 --   Hailing the a cloaked figure will start the event after sometime
 --   After the time 4 a malignant shadow will spawn around the bard
@@ -32,10 +32,10 @@ function CloakedTimer(e)
     entity_list:MessageClose(e.self, true, 100, MT.Yellow, "The figure begins to fade into the shadows before your very eyes.  You notice movement out of the corner of your left eye.")
     local bard_client = entity_list:GetClientByID(bard)
     if bard_client.valid and bard_client:GetClass() == Class.BARD then
-        eq.spawn2(20291, 0, 0, bard_client:GetX() + 100, bard_client:GetY(), bard_client:FindGroundZ(bard_client:GetX() + 100, bard_client:GetY(), bard_client:GetZ()) + 5, bard_client:GetHeading())
-        eq.spawn2(20291, 0, 0, bard_client:GetX() - 100, bard_client:GetY(), bard_client:FindGroundZ(bard_client:GetX() - 100, bard_client:GetY(), bard_client:GetZ()) + 5, bard_client:GetHeading())
-        eq.spawn2(20291, 0, 0, bard_client:GetX(), bard_client:GetY() + 100, bard_client:FindGroundZ(bard_client:GetX(), bard_client:GetY(), bard_client:GetZ() + 100) + 5, bard_client:GetHeading())
-        eq.spawn2(20291, 0, 0, bard_client:GetX(), bard_client:GetY() - 100, bard_client:FindGroundZ(bard_client:GetX(), bard_client:GetY(), bard_client:GetZ() - 100) + 5, bard_client:GetHeading())
+        eq.spawn2(20028, 0, 0, bard_client:GetX() + 100, bard_client:GetY(), bard_client:FindGroundZ(bard_client:GetX() + 100, bard_client:GetY(), bard_client:GetZ()) + 5, bard_client:GetHeading())
+        eq.spawn2(20028, 0, 0, bard_client:GetX() - 100, bard_client:GetY(), bard_client:FindGroundZ(bard_client:GetX() - 100, bard_client:GetY(), bard_client:GetZ()) + 5, bard_client:GetHeading())
+        eq.spawn2(20028, 0, 0, bard_client:GetX(), bard_client:GetY() + 100, bard_client:FindGroundZ(bard_client:GetX(), bard_client:GetY(), bard_client:GetZ() + 100) + 5, bard_client:GetHeading())
+        eq.spawn2(20028, 0, 0, bard_client:GetX(), bard_client:GetY() - 100, bard_client:FindGroundZ(bard_client:GetX(), bard_client:GetY(), bard_client:GetZ() - 100) + 5, bard_client:GetHeading())
     else
         bard = -1
     end
@@ -53,9 +53,9 @@ end
 function MalignantDeath(e)
     death_count = death_count + 1
     if death_count == 10 then
-        eq.spawn2(20292, 0, 0, e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading())
+        eq.spawn2(20029, 0, 0, e.self:GetX(), e.self:GetY(), e.self:GetZ(), e.self:GetHeading())
     end
-    eq.spawn2(20291, 0, 0, e.self:GetSpawnPointX(), e.self:GetSpawnPointY(), e.self:GetSpawnPointZ(), e.self:GetSpawnPointH())
+    eq.spawn2(20028, 0, 0, e.self:GetSpawnPointX(), e.self:GetSpawnPointY(), e.self:GetSpawnPointZ(), e.self:GetSpawnPointH())
 end
 
 function ThiefSpawn(e)
@@ -67,21 +67,21 @@ function ThiefHp(e)
 end
 
 function ThiefDeath(e)
-    eq.depop_all(20291)
+    eq.depop_all(20028)
     bard = -1
 end
 
 function event_encounter_load(e)
-    eq.register_npc_event("cloaked", Event.spawn, 20290, CloakedSpawn)
-    eq.register_npc_event("cloaked", Event.say, 20290, CloakedSay)
-    eq.register_npc_event("cloaked", Event.timer, 20290, CloakedTimer)
+    eq.register_npc_event("cloaked", Event.spawn, 20027, CloakedSpawn)
+    eq.register_npc_event("cloaked", Event.say, 20027, CloakedSay)
+    eq.register_npc_event("cloaked", Event.timer, 20027, CloakedTimer)
 
-    eq.register_npc_event("cloaked", Event.spawn, 20291, MalignantSpawn)
-    eq.register_npc_event("cloaked", Event.death_complete, 20291, MalignantDeath)
+    eq.register_npc_event("cloaked", Event.spawn, 20028, MalignantSpawn)
+    eq.register_npc_event("cloaked", Event.death_complete, 20028, MalignantDeath)
 
-    eq.register_npc_event("cloaked", Event.spawn, 20292, ThiefSpawn)
-    eq.register_npc_event("cloaked", Event.hp, 20292, ThiefHp)
-    eq.register_npc_event("cloaked", Event.death_complete, 20292, ThiefDeath)
+    eq.register_npc_event("cloaked", Event.spawn, 20029, ThiefSpawn)
+    eq.register_npc_event("cloaked", Event.hp, 20029, ThiefHp)
+    eq.register_npc_event("cloaked", Event.death_complete, 20029, ThiefDeath)
 end
 
 function event_encounter_unload(e)
