@@ -23,14 +23,12 @@ function event_trade(e)
 	local item_lib = require("items");
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18729})) then
-		e.self:Say("Welcome to the Craft Keepers! You have much to learn. and I'm sure you are anxious to get started. Here's your training robe. Go see Nolusia. she'll give you your first lesson.");
-		e.other:SummonItem(13549); -- Item: Old Patched Robe*
-		e.other:Ding();
+		e.self:Say("Welcome to the Craft Keepers! You have much to learn, and I'm sure you are anxious to get started. Here's your training robe. Go see Nolusia, she'll give you your first lesson.");
 		e.other:Faction(231,100,0); -- Craftkeepers
 		e.other:Faction(266,10,0); -- High Council of Erudin
 		e.other:Faction(265,-15,0); -- Heretics
 		e.other:Faction(267,15,0); -- High Guard of Erudin
-		e.other:AddEXP(100);
+		e.other:QuestReward(e.self,0,0,0,0,13549,20); -- Item: Old Patched Robe*
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end
