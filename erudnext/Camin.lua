@@ -14,22 +14,28 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18088})) then
 		e.self:Say("So you have met Solomen, eh? He is a man with a wealth of knowledge. It is good to hear he is well.");
-		e.other:Ding();
-		e.other:AddEXP(500);
-	elseif(qglobals["wizepic"] == "1" and item_lib.check_turn_in(e.self, e.trade, {item1 = 14330})) then
-		e.self:Say("Camin says 'Very interesting... I've seen this work before. Yes, yes! It's the work of Arantir Karondor! Give this back to the person you got it from. Maybe he will have a clue to Arantir's location.'");
-		e.other:SummonItem(14331); -- Item: Ro's Breath
-		e.other:Faction(404,10,0); -- Truespirit
-		e.other:Ding();
-		e.other:AddEXP(10000);
-		eq.delete_global("wizepic");
-	elseif(item_lib.check_turn_in(e.self, e.trade, {platinum = 1000})) then
-		e.self:Say("Good, good, you show a willingness to learn of this with your offer. What I can tell you is that Solusek Ro had four followers who had shown exceptional aptitude in the arts of wizardry. Solusek Ro himself tutored them. He considered them to be like his own children. I know of one who still exists. He goes by the name of Arantir Karondor. He used to specialize in the storing of magic into physical objects. Arantir has been hiding for many, many years and will most assuredly be going by another name, so keep your eyes open. Anyway, be off, I need to continue my research. Return to me if you ever find Arantir Karondor.");
-		e.other:Ding();
-		e.other:Faction(404,10,0); -- Truespirit
-		e.other:AddEXP(500);
-		eq.delete_global("wizepicA"); -- Delete this global so if a player deletes Arantir's ring they can restart epic again. The only known way to delete this global is to finish the epic. Delete it here instead.
+		e.other:QuestReward(e.self,0,0,0,0,0,500);
 		eq.set_global("wizepic","1",0,"D30");
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 14330})) then
+		if(qglobals["wizepic"] == "2") then
+			e.self:Say("Very interesting... I've seen this work before. Yes, yes! It's the work of Arantir Karondor! Give this back to the person you got it from. Maybe they will have a clue to Arantir's Location.");
+			e.other:Faction(404,10,0); -- Truespirit
+			e.other:QuestReward(e.self,0,0,0,0,14331,10000);
+			eq.delete_global("wizepic");
+		else
+			e.self:Say("I have no need for this item " .. e.other:GetCleanName() .. ", you can have it back.");
+			e.other:QuestReward(e.self,0,0,0,0,14330); -- Item: Ro's Breath
+		end
+	elseif(item_lib.check_turn_in(e.self, e.trade, {platinum = 1000})) then
+		if(qglobals["wizepic"] == "1") then
+			e.self:Say("Good, good, you show a willingness to learn of this with your offer. What I can tell you is that Solusek Ro had four followers who had shown exceptional aptitude in the arts of wizardry. Solusek Ro himself tutored them. He considered them to be like his own children. I know of one who still exists. He goes by the name of Arantir Karondor. He used to specialize in the storing of magic into physical objects. Arantir has been hiding for many, many years and will most assuredly be going by another name, so keep your eyes open. Anyway, be off, I need to continue my research. Return to me if you ever find Arantir Karondor.");
+			e.other:Faction(404,10,0); -- Truespirit
+			e.other:QuestReward(e.self,0,0,0,0,0,500);
+			eq.set_global("wizepic","2",0,"D30");
+		else
+			e.self:Say("I have no need for this item " .. e.other:GetCleanName() .. ", you can have it back.");
+			e.other:GiveCash(0,0,0,1000);
+		end
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

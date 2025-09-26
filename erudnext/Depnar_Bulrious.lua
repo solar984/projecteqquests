@@ -24,12 +24,10 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18726})) then -- Tattered Note
 		e.self:Say("Welcome to the Temple of Divine Light. I am Master Bulrious. Here. we study and spread the will of Quellious. Here is your guild tunic. Go find Jras Solsier. he will get you started with your first lesson.");
-		e.other:SummonItem(13546); -- Faded Silver Tunic*
-		e.other:Ding();
 		e.other:Faction(298,100,0); -- Peace Keepers
 		e.other:Faction(266,25,0); -- High Council of Erudin
 		e.other:Faction(265,-25,0); -- Heretics
-		e.other:AddEXP(100);
+		e.other:QuestReward(e.self,0,0,0,0,13546,20); -- Faded Silver Tunic*
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

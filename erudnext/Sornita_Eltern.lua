@@ -12,14 +12,10 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {gold = 20})) then
 		e.self:Say("Oh, yes. Very good friend. Here is the document I mentioned. It would seem to be part of a larger body of work, but this page describes a Teir'Dal who it seems was instrumental in creating the head of the very first scarecrow. You may keep that as it is merely a magical duplicate of the original document which I have carefully hidden.");
-		e.other:Ding();
-		e.other:AddEXP(100);
-		e.other:SummonItem(18030); -- Torn Parchment
+		e.other:QuestReward(e.self,{itemid = 18030, exp = 100}); -- Torn Parchment
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12590})) then -- Water-Stained Ancient Tome
 		e.self:Say("Unbelievable, you located the larger body of work I had been searching for! The text is scribbled in old Teir`Dal, but many of the words have been smeared and blurred. In fact, there are deep claw marks on the bindings and surface of the tome. It looks like the current owner didn't care well for it. Hmm. . . This translation of it may be spotty, but I think I'll be able to convey the general meaning for you. Ah, here you are. A duplicate copy of the writings. I'll hold on to the original as it won't be of much use to you. Many thanks, " .. e.other:GetName() .. "!");
-		e.other:Ding();
-		e.other:SummonItem(12591); -- Translated Ancient Tome
-		e.other:AddEXP(500);
+		e.other:QuestReward(e.self,{itemid = 12591, exp = 500}); -- Translated Ancient Tome
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end

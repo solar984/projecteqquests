@@ -1,6 +1,3 @@
--- Enchanter epic weapon Staff of the Serpent lead-in quest
--- items: 10600, 10601, 10602, 10603, 54008, 54007, 59016
-
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Good day, I have discovered something truly wonderful! If I only had the materials required so I can copy my notes and send them to my teacher.");
@@ -25,15 +22,11 @@ function event_trade(e)
 	--  check for ink of the dark, mechanical pen and white paper
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 10600,item2 = 10601,item3 = 10602})) then
 		e.self:Say("Yes, that is what I wanted. Here, take these notes. My teacher will be very interested if he is shown what I have found.");
-		e.other:Ding();
-		e.other:Faction(404,10,0); -- Faction: Truespirit
-		e.other:SummonItem(10603); -- Item: Copy of Notes
-		e.other:AddEXP(50000);
+		e.other:Faction(404,100); -- Faction: True Spirit
+		e.other:QuestReward(e.self,0,0,0,0,10603,5000);
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 54008,item2 = 54007})) then -- A Dimly Glowing Ring, Note to Stofo
 		e.self:Emote("scans the note quickly and gasps. Hardly glancing at you, he begins examining the ring, tearing through notes and books scattered about his dark room. As he pores over a scroll of parchment covered in strange texts his eyes light up, 'Yes, yes this is it! Ofala really found something quite remarkable in this one! Watch my friend.' The slim Erudite slips the ring onto his finger and the gem begins to throb, Stofo seems to draw the power into himself for a moment then carefully places the ring back onto his desk. He closes his eyes a moment then turns to you, the darkness in his eyes almost lends fear for a moment before he smiles. 'Thank you my friend, this stone is very dangerous, but I believe that I have accessed the powers within me through it. Take these words and use them well, perhaps the power shall work for you as well, and please tell my dear sister hello.'");
-		e.other:Ding();
-		e.other:SummonItem(59016); -- Item: Spell: Scryer's Trespass
-		e.other:AddEXP(1750000);
+		e.other:QuestReward(e.self,{itemid = 59016, exp = 175000}); -- Item: Spell: Scryer's Trespass
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end
