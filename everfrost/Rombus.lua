@@ -45,7 +45,7 @@ function event_trade(e)
 		e.self:QuestSay(e.other, "Okay, let's give this one more try. Hopefully your luck will rub off on me and I'll be able to successfully create this spell. Well here goes...");
 		e.self:QuestSay(e.other, "eyes glow with a bright yellow color. He looks at you for a second, searching for something. He then looks down his lexicon and whispers a chant.",{speak_mode = SpeakMode.Emote});
 		e.self:QuestSay(e.other, "'Excellent! I knew with your help I could create this spell. Thank you " .. e.other:GetName() .. ", here is your reward. Now, to try out this new teleport.");
-		e.other:SummonItem(69906); -- Right side of blade
+		e.other:QuestReward(e.self,{itemid = 69906}); -- Right side of blade
 		eq.set_global("pre_pal","3",5,"F");
 		eq.set_timer("spell",5000);
 	end

@@ -4,13 +4,14 @@ function event_spawn(e)
 end
 
 function event_timer(e)
-	entity_list = eq.get_entity_list();
-
 	if(e.timer == "follow") then
-		local mobtypeID =  entity_list:GetMobByNpcTypeID(30061);
-		local follow_mob = mobtypeID:GetID();
-		eq.follow(follow_mob);
-		eq.stop_timer("follow");
+		local mobtypeID =  eq.get_entity_list():GetMobByNpcTypeID(30061);
+		
+		if(mobtypeID) then
+			local follow_mob = mobtypeID:GetID();
+			eq.follow(follow_mob);
+			eq.stop_timer("follow");
+		end
 	end
 end
 
@@ -29,13 +30,12 @@ function event_trade(e)
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12221})) then
 		e.self:Emote("growls with happiness and licks your face.  Just enough time to swipe the sweaty shirt from his collar!!  Iceberg then runs off to enjoy his lion delight!!");
 		eq.signal(30061,2); -- NPC: Tundra_Jack
-		e.other:SummonItem(12226); -- Item: Sweaty Shirt
-		e.other:Ding();
-		e.other:Faction(320,5,0); -- Faction: Wolves of the North
-		e.other:Faction(327,5,0); -- Faction: Shamen of Justice
-		e.other:Faction(328,5,0); -- Faction: Merchants of Halas
-		e.other:Faction(311,5,0); -- Faction: Steel Warriors
-		e.other:AddEXP(1000);
+		-- Confirmed Live Factions
+		e.other:Faction(320,2,0); -- Faction: Wolves of the North
+		e.other:Faction(327,1,0); -- Faction: Shamen of Justice
+		e.other:Faction(328,1,0); -- Faction: Merchants of Halas
+		e.other:Faction(311,1,0); -- Faction: Steel Warriors
+		e.other:QuestReward(e.self,0,0,0,0,12226,1000); -- Item: Sweaty Shirt
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

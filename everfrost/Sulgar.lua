@@ -1,4 +1,3 @@
--- items: 17510, 18031, 14360, 14361, 11880, 11881
 function event_say(e)
 	if(e.message:findi("hail")) then
 		e.self:Say("Greetings. I am searching for the [wheel of Tarton]. If you will assist me I will provide you with [runes] to create a powerful spell.");
@@ -18,10 +17,7 @@ function event_trade(e)
 
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 14360,item2 = 14361})) then -- Staff of the Wheel / Star of Eyes
 		e.self:Say("Wonderful, you have brought me the Wheel. Here is the reward I promised you.");
-		e.other:SummonItem(11880); -- Rune of Frost
-		e.other:SummonItem(11881); -- Rune of the Astral
-		e.other:Ding();
-		e.other:AddEXP(100000);
+		e.other:QuestReward(e.self,{items = {11881,11880},exp = 100000}); -- Rune of the Astral,  Rune of Frost
 	end
 	item_lib.return_items(e.self, e.other, e.trade);
 end
