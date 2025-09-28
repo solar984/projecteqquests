@@ -24,6 +24,7 @@ function event_say(e)
 	elseif(e.message:findi("the gnome") and e.other:Class() == "Wizard") then
 		e.self:Say("Ah, the gnome I know very little about. I know he was small and crafty, and that he had a brother. His brother's craft was that of making fireworks, and he was the unfortunate victim of one of his own experiments. His firework exploded, leaving his mind diminished in capacity, even for a gnome. I remember others calling him 'Old Stewpot' in jest. I do not know if this is his birth name, but it may help you to locate him. I hear he also stays close to water because of the explosion. You never know when another gnomish invention will go awry. Give him this letter to help motivate him to remember.");
 		e.other:SummonItem(18169); -- Item: Note from Arantir
+		e.other:Faction(404, 30,0); 									--Truespirit
 		eq.depop();
 	end
 end
@@ -32,21 +33,21 @@ function event_trade(e)
 	local item_lib = require("items");
 	local qglobals = eq.get_qglobals(e.self,e.other);
 		
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 14335})) then		--Return Love Note handin
+	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 14337, item2 = 14338, item3 = 14339})) then --Staff of Gabstik, Blue Crystal Staff, Gnarled Staff
+		e.self:Say("Here, this pack contains all of our items. You will never be able to open it again, so you must deliver the pack, intact, to Solomen. He will then reward you. Now that I have helped you, leave me in peace.");
+		e.other:QuestReward(e.self,0,0,0,0,14340); -- Item: Magically Sealed Bag
+		eq.delete_global("wizepicA");
+		eq.delete_global("wizepicB");
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 14335})) then		--Return Arantir's Ring 2nd version
+		e.self:Say("Ah, but it pains my heart to see this. How I could love a women like that is beyond me. And yet, I still do love her. It was on the day I was to ask her to marry me that I lost my powers. When I was about to cast my greatest spell to prove my love to her, my magic failed. She ran out on me that day. But enough of me, do you wish to hear my story?");
 		eq.set_global("wizepicA","1",1,"F");
-	end
-	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 18168})) then	--Return Oil Note handin
+		eq.stop_timer("ArantirDepop");
+		eq.set_timer("ArantirDepop",640000);
+	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 18168})) then	--Return Oil Note handin
 		eq.delete_global("wizepicA");
 		eq.set_global("wizepicB","1",1,"F");
-	end
-	if(qglobals["wizepicB"] ~= nil) then
-		if(item_lib.check_turn_in(e.self, e.trade, {item1 = 14337, item2 = 14338, item3 = 14339})) then --Staff of Gabstik, Blue Crystal Staff, Gnarled Staff
-			e.self:Say("Here, this pack contains all of our items. You will never be able to open it again, so you must deliver the pack, intact, to Solomen. He will then reward you. Now that I have helped you, leave me in peace.");
-			e.other:Ding();
-			e.other:SummonItem(14340); -- Item: Magically Sealed Bag
-			e.other:Faction(404, 30,0); 									--Truespirit
-			eq.delete_global("wizepicA");
-		end
+		eq.stop_timer("ArantirDepop");
+		eq.set_timer("ArantirDepop",640000);
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

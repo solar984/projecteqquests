@@ -1,10 +1,9 @@
--- items: 17958, 12222, 12220, 12275, 12276, 12282, 13953, 12277
 function event_say(e)
 	if(e.message:findi("hail")) then
-		e.self:Say("Fine day to ye, " .. e.other:GetName() .. ".  Welcome to me shop.  If ye're searchin' fer a [cigar], ye won't be findin' any, more's th' pity.");
+		e.self:Say("Fine day to ye, " .. e.other:GetCleanName() .. ".  Welcome to me shop.  If ye're searchin' fer a [cigar], ye won't be findin' any, more's th' pity.");
 	elseif(e.message:findi("cigar")) then
 		e.self:Say("I was hoping to perfect me creation I was callin' the 'cigar.' but I'm afraid I just couldn't get it right.  To keep from settin' meself on fire, I switched me talents to makin' candles.  I could use help from a person such as yerself.  Ye could [collect the wax] fer me - the candle-makin's.");
-	elseif(e.message:findi("collect the wax")) then
+	elseif(e.message:findi("collect the wax")) then -- can be done at dubiously
 		e.self:Say("Grreatt!!  Take this wax jarr.  Head to any place ye can find the wee ones they call bixies. I'm afraid ye're going to hafta bash 'em and search to find out if they're carrying any honeycombs.  If they are, then ye can fill the jar with them and combine them, then return the full honeycomb jar to me. I'll be givin' ye a special candle if ye can do that fer me.");
 		e.other:SummonItem(17958); -- Item: Empty Jar
 	elseif(e.message:findi("any information about the crime")) then
@@ -24,25 +23,18 @@ function event_trade(e)
 	local item_lib = require("items");
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12222})) then
 		e.self:Say("Great work!! Now I can make more candles! Here ye are, me fri. I call this the Everburn Candle. It has a wee bit o' magic in it. I hope ye like it.");
-		e.other:SummonItem(12220); -- Item: Everburn Candle
-		e.other:GiveCash(0,0,0,1);
-		e.other:AddEXP(250);
-		e.other:Ding();
-		e.other:Faction( 328,3); -- Faction: Merchants of Halas
-		e.other:Faction( 320,3); -- Faction: Wolves of the North
-		e.other:Faction( 327,3); -- Faction: Shamen of Justice
+		-- Confirmed Live Factions
+		e.other:Faction( 328,25); -- Faction: Merchants of Halas
+		e.other:Faction( 320,18); -- Faction: Wolves of the North
+		e.other:Faction( 327,18); -- Faction: Shamen of Justice
+		e.other:QuestReward(e.self,0,0,0,1,12220,250); -- Item: Everburn Candle
 	elseif(item_lib.check_turn_in(e.self, e.trade, {item1 = 12275, item2 = 12276, item3 = 12282, item4 = 13953})) then
 		e.self:Say("Here is your Candle o' Bravery.");
-		e.other:Faction(328,25); -- Faction: Merchants of Halas
-		e.other:Faction(320,25); -- Faction: Wolves of the North
-		e.other:Faction(327,25); -- Faction: Shamen of Justice
-		e.other:AddEXP(50000);
-		e.other:SummonItem(12277); -- Item: Candle of Bravery
+		-- Confirmed Live Factions
+		e.other:Faction(328,5); -- Faction: Merchants of Halas
+		e.other:Faction(320,3); -- Faction: Wolves of the North
+		e.other:Faction(327,3); -- Faction: Shamen of Justice
+		e.other:QuestReward(e.self,0,0,0,0,12277,50000); -- Item: Candle of Bravery
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end
-
--------------------------------------------------------------------------------------------------
--- Converted to .lua using MATLAB converter written by Stryd and manual edits by Speedz
--- Find/replace data for .pl --> .lua conversions provided by Speedz, Stryd, Sorvani and Robregen
--------------------------------------------------------------------------------------------------

@@ -1,9 +1,6 @@
--- items: 12619
 function event_say(e)
-	if(e.message:findi("hail")) then
-		e.self:Say("You will have to excuse me. I am quite busy.");
-	elseif(e.message:findi("some ink")) then
-		e.self:Say("Oh, sure. Here you go."); 	--Text made up
+	if(eq.is_the_ruins_of_kunark_enabled() and e.message:findi("some ink")) then -- can be done at dubiously
+		e.self:Say("Jinkus must've sent ye fer some more of me special ink made from the pigment of th' datura flower. Ye may take some free o' charge, as a donation to the church and to the will o' the Tribunal as well");
 		e.other:SummonItem(12619); 				--Vial of Datura Ink
 	end
 end
@@ -12,9 +9,3 @@ function event_trade(e)
 	local item_lib = require("items");
 	item_lib.return_items(e.self, e.other, e.trade)
 end
-
--- DEVELOPER: KOVOU
--------------------------------------------------------------------------------------------------
--- Converted to .lua using MATLAB converter written by Stryd and manual edits by Speedz
--- Find/replace data for .pl --> .lua conversions provided by Speedz, Stryd, Sorvani and Robregen
--------------------------------------------------------------------------------------------------
