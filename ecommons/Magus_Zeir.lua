@@ -17,11 +17,15 @@ function event_say(e)
 		  e.self:CastSpell(4178,e.other:GetID(),0,1); -- Spell: Teleport: South Ro
 
 		end
-	else -- No Adventurers Stone
+	elseif (eq.is_gates_of_discord_enabled()) then -- No Adventurers Stone
 		if(e.message:findi("hail")) then
 			e.self:Say("You will have to excuse me, I am quite busy studying this Farstone and the possibility of using the magic stored inside of it.  Perhaps you should talk to those at the Wayfarer camps to see if they have any use for you.  I have enough time to send you to [" .. eq.say_link("Nedaria's Landing") .. "], if you'd like.");
 		elseif(e.message:findi("nedaria")) then
 			e.self:CastSpell(4580,e.other:GetID(),0,1); -- Spell: Teleport: Nedaria
+		end
+	else
+		if(e.message:findi("hail")) then
+			e.self:Say("You will have to excuse me, I am quite busy studying this Farstone and the possibility of using the magic stored inside of it.  Perhaps you should talk to those at the Wayfarer camps to see if they have any use for you.");
 		end
 	end
 end
