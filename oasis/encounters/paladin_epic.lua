@@ -18,7 +18,7 @@ function Keelee_Say(e)
 			event_started=true;
 			event_won=false
 			num_wave=0;
-			eq.spawn2(37162, 0, 0,1304.8,1478.7,4.6,452); --##Remal_the_Black (37162) UNTARGETABLE
+			eq.spawn2(37011, 0, 0,1304.8,1478.7,4.6,452); --##Remal_the_Black (37011) UNTARGETABLE
 			eq.set_timer("spawn_wave",1000);
 			eq.set_timer("banish",3000);
 		end
@@ -27,7 +27,7 @@ function Keelee_Say(e)
 			e.self:Say(e.other:GetName() .. "! You are my savior. Thank you very much for saving me. Here is my Brooch, take it as a symbol of friendship from me to you. I need to depart. I still have some collecting to do.");
 			local qglobals = eq.get_qglobals(e.other);
 			if(qglobals["pal_chest_keel"] == nil ) then
-				eq.spawn2(893,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(),e.self:GetHeading()); -- #a chest (Epic 2.0)
+				eq.spawn2(37012,0,0,e.self:GetX(),e.self:GetY(),e.self:GetZ(),e.self:GetHeading()); -- #a chest (Epic 2.0)
 				eq.set_global("pal_chest_keel","1",5,"F");
 			end
 			eq.depop_with_timer();
@@ -39,19 +39,19 @@ function Keelee_Timer(e)
 	if e.timer=="spawn_wave" then
 		if num_wave < 4 then
 			num_wave=num_wave+1
-			eq.spawn2(37160, 0, 0,1342.6,1507.6,4.6,298); --#an_orc (37160)
-			eq.spawn2(37160, 0, 0,1347.6,1429.77,4.6,448); --#an_orc (37160)
-			eq.spawn2(37160, 0, 0,1283.6,1416,4.6,64); --#an_orc (37160)
-			eq.spawn2(37160, 0, 0,1287,1498.4,11,190); --#an_orc (37160)
+			eq.spawn2(37008, 0, 0,1342.6,1507.6,4.6,298); --#an_orc (37008)
+			eq.spawn2(37008, 0, 0,1347.6,1429.77,4.6,448); --#an_orc (37008)
+			eq.spawn2(37008, 0, 0,1283.6,1416,4.6,64); --#an_orc (37008)
+			eq.spawn2(37008, 0, 0,1287,1498.4,11,190); --#an_orc (37008)
 			eq.set_timer("spawn_wave",120*1000);
 		else
 			--if no #an_orc, next phase
-			if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(37160) then
-				eq.depop(37162);
+			if not eq.get_entity_list():IsMobSpawnedByNpcTypeID(37008) then
+				eq.depop(37011);
 				eq.zone_emote(MT.Yellow,"A mystical portal is formed. Keelee and Remal dissappear.");
 				e.self:Shout("Help me, I'm at some orc camp, help please!");
 				e.self:GMMove(-690.6 ,-1825, 5.55, 48);
-				eq.spawn2(37161,0,0,-704.5,-1835,6,52); --#Remal_the_Black (37161)
+				eq.spawn2(37010,0,0,-704.5,-1835,6,52); --#Remal_the_Black (37010)
 				eq.set_timer("depop",60*60*1000);
 				eq.stop_timer("banish");
 				eq.stop_timer("spawn_wave");
@@ -69,9 +69,9 @@ function Keelee_Timer(e)
 			end
 		end
 	elseif e.timer=="depop" then
-		eq.depop_all(37160);
-		eq.depop_all(37161);
-		eq.depop_all(37162);
+		eq.depop_all(37008);
+		eq.depop_all(37010);
+		eq.depop_all(37011);
 		eq.depop_with_timer();
 	end
 end
@@ -81,8 +81,8 @@ function Remal_Death(e)
 end
 
 function event_encounter_load(e)
-  eq.register_npc_event('paladin_epic', Event.say, 37152, Keelee_Say); --#Keelee_Rayin (37152)
-  eq.register_npc_event('paladin_epic', Event.timer, 37152, Keelee_Timer); --#Keelee_Rayin (37152)
-  eq.register_npc_event('paladin_epic', Event.spawn, 37152, Keelee_Spawn); --#Keelee_Rayin (37152
-  eq.register_npc_event('paladin_epic', Event.death, 37161, Remal_Death); --#Keelee_Rayin (37152)
+  eq.register_npc_event('paladin_epic', Event.say, 37009, Keelee_Say); --#Keelee_Rayin (37009)
+  eq.register_npc_event('paladin_epic', Event.timer, 37009, Keelee_Timer); --#Keelee_Rayin (37009)
+  eq.register_npc_event('paladin_epic', Event.spawn, 37009, Keelee_Spawn); --#Keelee_Rayin (37009
+  eq.register_npc_event('paladin_epic', Event.death, 37010, Remal_Death);
  end
