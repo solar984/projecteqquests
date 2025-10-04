@@ -7,8 +7,9 @@ local qglobals = eq.get_qglobals(e.self,e.other);
 
 	if(e.message:findi("Hail")) then
 		if(qglobals["Fatestealer"] == "1") then	
-		e.self:Say("So, ".. e.other:GetName() ..". You have finally come - no doubt to steal away with my darkest secrets. The rumors you may have heard, they are true. I do carry with me the ability to capture tormented spirits and enslave them in cold steel. The deadliest Teir`dal weapons have been twisted to a dark sweet purpose by my hand. You'd like to know how, wouldn't you? ".. e.other:GetName() ..", I would rather perish than share that knowledge with anyone.");
-		else e.self:Say("Welcome to the Hall of the Ebon Mask. You had best be a rogue or you have no business here. We have nothing to say to outsiders.");
+			e.self:Say("So, ".. e.other:GetName() ..". You have finally come - no doubt to steal away with my darkest secrets. The rumors you may have heard, they are true. I do carry with me the ability to capture tormented spirits and enslave them in cold steel. The deadliest Teir`dal weapons have been twisted to a dark sweet purpose by my hand. You'd like to know how, wouldn't you? ".. e.other:GetName() ..", I would rather perish than share that knowledge with anyone.");
+		else 
+			e.self:Say("Welcome to the Hall of the Ebon Mask. You had best be a rogue or you have no business here. We have nothing to say to outsiders.");
 		end
 	elseif(e.message:findi("dark assassin")) then
 		e.self:Say("Aye we were visited by that dark assassin, he left some sketch in my safekeeping, I would gladly give you a copy if you would take care of a problem that has been vexing me.");
